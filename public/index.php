@@ -387,26 +387,56 @@ $data_program_json = json_encode(array_map(function($p) {
                 </div>
             </div>
 
-            <!-- Modal Detail Event (Alpine) -->
-            <div x-show="selectedEvent !== null"
-                class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" x-cloak
+            <!-- Modal Detail Event (Premium Card Style) -->
+            <div x-show="modalOpen"
+                class="fixed inset-0 z-[120] flex items-center justify-center p-4" x-cloak
                 style="display: none;">
-                <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full m-4 transform transition-all"
-                    @click.away="selectedEvent = null">
-                    <h3 class="text-2xl font-bold mb-2 text-himatep-green" x-text="selectedEvent?.title"></h3>
-                    <p class="text-sm text-gray-500 mb-4 flex items-center"><svg class="w-4 h-4 mr-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                            </path>
-                        </svg> <span x-text="selectedEvent?.date"></span></p>
-                    <p class="text-gray-700 mb-6" x-text="selectedEvent?.desc"></p>
-                    <div class="flex flex-col gap-3">
-                        <a x-show="selectedEvent?.slug" :href="'detail-program.php?slug=' + selectedEvent?.slug"
-                            class="w-full bg-himatep-green hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded-lg transition shadow-md">Lihat
-                            Detail Program</a>
-                        <button @click="selectedEvent = null"
-                            class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg transition">Tutup</button>
+                <!-- Backdrop -->
+                <div class="fixed inset-0 bg-black/70 backdrop-blur-sm" @click="modalOpen = false"></div>
+                
+                <!-- Card Modal -->
+                <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full relative overflow-hidden transform transition-all z-10"
+                    x-show="modalOpen"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                    x-transition:leave-end="opacity-0 scale-95 translate-y-4">
+                    
+                    <!-- Close Button -->
+                    <button @click="modalOpen = false" class="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur p-2 rounded-full shadow-lg hover:bg-white transition-colors">
+                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+
+                    <!-- Image Preview -->
+                    <div class="relative h-48 w-full overflow-hidden bg-gray-100">
+                        <img :src="selectedEvent?.gambar" 
+                             class="w-full h-full object-cover">
+                        <!-- Date Badge Overlay -->
+                        <div x-show="selectedEvent?.agenda" 
+                             class="absolute top-4 left-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[60px]"
+                             :class="selectedEvent?.divisiColor ? 'bg-' + selectedEvent.divisiColor + '-600' : 'bg-himatep-green'">
+                            <span class="text-[10px] font-bold uppercase tracking-wider opacity-90" x-text="selectedEvent?.agenda?.bulan"></span>
+                            <span class="text-xl font-black leading-none" x-text="selectedEvent?.agenda?.tanggal"></span>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 leading-tight" x-text="selectedEvent?.title"></h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8 line-clamp-3" x-text="selectedEvent?.desc || 'Tidak ada ringkasan tersedia untuk kegiatan ini.'"></p>
+                        
+                        <!-- Actions -->
+                        <div class="flex flex-col gap-3">
+                            <a x-show="selectedEvent?.slug" :href="'detail-program.php?slug=' + selectedEvent?.slug"
+                                class="w-full bg-himatep-green hover:bg-blue-800 text-white text-center font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
+                                <span>Buka Informasi</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                            <button @click="modalOpen = false"
+                                class="w-full bg-gray-50 hover:bg-gray-100 text-gray-500 font-bold py-3 rounded-xl transition-colors">Tutup</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -707,7 +737,7 @@ $data_program_json = json_encode(array_map(function($p) {
     <script>
         const dataProgram = <?php echo $data_program_json; ?>;
     </script>
-    <script src="js/calendar.js"></script>
+    <script src="js/calendar.js?v=<?= time() ?>"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
 </body>

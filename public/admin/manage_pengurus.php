@@ -121,7 +121,25 @@ foreach ($pengurus_list as $p) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'himatep-green': '#2563EB',
+                        'himatep-light': '#DBEAFE',
+                        'himatep-dark': '#111111',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'cursive': ['"Great Vibes"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style> 
+        body { font-family: 'Poppins', sans-serif; } 
         /* KSB Modern Cards - Preview Sync */
         .ksb-wrapper {
             display: flex;
@@ -170,14 +188,12 @@ foreach ($pengurus_list as $p) {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            align-items: center; /* Center horizontally */
             padding: 1.5rem;
-            text-align: center;
         }
 
         .ksb-content {
             transform: skewX(12deg);
-            text-align: center;
+            text-align: left;
         }
 
         .ksb-nama {
@@ -235,17 +251,54 @@ foreach ($pengurus_list as $p) {
           isBphRole(role) {
               return ['Ketua Umum', 'Sekretaris Umum', 'Bendahara Umum'].includes(role);
           }
-      }">
+<body class="bg-gray-100 flex h-screen overflow-hidden" x-data="{ 
+    sidebarOpen: false, 
+    modalOpen: false, 
+    modalMode: 'add', 
+    takenRoles: <?= htmlspecialchars(json_encode($taken_bph_roles), ENT_QUOTES, 'UTF-8') ?>,
+    formData: { id: '', nama: '', jabatan: '', divisi: 'BPH', urutan: '', periode: '2026/2027', deskripsi: '' },
+    openModal(mode, data = null) {
+        this.modalMode = mode;
+        if (mode === 'edit' && data) {
+            this.formData = { ...data };
+        } else {
+            this.formData = { id: '', nama: '', jabatan: '', divisi: 'BPH', urutan: '', periode: '2026/2027', deskripsi: '' };
+        }
+        this.modalOpen = true;
+    },
+    isRoleTaken(role) {
+        if (!this.takenRoles[role]) return false;
+        if (this.modalMode === 'edit' && this.formData.id == this.takenRoles[role]) return false;
+        return true;
+    },
+    isBphRole(role) {
+        return ['Ketua Umum', 'Sekretaris Umum', 'Bendahara Umum'].includes(role);
+    }
+}">
+    
+    <!-- Overlay for Mobile -->
+    <div x-show="sidebarOpen" 
+         x-transition:enter="transition opacity-0 ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition opacity-100 ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         @click="sidebarOpen = false" 
+         class="fixed inset-0 bg-black/50 z-30 lg:hidden" style="display:none;"></div>
 
-    <!-- Sidebar Overlay -->
-    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-30 lg:hidden" style="display:none;"></div>
-
-    <!-- Sidebar (Reused standard sidebar) -->
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed lg:static inset-y-0 left-0 w-64 bg-[#2563EB] text-white flex flex-col shadow-xl z-40 transition-transform duration-300 lg:translate-x-0">
-        <div class="p-6 border-b border-green-800 flex items-center justify-between">
-            <span class="text-xl font-bold text-white">Admin Panel</span>
-            <button @click="sidebarOpen = false" class="lg:hidden text-green-200">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <!-- Sidebar (Format Dashboard) -->
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
+           class="fixed lg:static inset-y-0 left-0 w-64 bg-[#2563EB] text-white flex flex-col shadow-xl z-40 transition-transform duration-300 lg:translate-x-0">
+        <div class="p-6 border-b border-blue-800 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="../images/logo-himatep.png" alt="Logo" class="h-8 w-8 bg-white rounded-full p-1">
+                <span class="text-xl font-bold text-white">Admin Panel</span>
+            </div>
+            <button @click="sidebarOpen = false" class="lg:hidden text-blue-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
             </button>
         </div>
         <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -255,16 +308,31 @@ foreach ($pengurus_list as $p) {
             <a href="manage_pengurus.php" class="block py-3 px-4 rounded-lg bg-blue-800 font-medium">Struktur Pengurus</a>
             <a href="view_aspirasi.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Suara Mahasiswa</a>
         </nav>
+        <div class="p-4 border-t border-green-800">
+            <a href="logout.php" class="block w-full py-2 px-4 bg-red-500 hover:bg-red-600 rounded text-center font-bold transition shadow">Logout</a>
+        </div>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
-        <!-- Header -->
-        <header class="h-20 bg-white shadow-sm flex items-center px-4 lg:px-8 z-10 gap-4">
-            <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-            <h2 class="text-2xl font-bold text-gray-800">Struktur Pengurus</h2>
+        <!-- Header (Format Dashboard) -->
+        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
+            <div class="flex items-center gap-4">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800">Struktur Pengurus</h2>
+            </div>
+            <div class="flex items-center gap-3 lg:gap-4">
+                <a href="../index.php" class="text-xs lg:text-sm text-[#2563EB] hover:underline font-medium">Lihat Website</a>
+                <div class="flex items-center gap-2 lg:gap-4 border-l border-gray-200 pl-3 lg:pl-4">
+                    <span class="font-medium text-xs lg:text-base text-gray-600 truncate max-w-[100px] lg:max-w-none">
+                        Halo, <?= htmlspecialchars($_SESSION['admin_username'] ?? 'Admin') ?>
+                    </span>
+                </div>
+            </div>
         </header>
 
         <!-- Content -->
@@ -286,35 +354,37 @@ foreach ($pengurus_list as $p) {
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-100/50 text-gray-500 text-sm uppercase tracking-wider">
-                                <th class="p-4 border-b">Urutan</th>
-                                <th class="p-4 border-b">Pengurus</th>
-                                <th class="p-4 border-b">Divisi</th>
-                                <th class="p-4 border-b">Aksi</th>
+                                <th class="py-4 px-4 border-b w-16 text-center">No</th>
+                                <th class="py-4 px-2 border-b">Pengurus</th>
+                                <th class="py-4 px-2 border-b">Divisi</th>
+                                <th class="py-4 px-4 border-b text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700 text-sm">
                             <?php foreach ($pengurus_list as $p): ?>
                             <tr class="hover:bg-gray-50 transition border-b border-gray-100/50">
-                                <td class="p-4 font-medium text-gray-900"><?= $p['urutan'] ?></td>
-                                <td class="p-4 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+                                <td class="py-4 px-4 font-bold text-gray-900 text-center"><?= $p['urutan'] ?></td>
+                                <td class="py-4 px-2 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 border border-gray-200">
                                         <img src="../images/pengurus/<?= htmlspecialchars($p['foto']) ?>" onerror="this.src='../images/logo-himatep.png'" class="w-full h-full object-cover">
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-gray-800"><?= htmlspecialchars($p['nama']) ?></p>
-                                        <p class="text-xs text-gray-500"><?= htmlspecialchars($p['jabatan']) ?></p>
+                                        <p class="font-bold text-gray-800 leading-tight"><?= htmlspecialchars($p['nama']) ?></p>
+                                        <p class="text-[11px] text-gray-500 mt-0.5"><?= htmlspecialchars($p['jabatan']) ?></p>
                                     </div>
                                 </td>
-                                <td class="p-4">
-                                    <span class="bg-blue-100 text-green-800 px-2 py-1 rounded text-xs font-semibold"><?= htmlspecialchars($p['divisi']) ?></span>
+                                <td class="py-4 px-2">
+                                    <span class="bg-blue-100 text-[#2563EB] px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-blue-200"><?= htmlspecialchars($p['divisi']) ?></span>
                                 </td>
-                                <td class="p-4 flex gap-2">
-                                    <?php
-                                        // Escaping khusus untuk pass data JSON di Alpine x-on:click
-                                        $p_json = htmlspecialchars(json_encode($p), ENT_QUOTES, 'UTF-8');
-                                    ?>
-                                    <button @click="openModal('edit', <?= $p_json ?>)" class="text-blue-500 hover:text-blue-700 font-medium">Edit</button>
-                                    <a href="?delete=<?= $p['id'] ?>" onclick="return confirm('Yakin hapus?')" class="text-red-500 hover:text-red-700 font-medium ml-2">Hapus</a>
+                                <td class="py-4 px-4 text-center">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <?php
+                                            // Escaping khusus untuk pass data JSON di Alpine x-on:click
+                                            $p_json = htmlspecialchars(json_encode($p), ENT_QUOTES, 'UTF-8');
+                                        ?>
+                                        <button @click="openModal('edit', <?= $p_json ?>)" class="text-blue-600 hover:text-blue-800 font-bold text-xs uppercase tracking-wider hover:underline">Edit</button>
+                                        <a href="?delete=<?= $p['id'] ?>" onclick="return confirm('Yakin hapus?')" class="text-red-500 hover:text-red-700 font-bold text-xs uppercase tracking-wider hover:underline">Hapus</a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -326,6 +396,11 @@ foreach ($pengurus_list as $p) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="flex mt-8">
+                <span class="text-[11px] text-gray-400 italic font-medium px-4 py-1.5 bg-white rounded-full border border-gray-200 shadow-sm">
+                    <span>Catatan: Hanya pengurus dengan divisi <strong>BPH</strong> yang akan ditampilkan pada kartu trapesium di halaman Profil.
+                </span>
             </div>
 
             <!-- Preview Struktur Organisasi (KSB Highlight) -->

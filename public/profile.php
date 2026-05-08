@@ -223,14 +223,12 @@ try {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            align-items: center; /* Center horizontally */
             padding: 2rem 2rem;
-            text-align: center;
         }
 
         .ksb-content {
             transform: skewX(12deg); 
-            text-align: center;
+            text-align: left;
         }
 
         .ksb-nama {

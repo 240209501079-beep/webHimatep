@@ -7,6 +7,7 @@ document.addEventListener('alpine:init', () => {
         days: [],
         monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
         selectedEvent: null,
+        modalOpen: false,
 
         init() {
             if (typeof dataProgram !== 'undefined') {
@@ -16,7 +17,11 @@ document.addEventListener('alpine:init', () => {
                         id: p.id,
                         date: p.agenda.date,
                         title: p.judul,
-                        desc: p.ringkasan
+                        desc: p.ringkasan || '',
+                        slug: p.slug,
+                        gambar: p.gambar,
+                        divisiColor: p.divisiColor,
+                        agenda: p.agenda
                     }));
             } else {
                 // Fallback statis jika dataProgram gagal dimuat
@@ -73,6 +78,7 @@ document.addEventListener('alpine:init', () => {
         showEvent(evt) {
             if (evt) {
                 this.selectedEvent = evt;
+                this.modalOpen = true;
             }
         }
     }));
