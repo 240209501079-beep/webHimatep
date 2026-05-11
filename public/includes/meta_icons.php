@@ -6,5 +6,5 @@
 <link rel="shortcut icon" href="/webHimatep/public/images/favicon.ico">
 <meta name="apple-mobile-web-app-title" content="HIMATEP">
 <meta name="application-name" content="HIMATEP">
-<meta name="msapplication-TileColor" content="#2563EB">
-<meta name="theme-color" content="#2563EB">
+<meta name="msapplication-TileColor" content="#1B2945">
+<meta name="theme-color" content="#1B2945">

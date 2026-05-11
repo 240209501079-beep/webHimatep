@@ -30,3 +30,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['file'])) {
 } else {
     echo json_encode(['success' => false, 'error' => 'Invalid request.']);
 }
+

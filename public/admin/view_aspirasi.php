@@ -57,8 +57,8 @@ try {
             theme: {
                 extend: {
                     colors: {
-                        'himatep-green': '#2563EB',
-                        'himatep-light': '#DBEAFE', /* Nuansa biru muda untuk tema baru */
+                        'himatep-green': '#1B2945',
+                        'himatep-light': '#E2E8F0', /* Nuansa biru muda untuk tema baru */
                         'himatep-dark': '#111111',
                     },
                     fontFamily: {
@@ -75,31 +75,7 @@ try {
 </head>
 <body class="bg-gray-100 flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
     
-    <!-- Overlay for Mobile -->
-    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-30 lg:hidden" x-transition style="display:none;"></div>
-
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
-           class="fixed lg:static inset-y-0 left-0 w-64 bg-[#2563EB] text-white flex flex-col shadow-xl z-40 transition-transform duration-300 lg:translate-x-0">
-        <div class="p-6 border-b border-green-800 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="../images/logo-himatep.png" alt="Logo" class="h-8 w-8 bg-white rounded-full p-1">
-                <span class="text-xl font-bold">Admin Panel</span>
-            </div>
-            <button @click="sidebarOpen = false" class="lg:hidden text-green-200">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
-            <a href="dashboard.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Dashboard</a>
-            <a href="manage_news.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Kelola Berita</a>
-            <a href="manage_proker.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Program Kerja</a>
-            <a href="manage_pengurus.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Struktur Pengurus</a>
-            <a href="view_aspirasi.php" class="block py-3 px-4 rounded-lg bg-blue-800 font-medium">Suara Mahasiswa</a>
-        </nav>
-        <div class="p-4 border-t border-green-800">
-            <a href="logout.php" class="block w-full py-2 px-4 bg-red-500 hover:bg-red-600 rounded text-center font-bold transition shadow">Logout</a>
-        </div>
-    </aside>
+    <?php include "includes/sidebar.php"; ?>
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
@@ -184,3 +160,5 @@ try {
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
+
+

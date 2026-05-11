@@ -15,6 +15,27 @@ try {
     $agenda_list = [];
 }
 
+// Ambil Data Banner
+try {
+    $stmt = $pdo->prepare("SELECT * FROM halaman_banner WHERE halaman = 'profile'");
+    $stmt->execute();
+    $banner = $stmt->fetch();
+} catch (PDOException $e) {
+    $banner = null;
+}
+
+// Ambil Data Narahubung
+try {
+    $stmt = $pdo->query("SELECT * FROM contacts WHERE is_active = 1 ORDER BY platform DESC, sort_order ASC");
+    $contacts = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $contacts = [];
+}
+$wa_contacts = array_filter($contacts, fn($c) => $c['platform'] === 'WhatsApp');
+$email_contacts = array_filter($contacts, fn($c) => $c['platform'] === 'Email');
+$sosmed_contacts = array_filter($contacts, fn($c) => $c['platform'] === 'Social Media');
+require_once 'includes/icons.php';
+
 // Persiapkan data untuk Alpine.js
 $data_program_json = json_encode(array_map(function($p) {
     $date = $p['tanggal_event'] ? new DateTime($p['tanggal_event']) : null;
@@ -52,24 +73,31 @@ if (empty($agenda_list)) {
     ]);
 }
 
-// Ambil Data Pengurus (BPH & Divisi)
+// Ambil Data Pengurus (BPH, Ketua Divisi, & Anggota)
 try {
     $stmt = $pdo->query("SELECT * FROM pengurus ORDER BY urutan ASC");
     $semua_pengurus = $stmt->fetchAll();
     
     $bph_list = [];
-    $divisi_list = [];
+    $ketua_divisi_list = [];
+    $anggota_list = [];
     
     foreach ($semua_pengurus as $p) {
-        if (strtoupper($p['divisi']) === 'BPH') {
+        $divisi_upper = strtoupper(trim($p['divisi']));
+        $jabatan_trim = trim($p['jabatan']);
+        
+        if ($divisi_upper === 'BPH') {
             $bph_list[] = $p;
+        } elseif ($jabatan_trim === 'Ketua Divisi') {
+            $ketua_divisi_list[] = $p;
         } else {
-            $divisi_list[$p['divisi']][] = $p;
+            $anggota_list[] = $p;
         }
     }
 } catch (PDOException $e) {
     $bph_list = [];
-    $divisi_list = [];
+    $ketua_divisi_list = [];
+    $anggota_list = [];
 }
 ?>
 <!DOCTYPE html>
@@ -94,8 +122,8 @@ try {
             theme: {
                 extend: {
                     colors: {
-                        'himatep-green': '#2563EB',
-                        'himatep-light': '#DBEAFE',
+                        'himatep-green': '#1B2945',
+                        'himatep-light': '#E2E8F0',
                         'himatep-dark': '#111111',
                     },
                     fontFamily: {
@@ -121,48 +149,6 @@ try {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* CSS untuk Org Chart */
-        .org-tree {
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            padding-bottom: 20px;
-        }
-        .org-tree ul {
-            padding-top: 40px;
-            position: relative;
-            transition: all 0.5s;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        .org-tree li {
-            text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 40px 5px 0 5px;
-            transition: all 0.5s;
-        }
-        .org-tree li::before, .org-tree li::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 2px solid #ccc;
-            width: 50%;
-            height: 40px;
-        }
-        .org-tree li::after {
-            right: auto;
-            left: 50%;
-            border-left: 2px solid #ccc;
-        }
-        .org-tree li:only-child::after, .org-tree li:only-child::before {
-            display: none;
-        }
-        .org-tree li:only-child {
-            padding-top: 0;
-        }
         /* KSB Modern Cards - Exact Match to Image */
         .ksb-wrapper {
             display: flex;
@@ -181,13 +167,13 @@ try {
         .ksb-card {
             position: relative;
             width: 100%;
-            max-width: 350px;
-            height: 520px;
+            max-width: 210px;
+            height: 315px;
             background: white;
             overflow: hidden;
             transform: skewX(-12deg); 
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid #2563EB; 
+            border: 3px solid #1B2945; 
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
             cursor: pointer;
         }
@@ -219,11 +205,11 @@ try {
         .ksb-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, #2563EB 0%, #2563EB 25%, rgba(37, 99, 235, 0.6) 40%, transparent 60%);
+            background: linear-gradient(to top, #1B2945 0%, #1B2945 25%, rgba(27, 41, 69, 0.6) 40%, transparent 60%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 2rem 2rem;
+            padding: 1.1rem 1.1rem;
         }
 
         .ksb-content {
@@ -232,7 +218,7 @@ try {
         }
 
         .ksb-nama {
-            font-size: 2.25rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: white;
             font-style: italic; 
@@ -241,7 +227,7 @@ try {
         }
 
         .ksb-jabatan {
-            font-size: 1.1rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: white;
             font-style: italic; 
@@ -250,17 +236,6 @@ try {
         }
     </style>
     <style>
-        .org-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 10px auto;
-            border: 2px solid #2563EB;
-            padding: 2px;
-            background: white;
-        }
-
         /* 3D Flip Animation for Modal */
         .perspective-1000 {
             perspective: 1000px;
@@ -279,31 +254,9 @@ try {
             0% { transform: rotateY(0deg) scale(1); opacity: 1; }
             100% { transform: rotateY(90deg) scale(0.9); opacity: 0; }
         }
-
-        /* Mobile overrides */
-        @media (max-width: 768px) {
-            .org-tree ul {
-                flex-direction: column;
-                align-items: center;
-                padding-top: 0;
-            }
-            .org-tree li {
-                padding: 10px 0;
-                width: 100%;
-            }
-            .org-tree li::before, .org-tree li::after, .org-tree ul ul::before {
-                display: none;
-            }
-            .org-tree li:not(:last-child) {
-                border-bottom: 2px solid #ccc;
-                padding-bottom: 20px;
-                margin-bottom: 10px;
-            }
-        }
     </style>
 </head>
 
-<!-- Alpine State untuk Modal ada di tag body -->
 <body class="font-sans bg-gray-50 text-himatep-dark overflow-x-hidden" 
       x-data="{ 
           mobileMenuOpen: false,
@@ -322,68 +275,27 @@ try {
       }">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-[100] pt-4" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20 bg-white backdrop-blur-xl rounded-full px-6 shadow-md border border-gray-400 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                    <img src="images/logo-himatep.png" alt="Logo" class="h-10 w-10 rounded-full bg-gray-100" onerror="this.src='https://via.placeholder.com/50x50.png?text=Logo'">
-                    <span class="font-bold text-xs md:text-sm leading-tight text-himatep-dark">HIMATEP<br>FIP<br>UNM</span>
-                </div>
-                <div class="hidden md:flex space-x-4 lg:space-x-8 text-sm lg:text-base">
-                    <a href="index.php#hero" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Beranda</a>
-                    <a href="#" class="nav-link whitespace-nowrap text-himatep-green font-medium hover:text-himatep-green transition">Profile</a>
-                    <a href="index.php#proker" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Program Kerja</a>
-                    <a href="index.php#kalender" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Agenda</a>
-                    <a href="index.php#berita" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Berita</a>
-                    <a href="index.php#aspirasi" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Suara Mahasiswa</a>
-                </div>
-                <div class="hidden md:flex items-center gap-4">
-                    <a href="admin/login.php" class="text-gray-400 hover:text-himatep-green transition-all p-2 rounded-full hover:bg-blue-50" title="Admin Panel">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    </a>
-                    <div class="relative" x-data="{ dropdownOpen: false }" @mouseenter="dropdownOpen = true" @mouseleave="dropdownOpen = false">
-                        <a href="#kontak" class="bg-blue-400 hover:bg-blue-500 text-himatep-dark px-6 py-2 rounded-full font-medium transition shadow-md flex items-center gap-2 focus:outline-none">
-                            Narahubung <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': dropdownOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </a>
-                        <div x-show="dropdownOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-gray-400 z-50" style="display: none;">
-                            <a href="index.php#kontak" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-himatep-green transition flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4light-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> WhatsApp</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display:none;" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div x-show="mobileMenuOpen" class="md:hidden bg-white shadow-lg absolute w-full mt-2 rounded-b-2xl" x-transition style="display:none;">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a @click="mobileMenuOpen = false" href="index.php#hero" class="nav-link block px-3 py-2 text-gray-600 font-medium">Beranda</a>
-                <a @click="mobileMenuOpen = false" href="#" class="nav-link block px-3 py-2 text-himatep-green font-medium">Profile</a>
-                <a @click="mobileMenuOpen = false" href="index.php#proker" class="nav-link block px-3 py-2 text-gray-600 font-medium">Program Kerja</a>
-            </div>
-        </div>
-    </nav>
+    <?php 
+    $root_path = '';
+    include 'includes/navbar.php'; 
+    ?>
 
     <!-- Header Section -->
     <section class="pt-40 pb-24 relative overflow-hidden min-h-[800px] flex items-center justify-center bg-himatep-dark">
-        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1920&q=80" alt="Background Profil Organisasi" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-luminosity">
+        <img src="<?= ($banner && $banner['gambar']) ? (strpos($banner['gambar'], 'http') === 0 ? $banner['gambar'] : $banner['gambar']) : 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1920&q=80' ?>" alt="Background Profil Organisasi" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-luminosity">
         <div class="absolute inset-0 bg-gradient-to-t from-himatep-green/40 to-transparent z-0"></div>
         <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg">Profil Organisasi</h1>
-            <p class="text-xl text-gray-100 max-w-2xl mx-auto font-medium drop-shadow-md">Mengenal lebih dekat struktur kepengurusan dan divisi-divisi di HIMATEP FIP UNM.</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg"><?= htmlspecialchars($banner['judul'] ?? 'Profil Organisasi') ?></h1>
+            <p class="text-xl text-gray-100 max-w-2xl mx-auto font-medium drop-shadow-md"><?= htmlspecialchars($banner['subjudul'] ?? 'Mengenal lebih dekat struktur kepengurusan dan divisi-divisi di HIMATEP FIP UNM.') ?></p>
         </div>
     </section>
 
-    <!-- Struktur Organisasi (KSB Highlight) -->
+    <!-- Struktur Organisasi -->
     <section class="py-24 bg-white relative z-10">
         <div class="max-w-7xl mx-auto px-4">
+            <!-- BPH INTI -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">BPH Inti <span class="text-himatep-green">HIMATEP</span></h2>
+                <h2 class="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">BPH Inti <span class="text-amber-500">HIMATEP</span></h2>
                 <div class="flex items-center justify-center gap-4">
                     <span class="h-px w-12 bg-gray-300"></span>
                     <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">KSB</p>
@@ -395,7 +307,6 @@ try {
                 <?php 
                 if (!empty($bph_list)): 
                     foreach ($bph_list as $p): 
-                        // Deteksi jika path adalah URL eksternal atau file lokal
                         $foto_path = (strpos($p['foto'], 'http') === 0) ? $p['foto'] : 'images/pengurus/' . ($p['foto'] ?? 'default.png');
                 ?>
                     <div class="ksb-card group" @click="openModal('<?= htmlspecialchars($p['nama'], ENT_QUOTES) ?>', '<?= htmlspecialchars($p['jabatan'], ENT_QUOTES) ?>', '<?= $foto_path ?>', '<?= htmlspecialchars($p['deskripsi'] ?? 'Tidak ada deskripsi', ENT_QUOTES) ?>')">
@@ -409,18 +320,83 @@ try {
                             </div>
                         </div>
                     </div>
-                <?php 
-                    endforeach;
-                else: 
-                ?>
+                <?php endforeach; ?>
+                <?php else: ?>
                     <div class="col-span-full text-center py-12 text-gray-400 italic">Belum ada data pengurus BPH.</div>
                 <?php endif; ?>
             </div>
+
+            <?php if (!empty($ketua_divisi_list)): ?>
+            <!-- BIDANG Section -->
+            <div class="text-center mt-24 mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Divisi <span class="text-amber-500">Himatep</span></h2>
+                <div class="flex items-center justify-center gap-4">
+                    <span class="h-px w-12 bg-gray-300"></span>
+                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Ketua Divisi</p>
+                    <span class="h-px w-12 bg-gray-300"></span>
+                </div>
+            </div>
+
+            <div class="ksb-wrapper" style="opacity: 1 !important; visibility: visible !important;">
+                <?php 
+                foreach ($ketua_divisi_list as $p): 
+                    $foto_path = (strpos($p['foto'], 'http') === 0) ? $p['foto'] : 'images/pengurus/' . ($p['foto'] ?? 'default.png');
+                    // Format Jabatan + Divisi (Ketua Divisi -> Ketua)
+                    $jab_clean = str_replace('Ketua Divisi', 'Ketua', $p['jabatan']);
+                    $jabatan_display = $jab_clean . ' ' . $p['divisi'];
+                ?>
+                    <div class="ksb-card group" @click="openModal('<?= htmlspecialchars($p['nama'], ENT_QUOTES) ?>', '<?= htmlspecialchars($jabatan_display, ENT_QUOTES) ?>', '<?= $foto_path ?>', '<?= htmlspecialchars($p['deskripsi'] ?? 'Tidak ada deskripsi', ENT_QUOTES) ?>')">
+                        <div class="ksb-image-container">
+                            <img src="<?= $foto_path ?>" onerror="this.src='images/logo-himatep.png'" alt="<?= htmlspecialchars($p['nama']) ?>">
+                        </div>
+                        <div class="ksb-overlay">
+                            <div class="ksb-content transition-transform duration-500 group-hover:translate-x-2">
+                                <p class="ksb-jabatan"><?= htmlspecialchars($jabatan_display) ?></p>
+                                <h3 class="ksb-nama"><?= htmlspecialchars($p['nama']) ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if (!empty($anggota_list)): ?>
+            <!-- ANGGOTA Section -->
+            <div class="text-center mt-24 mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Anggota <span class="text-amber-500">Himatep</span></h2>
+                <div class="flex items-center justify-center gap-4">
+                    <span class="h-px w-12 bg-gray-300"></span>
+                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Seluruh Anggota</p>
+                    <span class="h-px w-12 bg-gray-300"></span>
+                </div>
+            </div>
+
+            <div class="ksb-wrapper" style="opacity: 1 !important; visibility: visible !important;">
+                <?php 
+                foreach ($anggota_list as $p): 
+                    $foto_path = (strpos($p['foto'], 'http') === 0) ? $p['foto'] : 'images/pengurus/' . ($p['foto'] ?? 'default.png');
+                    // Format Jabatan + Divisi
+                    $jabatan_display = $p['jabatan'] . ' ' . $p['divisi'];
+                ?>
+                    <div class="ksb-card group" @click="openModal('<?= htmlspecialchars($p['nama'], ENT_QUOTES) ?>', '<?= htmlspecialchars($jabatan_display, ENT_QUOTES) ?>', '<?= $foto_path ?>', '<?= htmlspecialchars($p['deskripsi'] ?? 'Tidak ada deskripsi', ENT_QUOTES) ?>')">
+                        <div class="ksb-image-container">
+                            <img src="<?= $foto_path ?>" onerror="this.src='images/logo-himatep.png'" alt="<?= htmlspecialchars($p['nama']) ?>">
+                        </div>
+                        <div class="ksb-overlay">
+                            <div class="ksb-content transition-transform duration-500 group-hover:translate-x-2">
+                                <p class="ksb-jabatan"><?= htmlspecialchars($jabatan_display) ?></p>
+                                <h3 class="ksb-nama"><?= htmlspecialchars($p['nama']) ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
         </div>
     </section>
 
     <!-- Agenda Section -->
-    <section class="py-20 bg-gray-50 gsap-fade-up border-t border-gray-100">
+    <section class="py-20 bg-gray-50 gsap-fade-up border-gray-100">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 text-center md:text-left">
                 <div>
@@ -442,24 +418,24 @@ try {
                         <div class="relative h-48 w-full overflow-hidden">
                             <img :src="item.gambar" :alt="item.judul" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px]"
-                                 :style="'background-color: ' + (item.divisiColor === 'blue' ? '#2563EB' : item.divisiColor === 'green' ? '#16A34A' : item.divisiColor === 'purple' ? '#9333EA' : '#059669')">
+                                 :style="'background-color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : item.divisiColor === 'purple' ? '#9333EA' : '#059669')">
                                 <span class="text-xs font-bold uppercase tracking-wider opacity-90" x-text="item.agenda.bulan"></span>
                                 <span class="text-2xl font-black leading-none" x-text="item.agenda.tanggal"></span>
                             </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col text-left">
                             <h3 class="text-xl font-bold text-gray-800 mb-4 transition-colors"
-                                :style="item.divisiColor === 'blue' ? '--hover-color: #2563EB' : item.divisiColor === 'green' ? '--hover-color: #16A34A' : '--hover-color: #9333EA'"
+                                :style="item.divisiColor === 'blue' ? '--hover-color: #1B2945' : item.divisiColor === 'green' ? '--hover-color: #16A34A' : '--hover-color: #9333EA'"
                                 :class="'group-hover:text-[var(--hover-color)]'" x-text="item.judul"></h3>
                             <div class="space-y-3 mt-auto">
                                 <div class="flex items-center text-sm font-medium text-gray-500">
-                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#2563EB' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     <span x-text="item.agenda.waktu"></span>
                                 </div>
                                 <div class="flex items-center text-sm font-medium text-gray-500">
-                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#2563EB' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
@@ -473,12 +449,7 @@ try {
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-himatep-dark text-white py-16 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            &copy; 2026 HIMATEP FIP UNM. All rights reserved. Designed with ❤️
-        </div>
-    </footer>
+    <?php include 'includes/footer.php'; ?>
 
     <!-- MODAL POPUP (PREVIEW PENGURUS) -->
     <div x-show="isModalOpen" style="display: none;" class="fixed inset-0 z-[110] flex items-center justify-center perspective-1000 p-4">
@@ -502,10 +473,8 @@ try {
             </button>
             
             <!-- Photo Side (Kiri) -->
-            <div class="md:w-2/5 bg-gray-100 flex flex-col items-center justify-end relative overflow-hidden min-h-[300px]">
-                <!-- Decorative Circle -->
-                <div class="absolute w-64 h-64 bg-gray-200 rounded-full -top-10 left-10 z-0"></div>
-                <img :src="modalData.foto" :alt="modalData.nama" onerror="this.src='images/logo-himatep.png'" class="w-full h-full object-cover relative z-10 drop-shadow-lg max-h-[400px] object-center">
+            <div class="md:w-2/5 bg-white flex flex-col items-center justify-end relative overflow-hidden min-h-[300px]">
+                <img :src="modalData.foto" :alt="modalData.nama" onerror="this.src='images/logo-himatep.png'" class="w-full h-full object-cover relative z-10 drop-shadow-lg object-center">
             </div>
             
             <!-- Info Side (Kanan) -->
@@ -515,7 +484,7 @@ try {
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight" x-text="modalData.nama"></h2>
                 
                 <div class="mt-2">
-                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-100 pb-2">Deskripsi</h3>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-gray-100 pb-2">Deskripsi</h3>
                     <p class="text-gray-600 text-sm leading-relaxed" x-text="modalData.deskripsi || 'Tidak ada deskripsi yang ditambahkan untuk pengurus ini.'"></p>
                 </div>
 
@@ -528,7 +497,6 @@ try {
 
     <script>
         const dataProgram = <?php echo $data_program_json; ?>;
-        console.log('Data Program loaded:', dataProgram);
     </script>
     <script src="js/animations.js?v=1.1"></script>
     <script src="js/main.js"></script>

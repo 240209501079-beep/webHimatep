@@ -54,8 +54,8 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
             theme: {
                 extend: {
                     colors: {
-                        'himatep-green': '#2563EB',
-                        'himatep-light': '#DBEAFE',
+                        'himatep-green': '#1B2945',
+                        'himatep-light': '#E2E8F0',
                     }
                 }
             }
@@ -109,3 +109,4 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     </div>
 </body>
 </html>
+

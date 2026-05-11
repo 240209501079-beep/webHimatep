@@ -17,12 +17,10 @@ if (!is_dir($upload_dir)) {
 
 $division_colors = [
     'BPH' => 'emerald',
-    'PSDM' => 'blue',
-    'Penelitian & Pengembangan' => 'blue',
-    'Hubungan Masyarakat' => 'green',
-    'Pengabdian Masyarakat' => 'purple',
-    'Minat & Bakat' => 'orange',
-    'Kesejahteraan Mahasiswa' => 'pink',
+    'Bidang I Pendidikan dan Pelatihan' => 'blue',
+    'Bidang II Sosial dan Politik' => 'green',
+    'Bidang III Bakat dan Minat' => 'orange',
+    'Bidang IV Media dan Propaganda' => 'purple',
 ];
 
 $icons = [
@@ -118,8 +116,8 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             theme: {
                 extend: {
                     colors: {
-                        'himatep-green': '#2563EB',
-                        'himatep-light': '#DBEAFE', /* Nuansa biru muda untuk tema baru */
+                        'himatep-green': '#1B2945',
+                        'himatep-light': '#E2E8F0', /* Nuansa biru muda untuk tema baru */
                         'himatep-dark': '#111111',
                     },
                     fontFamily: {
@@ -134,7 +132,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
     <style> body { font-family: 'Poppins', sans-serif; } </style>
     <style>
         #preview-content a {
-            color: #2563eb;
+            color: #1B2945;
             text-decoration: underline;
             font-weight: 600;
         }
@@ -197,7 +195,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 scale-95 translate-y-4"
              x-transition:enter-end="opacity-100 scale-100 translate-y-0">
-            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+            <div class="p-6 border-gray-100 flex justify-between items-center bg-gray-50">
                 <h3 class="text-xl font-bold text-gray-800">Sisipkan Gambar</h3>
                 <button @click="showImageModal = false" class="text-gray-400 hover:text-gray-600 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -239,31 +237,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
         </div>
     </div>
     
-    <!-- Overlay for Mobile -->
-    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-30 lg:hidden" x-transition style="display:none;"></div>
-
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
-           class="fixed lg:static inset-y-0 left-0 w-64 bg-[#2563EB] text-white flex flex-col shadow-xl z-40 transition-transform duration-300 lg:translate-x-0">
-        <div class="p-6 border-b border-green-800 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="../images/logo-himatep.png" alt="Logo" class="h-8 w-8 bg-white rounded-full p-1">
-                <span class="text-xl font-bold">Admin Panel</span>
-            </div>
-            <button @click="sidebarOpen = false" class="lg:hidden text-green-200">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
-            <a href="dashboard.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Dashboard</a>
-            <a href="manage_news.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Kelola Berita</a>
-            <a href="manage_proker.php" class="block py-3 px-4 rounded-lg bg-blue-800 font-medium">Program Kerja</a>
-            <a href="manage_pengurus.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Struktur Pengurus</a>
-            <a href="view_aspirasi.php" class="block py-3 px-4 rounded-lg hover:bg-blue-800 transition text-green-100">Suara Mahasiswa</a>
-        </nav>
-        <div class="p-4 border-t border-green-800">
-            <a href="logout.php" class="block w-full py-2 px-4 bg-red-500 hover:bg-red-600 rounded text-center font-bold transition shadow">Logout</a>
-        </div>
-    </aside>
+    <?php include "includes/sidebar.php"; ?>
 
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
@@ -356,7 +330,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                         <textarea name="ringkasan" class="w-full p-2 border rounded-lg" rows="2" required><?= htmlspecialchars($edit_data['ringkasan'] ?? '') ?></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-1">Detail Konten (HTML)</label>
+                        <label class="block text-sm font-bold mb-1">Detail Konten (HTML Based)</label>
                         <div class="mb-2 flex flex-wrap gap-2 text-xs font-bold">
                             <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('strong')">Bold</button>
                             <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('em')">Italic</button>
@@ -389,7 +363,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             <div class="xl:col-span-2 space-y-8">
                 <!-- Live Preview -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
-                    <div class="p-4 bg-gray-50 border-b font-bold flex justify-between items-center">
+                    <div class="p-4 bg-gray-50 font-bold flex justify-between items-center">
                         <span>Live Preview (Tampilan Detail Program)</span>
                         <span class="text-xs font-normal text-gray-500 italic">Pratinjau</span>
                     </div>
@@ -401,7 +375,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                                 </svg>
                             </div>
                         </div>
-                        <div id="preview-divisi" class="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-600 mb-4 uppercase tracking-wider">DIVISI</div>
+                        <div id="preview-divisi" class="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-600 mb-4 uppercase tracking-wider">BIDANG</div>
                         <h1 id="preview-title" class="text-3xl font-bold text-gray-900 mb-6 leading-tight">Nama Program Kerja</h1>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8">
@@ -426,7 +400,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
 
                 <!-- List -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
-                <div class="p-4 bg-gray-50 border-b font-bold">Daftar Proker</div>
+                <div class="p-4 bg-gray-50 font-bold">Daftar Proker</div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
                         <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
@@ -615,7 +589,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                         content = content.replace(/src="images\//g, 'src="../images/');
                         preview.innerHTML = content;
                     } else if (field === 'divisi') {
-                        preview.innerText = input.value.toUpperCase() || 'DIVISI';
+                        preview.innerText = input.value.toUpperCase() || 'BIDANG';
                         const colorInput = document.querySelector('[name="divisi_color"]');
                         const color = colorInput.value || 'green';
                         
