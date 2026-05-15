@@ -129,7 +129,11 @@ $data_program_json = json_encode(array_map(function($p) {
     <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <!-- Background Diagonal Sesuai Gambar -->
         <div class="absolute inset-0 z-0 bg-white">
-            <div class="absolute inset-0 bg-himatep-green hero-diagonal"></div>
+            <div class="absolute inset-0 bg-himatep-green hero-diagonal overflow-hidden">
+                <!-- Central Glow behind Logo (Slightly Brighter) - Clipped to diagonal -->
+                <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] bg-blue-500/20 rounded-full blur-[120px] md:blur-[200px] pointer-events-none"></div>
+                <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-blue-400/25 rounded-full blur-[80px] md:blur-[150px] pointer-events-none"></div>
+            </div>
         </div>
 
         <div class="relative z-10 text-center px-4 max-w-10xl mx-auto flex flex-col items-center">
