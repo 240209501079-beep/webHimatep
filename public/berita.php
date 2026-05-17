@@ -45,6 +45,7 @@ $berita_json = json_encode(array_map(function($b) {
     ];
 }, $all_berita));
 ?>
+<section id="berita" style="scroll-margin-top:100px"></section>
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 

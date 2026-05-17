@@ -60,6 +60,7 @@ $proker_json = json_encode(array_map(function($p) {
     ];
 }, $all_proker));
 ?>
+<section id="proker" style="scroll-margin-top:100px"></section>
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 

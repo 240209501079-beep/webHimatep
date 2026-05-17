@@ -241,7 +241,7 @@ $data_program_json = json_encode(array_map(function($p) {
 
             <div class="mt-12 text-center">
                 <a href="proker.php"
-                    class="inline-flex items-center justify-center px-8 py-3 border-2 border-himatep-green text-himatep-green font-bold rounded-full hover:bg-himatep-green hover:text-white transition-colors duration-300">
+                    class="bg-himatep-green hover:bg-himatep-green/80 text-white px-8 py-3 rounded-full font-bold shadow-xl inline-flex items-center justify-center transition-colors duration-300">
                     Lihat Semua Program Kerja
                 </a>
             </div>
@@ -436,7 +436,7 @@ $data_program_json = json_encode(array_map(function($p) {
 
             <div class="mt-12 text-center">
                 <a href="berita.php"
-                    class="inline-flex items-center justify-center px-8 py-3 border-2 border-himatep-green text-himatep-green font-bold rounded-full hover:bg-himatep-green hover:text-white transition-colors duration-300">
+                    class="bg-himatep-green hover:bg-himatep-green/80 text-white px-8 py-3 rounded-full font-bold shadow-xl inline-flex items-center justify-center transition-colors duration-300">
                     Lihat Semua Berita
                 </a>
             </div>
