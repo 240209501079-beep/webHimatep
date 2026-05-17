@@ -15,7 +15,7 @@ if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0777, true);
 }
 
-function normalizeNewsContent($content)
+function normalizeNewsContent(string $content)
 {
     $content = trim($content);
 

@@ -12,7 +12,11 @@ $prefix = $is_home ? '' : $base_path . 'index.php';
 
 // Fungsi helper untuk active state (cek jika belum ada)
 if (!function_exists('is_nav_active')) {
-    function is_nav_active($pages) {
+    /**
+     * Cek apakah halaman aktif untuk navbar
+     * @param array|string $pages
+     */
+    function is_nav_active(array|string $pages): bool {
         $cp = basename($_SERVER['PHP_SELF']);
         if (is_array($pages)) {
             return in_array($cp, $pages);
