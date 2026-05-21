@@ -2,7 +2,7 @@
 // Sebagian besar state management sudah ditangani Alpine.js langsung di HTML
 
 // Cek URL parameter untuk notifikasi sukses (dari submit_aspirasi.php)
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('status') === 'success') {
         alert('Terima kasih! Aspirasi Anda telah berhasil dikirim.');
@@ -17,7 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll(".nav-link");
 
-    window.addEventListener("scroll", () => {
+    // Hanya jalankan scroll spy jika berada di halaman utama (index.php atau /)
+    const isHomepage = window.location.pathname.endsWith("index.php") || 
+                       window.location.pathname.endsWith("/") || 
+                       window.location.pathname.split("/").pop() === "";
+
+    function updateActiveMenu() {
+        if (!isHomepage) return;
+
         let current = "";
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -28,16 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         navLinks.forEach(link => {
-            link.classList.remove("text-himatep-green");
-            link.classList.add("text-gray-600");
+            link.classList.remove("text-himatep-green", "font-bold");
+            link.classList.add("text-gray-600", "font-medium");
 
             // Menggunakan endsWith agar cocok dengan format 'index.php#section' maupun '#section'
             if (link.getAttribute("href") && link.getAttribute("href").endsWith(`#${current}`)) {
-                link.classList.remove("text-gray-600");
-                link.classList.add("text-himatep-green");
+                link.classList.remove("text-gray-600", "font-medium");
+                link.classList.add("text-himatep-green", "font-bold");
             }
         });
-    });
+    }
+
+    window.addEventListener("scroll", updateActiveMenu);
+    // Jalankan sekali saat load untuk sinkronisasi awal
+    updateActiveMenu();
 
     // 1. Tangani Scroll Lintas Halaman menggunakan Local Storage
     // Ini membuat perpindahan dari file html lain (seperti proker.php) ke index.php aman dari bentrok native hash dan GSAP
@@ -110,4 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}

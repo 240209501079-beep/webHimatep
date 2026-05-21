@@ -203,7 +203,7 @@ $berita_json = json_encode(array_map(function($b) {
         const dataBerita = <?php echo $berita_json; ?>;
     </script>
     <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=<?= time() ?>"></script>
 </body>
 
 </html>

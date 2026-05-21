@@ -138,27 +138,40 @@ $proker_json = json_encode(array_map(function($p) {
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <template x-for="item in group" :key="item.id">
-                            <div class="bg-gray-50 rounded-3xl p-8 border border-gray-400 hover:shadow-lg transition-all group">
-                                <h3 class="text-2xl font-bold mb-3" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-600'" x-text="item.judul"></h3>
-                                <p class="text-gray-600 mb-6 leading-relaxed" x-text="item.ringkasan"></p>
-                                <div class="space-y-2">
-                                    <div class="flex items-center text-sm font-medium text-gray-500">
-                                        <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                        </svg> Target: <span x-text="item.target"></span>
+                            <a :href="item.slug ? 'detail-program.php?slug=' + item.slug : 'detail-program.php?id=' + item.id"
+                                class="bg-gray-50 rounded-3xl overflow-hidden border border-gray-400 hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer card-hover block">
+                                
+                                <!-- Card Image -->
+                                <div class="w-full h-48 overflow-hidden relative shadow-sm">
+                                    <img :src="item.gambar || 'images/logo-himatep.png'" :alt="item.judul"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold shadow-sm uppercase tracking-wider"
+                                        :class="'text-' + item.divisiColor + '-600'" x-text="item.divisi"></div>
+                                </div>
+
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <h3 class="text-2xl font-bold mb-3 transition-colors" :class="item.divisiColor === 'blue' ? 'text-himatep-green group-hover:text-blue-900' : 'text-' + item.divisiColor + '-600 group-hover:text-' + item.divisiColor + '-700'" x-text="item.judul"></h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3 flex-1" x-text="item.ringkasan"></p>
+                                    
+                                    <div class="space-y-2 mb-6 mt-auto pt-4 border-t border-gray-200/50">
+                                        <div class="flex items-center text-sm font-medium text-gray-500">
+                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg> Target: <span class="ml-1" x-text="item.target"></span>
+                                        </div>
+                                        <div class="flex items-center text-sm font-medium text-gray-500">
+                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="item.icon"></path>
+                                            </svg> Sasaran: <span class="ml-1" x-text="item.sasaran"></span>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center text-sm font-medium text-gray-500">
-                                        <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="item.icon"></path>
-                                        </svg> Sasaran: <span x-text="item.sasaran"></span>
+                                    
+                                    <div class="inline-flex items-center font-semibold hover:gap-2 transition-all mt-auto"
+                                        :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-600'">
+                                        Detail Program <span class="ml-1">&rarr;</span>
                                     </div>
                                 </div>
-                                <a :href="'detail-program.php?id=' + item.id"
-                                    class="mt-6 inline-flex items-center font-semibold hover:gap-2 transition-all"
-                                    :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-600'">
-                                    Detail Program <span class="ml-1">&rarr;</span>
-                                </a>
-                            </div>
+                            </a>
                         </template>
                     </div>
                 </div>
@@ -239,7 +252,7 @@ $proker_json = json_encode(array_map(function($p) {
         const dataProgram = <?php echo $proker_json; ?>;
     </script>
     <script src="js/animations.js?v=1.1"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=<?= time() ?>"></script>
 </body>
 
 </html>

@@ -292,7 +292,7 @@ try {
     </section>
 
     <!-- Struktur Organisasi -->
-    <section class="py-24 bg-white relative z-10">
+    <section id="pengurus" class="py-24 bg-white relative z-10 scroll-mt-24">
         <div class="max-w-7xl mx-auto px-4">
             <!-- BPH INTI -->
             <div class="text-center mb-16">
@@ -329,7 +329,7 @@ try {
 
             <?php if (!empty($ketua_divisi_list)): ?>
             <!-- BIDANG Section -->
-            <div class="text-center mt-24 mb-16">
+            <div id="divisi" class="text-center mt-24 mb-16 scroll-mt-24">
                 <h2 class="text-4xl font-black text-himatep-green mb-4 uppercase tracking-tighter">Divisi <span class="text-amber-500">Himatep</span></h2>
                 <div class="flex items-center justify-center gap-4">
                     <span class="h-px w-12 bg-gray-300"></span>
@@ -500,6 +500,6 @@ try {
         const dataProgram = <?php echo $data_program_json; ?>;
     </script>
     <script src="js/animations.js?v=1.1"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=<?= time() ?>"></script>
 </body>
 </html>

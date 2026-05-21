@@ -35,6 +35,31 @@ try {
     $proker_list = [];
 }
 
+// Ambil Jumlah Divisi, Pengurus, dan Proker secara dinamis
+try {
+    $stmt_divisi = $pdo->query("SELECT COUNT(DISTINCT divisi) as total FROM pengurus WHERE TRIM(UPPER(divisi)) != 'BPH'");
+    $count_divisi = $stmt_divisi->fetch()['total'];
+    if ($count_divisi == 0) $count_divisi = 4;
+} catch (PDOException $e) {
+    $count_divisi = 4;
+}
+
+try {
+    $stmt_pengurus = $pdo->query("SELECT COUNT(*) as total FROM pengurus");
+    $count_pengurus = $stmt_pengurus->fetch()['total'];
+    if ($count_pengurus == 0) $count_pengurus = 48;
+} catch (PDOException $e) {
+    $count_pengurus = 48;
+}
+
+try {
+    $stmt_proker = $pdo->query("SELECT COUNT(*) as total FROM proker");
+    $count_proker = $stmt_proker->fetch()['total'];
+    if ($count_proker == 0) $count_proker = 20;
+} catch (PDOException $e) {
+    $count_proker = 20;
+}
+
 // Persiapkan data untuk Alpine.js
 $data_program_json = json_encode(array_map(function($p) {
     $date = $p['tanggal_event'] ? new DateTime($p['tanggal_event']) : null;
@@ -190,20 +215,18 @@ $data_program_json = json_encode(array_map(function($p) {
 
                 </div>
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover">
-                        <div class="text-5xl font-bold text-himatep-green mb-2">4</div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Divisi</div>
-                    </div>
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover">
-                        <div class="text-5xl font-bold text-himatep-green mb-2">48</div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Pengurus</div>
-                    </div>
-                    <div
-                        class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center col-span-2 card-hover">
-                        <div class="text-5xl font-bold text-himatep-green mb-2">20+</div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Program Kerja Aktif
-                        </div>
-                    </div>
+                    <a href="profile.php#divisi" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:border-himatep-green transition-colors duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_divisi ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Divisi</div>
+                    </a>
+                    <a href="profile.php#pengurus" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:border-himatep-green transition-colors duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_pengurus ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Pengurus</div>
+                    </a>
+                    <a href="proker.php" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center col-span-2 card-hover block group hover:border-himatep-green transition-colors duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_proker ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Program Kerja Aktif</div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -219,8 +242,8 @@ $data_program_json = json_encode(array_map(function($p) {
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8"
                 x-data="{ prokers: (typeof dataProgram !== 'undefined' ? dataProgram : []).filter(p => p.unggulan).slice(0, 3) }">
                 <template x-for="item in prokers" :key="item.id">
-                    <div
-                        class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400 group card-hover flex flex-col">
+                    <a :href="item.slug ? 'detail-program.php?slug=' + item.slug : 'detail-program.php?id=' + item.id"
+                        class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400 group card-hover flex flex-col cursor-pointer block">
                         <div
                             class="w-full h-48 mb-6 overflow-hidden relative group-hover:shadow-md transition-shadow">
                             <img :src="item.gambar" :alt="item.judul"
@@ -230,12 +253,12 @@ $data_program_json = json_encode(array_map(function($p) {
                         </div>
                         <h3 class="p-6 pt-0 pb-0 text-xl font-bold mb-3 text-gray-800" x-text="item.judul"></h3>
                         <p class="p-6 pt-0 pb-0 text-gray-600 mb-4 line-clamp-3 flex-1" x-text="item.ringkasan"></p>
-                        <a :href="'detail-program.php?id=' + item.id"
+                        <div
                             class="p-6 inline-flex items-center font-semibold hover:gap-2 transition-all mt-auto"
                             :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-600'">
                             Detail Program <span class="ml-1">&rarr;</span>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </template>
             </div>
 
@@ -252,21 +275,21 @@ $data_program_json = json_encode(array_map(function($p) {
     <section id="kalender" class="py-24 bg-white gsap-fade-up min-h-screen flex flex-col justify-center">
         <div class="max-w-6xl mx-auto px-4 w-full" x-data="calendarApp">
             <h2 class="text-3xl font-bold text-center mb-12 text-himatep-green">Agenda Kegiatan</h2>
-            <div class="bg-white rounded-3xl shadow-xl border border-gray-400 p-8">
-                <div class="flex justify-between items-center mb-8">
-                    <button @click="prevMonth()" class="p-3 bg-gray-50 rounded-full hover:bg-himatep-light transition"><svg
+            <div class="bg-white rounded-3xl shadow-xl border border-gray-400 p-4 md:p-8">
+                <div class="flex justify-between items-center mb-6 md:mb-8">
+                    <button @click="prevMonth()" class="p-2 md:p-3 bg-gray-50 rounded-full hover:bg-himatep-light transition text-gray-700 hover:text-himatep-green"><svg
                             class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
                             </path>
                         </svg></button>
-                    <h3 class="text-2xl font-bold text-gray-800" x-text="monthNames[month] + ' ' + year"></h3>
-                    <button @click="nextMonth()" class="p-3 bg-gray-50 rounded-full hover:bg-himatep-light transition"><svg
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800" x-text="monthNames[month] + ' ' + year"></h3>
+                    <button @click="nextMonth()" class="p-2 md:p-3 bg-gray-50 rounded-full hover:bg-himatep-light transition text-gray-700 hover:text-himatep-green"><svg
                             class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
                         </svg></button>
                 </div>
-                <div class="grid grid-cols-7 gap-2 text-center mb-4 font-bold text-gray-500 uppercase text-sm">
+                <div class="grid grid-cols-7 gap-1.5 md:gap-3 text-center mb-4 font-bold text-gray-500 uppercase text-xs md:text-sm">
                     <div>Min</div>
                     <div>Sen</div>
                     <div>Sel</div>
@@ -275,75 +298,95 @@ $data_program_json = json_encode(array_map(function($p) {
                     <div>Jum</div>
                     <div>Sab</div>
                 </div>
-                <div class="grid grid-cols-7 gap-2">
+                <div class="grid grid-cols-7 gap-1.5 md:gap-3">
                     <template x-for="(day, index) in days" :key="index">
-                        <div class="h-10 md:h-32 border rounded-xl p-2 md:p-3 flex flex-col justify-between transition-all"
-                            :class="{'bg-gray-4 border-transparent opacity-50': day.empty, 'bg-white border-gray-800 hover:border-himatep-green cursor-pointer': !day.empty && !day.event, 'bg-himatep-light border-himatep-green cursor-pointer shadow-sm transform hover:-translate-y-1': day.event}"
-                            @click="!day.empty ? showEvent(day.event) : null">
-                            <span x-show="!day.empty" class="text-sm font-bold block text-right"
-                                :class="{'text-himatep-green': day.event, 'text-gray-700': !day.event}"
+                        <div class="h-12 md:h-32 border rounded-xl p-1.5 md:p-3 flex flex-col justify-between transition-all"
+                            :class="{
+                                'bg-gray-50/50 border-transparent opacity-40': day.empty, 
+                                'bg-white border-gray-200 hover:border-himatep-green cursor-pointer': !day.empty && !day.event, 
+                                'bg-blue-50 border-himatep-green/40 hover:border-himatep-green cursor-pointer shadow-sm transform hover:-translate-y-1': !day.empty && day.event
+                            }"
+                            @click="!day.empty && day.event ? showEvent(day.event) : null">
+                            <span x-show="!day.empty" class="text-xs md:text-sm font-bold block text-right"
+                                :class="{'text-himatep-green font-extrabold': day.event, 'text-gray-600': !day.event}"
                                 x-text="day.date"></span>
+                            
+                            <!-- On Desktop: Show Title Text -->
                             <span x-show="day.event"
-                                class="text-xs bg-himatep-green text-white rounded p-1 truncate block mt-1 font-medium"
+                                class="hidden md:block text-[11px] bg-himatep-green text-white rounded-lg p-1.5 truncate mt-1 font-medium text-left leading-none"
                                 x-text="day.event ? day.event.title : ''"></span>
+                            
+                            <!-- On Mobile: Show Centered Dot Indicator -->
+                            <div x-show="day.event" class="md:hidden flex justify-center pb-1 mt-auto">
+                                <span class="w-2.5 h-2.5 rounded-full bg-himatep-green animate-pulse"></span>
+                            </div>
                         </div>
                     </template>
                 </div>
             </div>
 
             <!-- Modal Detail Event (Premium Card Style) -->
-            <div x-show="modalOpen"
-                class="fixed inset-0 z-[120] flex items-center justify-center p-4" x-cloak
-                style="display: none;">
-                <!-- Backdrop -->
-                <div class="fixed inset-0 bg-black/70 backdrop-blur-sm" @click="modalOpen = false"></div>
-                
-                <!-- Card Modal -->
-                <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full relative overflow-hidden transform transition-all z-10"
-                    x-show="modalOpen"
-                    x-transition:enter="ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                    x-transition:leave="ease-in duration-200"
-                    x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                    x-transition:leave-end="opacity-0 scale-95 translate-y-4">
+            <template x-teleport="body">
+                <div x-show="modalOpen"
+                    class="fixed inset-0 z-[120] flex items-center justify-center p-4" x-cloak
+                    style="display: none;">
+                    <!-- Backdrop -->
+                    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" @click="modalOpen = false"></div>
                     
-                    <!-- Close Button -->
-                    <button @click="modalOpen = false" class="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur p-2 rounded-full shadow-lg hover:bg-white transition-colors">
-                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-
-                    <!-- Image Preview -->
-                    <div class="relative h-48 w-full overflow-hidden bg-gray-100">
-                        <img :src="selectedEvent?.gambar" 
-                             class="w-full h-full object-cover">
-                        <!-- Date Badge Overlay -->
-                        <div x-show="selectedEvent?.agenda" 
-                             class="absolute top-4 left-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[60px]"
-                             :class="selectedEvent?.divisiColor ? 'bg-' + selectedEvent.divisiColor + '-600' : 'bg-himatep-green'">
-                            <span class="text-[10px] font-bold uppercase tracking-wider opacity-90" x-text="selectedEvent?.agenda?.bulan"></span>
-                            <span class="text-xl font-black leading-none" x-text="selectedEvent?.agenda?.tanggal"></span>
-                        </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800 leading-tight" x-text="selectedEvent?.title"></h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-8 line-clamp-3" x-text="selectedEvent?.desc || 'Tidak ada ringkasan tersedia untuk kegiatan ini.'"></p>
+                    <!-- Card Modal -->
+                    <div class="event-modal-container bg-white rounded-[2rem] shadow-2xl max-w-2xl w-full relative overflow-hidden flex flex-col md:flex-row transform transition-all z-10"
+                        x-show="modalOpen"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 scale-95 translate-y-4">
                         
-                        <!-- Actions -->
-                        <div class="flex flex-col gap-3">
-                            <a x-show="selectedEvent?.slug" :href="'detail-program.php?slug=' + selectedEvent?.slug"
-                                class="w-full bg-himatep-green hover:opacity-90 text-white text-center font-bold py-3 rounded-xl transition-all shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
-                                <span>Buka Informasi</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
-                            <button @click="modalOpen = false"
-                                class="w-full bg-gray-50 hover:bg-gray-100 text-gray-500 font-bold py-3 rounded-xl transition-colors">Tutup</button>
+                        <!-- Close Button -->
+                        <button @click="modalOpen = false" class="absolute top-4 right-4 z-30 bg-white/95 backdrop-blur p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+
+                        <!-- Image Side (Left on Desktop, Top on Mobile) -->
+                        <div class="event-modal-image-side md:w-2/5 h-48 md:h-auto relative overflow-hidden bg-gray-100 flex-shrink-0">
+                            <img :src="selectedEvent?.gambar" 
+                                 class="w-full h-full object-cover">
+                            <!-- Date Badge Overlay -->
+                            <div x-show="selectedEvent?.agenda" 
+                                 class="absolute top-4 left-4 text-white rounded-2xl p-2.5 flex flex-col justify-center items-center shadow-lg min-w-[65px]"
+                                 :class="selectedEvent?.divisiColor ? 'bg-' + selectedEvent.divisiColor + '-600' : 'bg-himatep-green'">
+                                <span class="text-[10px] font-bold uppercase tracking-wider opacity-90" x-text="selectedEvent?.agenda?.bulan"></span>
+                                <span class="text-2xl font-black leading-none" x-text="selectedEvent?.agenda?.tanggal"></span>
+                            </div>
+                        </div>
+
+                        <!-- Content Side (Right on Desktop, Bottom on Mobile) -->
+                        <div class="event-modal-content-side md:w-3/5 p-6 md:p-8 flex flex-col justify-between">
+                            <div>
+                                <!-- Division Badge -->
+                                <div class="mb-3">
+                                    <span class="text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-gray-100 text-gray-600 border border-gray-200"
+                                          x-text="selectedEvent?.divisi ? 'Divisi ' + selectedEvent.divisi : 'HIMATEP'"></span>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-bold mb-4 text-gray-800 leading-snug" x-text="selectedEvent?.title"></h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6" x-text="selectedEvent?.desc || 'Tidak ada ringkasan tersedia untuk kegiatan ini.'"></p>
+                            </div>
+                            
+                            <!-- Actions -->
+                            <div class="flex flex-col sm:flex-row gap-3 mt-auto">
+                                <a x-show="selectedEvent?.slug" :href="'detail-program.php?slug=' + selectedEvent?.slug"
+                                    class="flex-1 bg-himatep-green hover:opacity-90 text-white text-center font-bold py-2.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+                                    <span>Buka Informasi</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </a>
+                                <button @click="modalOpen = false"
+                                    class="sm:w-24 bg-gray-100 hover:bg-gray-200 text-gray-500 font-bold py-2.5 rounded-xl transition-colors text-sm">Tutup</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
 
             <!-- Agenda Mendatang (Bawah Kalender) -->
             <div class="mt-16">
@@ -412,24 +455,26 @@ $data_program_json = json_encode(array_map(function($p) {
                     </div>
                 <?php else: ?>
                     <?php foreach ($berita_list as $berita): ?>
-                        <div
-                            class="border border-gray-400 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-hover">
+                        <a href="detail-berita.php?slug=<?php echo htmlspecialchars($berita['slug']); ?>"
+                            class="block border border-gray-400 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-hover flex flex-col cursor-pointer">
                             <img src="<?php echo htmlspecialchars($berita['gambar']); ?>"
                                 alt="<?php echo htmlspecialchars($berita['judul']); ?>" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <span
-                                    class="text-xs font-bold text-<?php echo $berita['kategori_color']; ?>-600 bg-<?php echo $berita['kategori_color']; ?>-100 px-3 py-1 rounded-full">
-                                    <?php echo htmlspecialchars($berita['kategori']); ?>
-                                </span>
-                                <h3 class="text-xl font-bold mt-4 mb-2"><?php echo htmlspecialchars($berita['judul']); ?></h3>
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            <div class="p-6 flex-1 flex flex-col">
+                                <div class="mb-3">
+                                    <span
+                                        class="text-xs font-bold text-<?php echo $berita['kategori_color']; ?>-600 bg-<?php echo $berita['kategori_color']; ?>-100 px-3 py-1 rounded-full">
+                                        <?php echo htmlspecialchars($berita['kategori']); ?>
+                                    </span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800 line-clamp-2"><?php echo htmlspecialchars($berita['judul']); ?></h3>
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
                                     <?php echo htmlspecialchars($berita['ringkasan']); ?>
                                 </p>
-                                <a href="berita/<?php echo htmlspecialchars($berita['slug']); ?>" class="text-himatep-green font-semibold hover:underline">
+                                <div class="text-himatep-green font-semibold hover:underline mt-auto pt-2">
                                     Baca selengkapnya &rarr;
-                                </a>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
@@ -593,7 +638,7 @@ $data_program_json = json_encode(array_map(function($p) {
     </script>
     <script src="js/calendar.js?v=<?= time() ?>"></script>
     <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=<?= time() ?>"></script>
 </body>
 
 </html>

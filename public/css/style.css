@@ -25,12 +25,13 @@ body::-webkit-scrollbar {
 /* Membentuk diagonal background pada Hero sesuai gambar */
 .hero-diagonal {
     clip-path: polygon(0 0, 100% 0, 100% 35%, 0 15%);
-    background-color: #1B2945; 
-    background-image: 
+    background-color: #1B2945;
+    background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.03' stroke-width='1.2'%3E%3Ccircle cx='40' cy='40' r='38'/%3E%3Ccircle cx='0' cy='0' r='38'/%3E%3Ccircle cx='80' cy='0' r='38'/%3E%3Ccircle cx='0' cy='80' r='38'/%3E%3Ccircle cx='80' cy='80' r='38'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: repeat;
     background-position: center center;
-    background-size: 40px; /* Ukuran kecil untuk mobile */
+    background-size: 40px;
+    /* Ukuran kecil untuk mobile */
     /* Lebih naik untuk mobile */
 }
 
@@ -38,7 +39,8 @@ body::-webkit-scrollbar {
     .hero-diagonal {
         clip-path: polygon(0 0, 100% 0, 100% 65%, 0 40%);
         /* Kembali normal di desktop */
-        background-size: 80px; /* Ukuran normal untuk desktop */
+        background-size: 80px;
+        /* Ukuran normal untuk desktop */
     }
 }
 
@@ -116,8 +118,8 @@ body::-webkit-scrollbar {
 }
 
 .bg-himatep-dark {
-    background-color: #1B2945 !important; 
-    background-image: 
+    background-color: #1B2945 !important;
+    background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.02' stroke-width='1.2'%3E%3Ccircle cx='40' cy='40' r='38'/%3E%3Ccircle cx='0' cy='0' r='38'/%3E%3Ccircle cx='80' cy='0' r='38'/%3E%3Ccircle cx='0' cy='80' r='38'/%3E%3Ccircle cx='80' cy='80' r='38'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 40px;
@@ -136,6 +138,3 @@ body::-webkit-scrollbar {
 .text-black {
     color: #1B2945 !important;
 }
-
-
-

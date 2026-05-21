@@ -21,6 +21,7 @@ document.addEventListener('alpine:init', () => {
                         slug: p.slug,
                         gambar: p.gambar,
                         divisiColor: p.divisiColor,
+                        divisi: p.divisi,
                         agenda: p.agenda
                     }));
             } else {

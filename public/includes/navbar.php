@@ -36,11 +36,11 @@ if (!function_exists('is_nav_active')) {
                 <span class="font-bold text-xs md:text-sm leading-tight text-himatep-green">HIMATEP<br>FIP<br>UNM</span>
             </div>
             <div class="hidden md:flex space-x-4 lg:space-x-8 text-sm lg:text-base">
-                <a href="<?= $prefix ?>#hero" class="nav-link whitespace-nowrap <?= $is_home ? 'text-himatep-green font-bold' : 'text-gray-600' ?> font-medium hover:text-himatep-green transition">Beranda</a>
-                <a href="<?= $prefix ?>#profile" class="nav-link whitespace-nowrap <?= is_nav_active('profile.php') ? 'text-himatep-green font-bold' : 'text-gray-600' ?> font-medium hover:text-himatep-green transition">Profile</a>
-                <a href="<?= $prefix ?>#proker" class="nav-link whitespace-nowrap <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green font-bold' : 'text-gray-600' ?> font-medium hover:text-himatep-green transition">Program Kerja</a>
+                <a href="<?= $prefix ?>#hero" class="nav-link whitespace-nowrap <?= $is_home ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green transition">Beranda</a>
+                <a href="<?= $prefix ?>#profile" class="nav-link whitespace-nowrap <?= is_nav_active('profile.php') ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green transition">Profile</a>
+                <a href="<?= $prefix ?>#proker" class="nav-link whitespace-nowrap <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green transition">Program Kerja</a>
                 <a href="<?= $prefix ?>#kalender" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Agenda</a>
-                <a href="<?= $prefix ?>#berita" class="nav-link whitespace-nowrap <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green font-bold' : 'text-gray-600' ?> font-medium hover:text-himatep-green transition">Berita</a>
+                <a href="<?= $prefix ?>#berita" class="nav-link whitespace-nowrap <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green transition">Berita</a>
                 <a href="<?= $prefix ?>#aspirasi" class="nav-link whitespace-nowrap text-gray-600 font-medium hover:text-himatep-green transition">Suara Mahasiswa</a>
             </div>
             <div class="hidden md:flex items-center gap-4">
@@ -124,22 +124,22 @@ if (!function_exists('is_nav_active')) {
          class="md:hidden absolute top-24 left-4 right-4 bg-white rounded-3xl shadow-2xl border border-gray-100 py-6 px-6 z-[90]"
          style="display: none;">
         <div class="flex flex-col space-y-4">
-            <a href="<?= $prefix ?>#hero" @click="mobileMenuOpen = false" class="font-bold text-lg <?= $is_home ? 'text-himatep-green' : 'text-gray-600' ?> hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#hero" @click="mobileMenuOpen = false" class="nav-link text-lg <?= $is_home ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Beranda <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#profile" @click="mobileMenuOpen = false" class="font-bold text-lg <?= is_nav_active('profile.php') ? 'text-himatep-green' : 'text-gray-600' ?> hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#profile" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active('profile.php') ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Profile <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#proker" @click="mobileMenuOpen = false" class="font-bold text-lg <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green' : 'text-gray-600' ?> hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#proker" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Program Kerja <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#kalender" @click="mobileMenuOpen = false" class="text-gray-600 font-bold text-lg hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#kalender" @click="mobileMenuOpen = false" class="nav-link text-lg text-gray-600 font-medium hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Agenda <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#berita" @click="mobileMenuOpen = false" class="font-bold text-lg <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green' : 'text-gray-600' ?> hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#berita" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Berita <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#aspirasi" @click="mobileMenuOpen = false" class="text-gray-600 font-bold text-lg hover:text-himatep-green flex items-center justify-between">
+            <a href="<?= $prefix ?>#aspirasi" @click="mobileMenuOpen = false" class="nav-link text-lg text-gray-600 font-medium hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
                 Suara Mahasiswa <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
             <hr class="border-gray-100">
