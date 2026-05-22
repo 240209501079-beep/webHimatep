@@ -106,7 +106,7 @@ $proker_json = json_encode(array_map(function($p) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false, prokers: dataProgram, groupBy(list, key) { return list.reduce((rv, x) => { (rv[x[key]] = rv[x[key]] || []).push(x); return rv; }, {}); } }">
+<body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-x-hidden" x-data="{ mobileMenuOpen: false, prokers: dataProgram, groupBy(list, key) { return list.reduce((rv, x) => { (rv[x[key]] = rv[x[key]] || []).push(x); return rv; }, {}); } }">
 
     <!-- Navbar -->
     <?php 
@@ -125,49 +125,49 @@ $proker_json = json_encode(array_map(function($p) {
     </section>
 
     <!-- Katalog Program Kerja -->
-    <section class="py-20 bg-white gsap-fade-up">
-        <div class="max-w-7xl mx-auto px-4">
+    <section class="py-20 bg-batik-blue">
+        <div class="max-w-7xl mx-auto px-4 gsap-fade-up">
 
             <!-- Katalog Berbasis Divisi (Dinamis dari Alpine.js) -->
             <template x-for="(group, division) in groupBy(prokers, 'divisi')" :key="division">
                 <div class="mb-20">
                     <div class="flex items-center gap-4 mb-8">
                         <span class="w-12 h-1 rounded-full" :class="group[0].divisiColor === 'blue' ? 'bg-himatep-green' : 'bg-' + group[0].divisiColor + '-500'"></span>
-                        <h2 class="text-3xl font-bold text-gray-800" x-text="division"></h2>
+                        <h2 class="text-3xl font-bold text-white" x-text="division"></h2>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <template x-for="item in group" :key="item.id">
                             <a :href="item.slug ? 'detail-program.php?slug=' + item.slug : 'detail-program.php?id=' + item.id"
-                                class="bg-gray-50 rounded-3xl overflow-hidden border border-gray-400 hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer card-hover block">
+                                class="bg-[#1E2F4D] rounded-3xl overflow-hidden border border-white/20 hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer card-hover block">
                                 
                                 <!-- Card Image -->
                                 <div class="w-full h-48 overflow-hidden relative shadow-sm">
                                     <img :src="item.gambar || 'images/logo-himatep.png'" :alt="item.judul"
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold shadow-sm uppercase tracking-wider"
+                                    <div class="absolute top-3 right-3 px-3 py-1 bg-[#1E2F4D]/90 backdrop-blur-sm rounded-full text-xs font-bold shadow-sm uppercase tracking-wider"
                                         :class="'text-' + item.divisiColor + '-600'" x-text="item.divisi"></div>
                                 </div>
 
                                 <div class="p-8 flex-1 flex flex-col">
-                                    <h3 class="text-2xl font-bold mb-3 transition-colors" :class="item.divisiColor === 'blue' ? 'text-himatep-green group-hover:text-blue-900' : 'text-' + item.divisiColor + '-600 group-hover:text-' + item.divisiColor + '-700'" x-text="item.judul"></h3>
-                                    <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3 flex-1" x-text="item.ringkasan"></p>
+                                    <h3 class="text-2xl font-bold mb-3 transition-colors" :class="item.divisiColor === 'blue' ? 'text-white group-hover:text-blue-900' : 'text-' + item.divisiColor + '-600 group-hover:text-' + item.divisiColor + '-700'" x-text="item.judul"></h3>
+                                    <p class="text-gray-300 mb-6 leading-relaxed line-clamp-3 flex-1" x-text="item.ringkasan"></p>
                                     
-                                    <div class="space-y-2 mb-6 mt-auto pt-4 border-t border-gray-200/50">
-                                        <div class="flex items-center text-sm font-medium text-gray-500">
-                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="space-y-2 mb-6 mt-auto pt-4 border-t border-white/10/50">
+                                        <div class="flex items-center text-sm font-medium text-gray-400">
+                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                             </svg> Target: <span class="ml-1" x-text="item.target"></span>
                                         </div>
-                                        <div class="flex items-center text-sm font-medium text-gray-500">
-                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="flex items-center text-sm font-medium text-gray-400">
+                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="item.icon"></path>
                                             </svg> Sasaran: <span class="ml-1" x-text="item.sasaran"></span>
                                         </div>
                                     </div>
                                     
                                     <div class="inline-flex items-center font-semibold hover:gap-2 transition-all mt-auto"
-                                        :class="item.divisiColor === 'blue' ? 'text-himatep-green' : 'text-' + item.divisiColor + '-600'">
+                                        :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-600'">
                                         Detail Program <span class="ml-1">&rarr;</span>
                                     </div>
                                 </div>
@@ -181,15 +181,15 @@ $proker_json = json_encode(array_map(function($p) {
     </section>
 
     <!-- Upcoming Agenda -->
-    <section class="py-20 bg-gray-50 gsap-fade-up border-gray-200">
-        <div class="max-w-7xl mx-auto px-4">
+    <section class="py-20 bg-batik-blue border-white/10">
+        <div class="max-w-7xl mx-auto px-4 gsap-fade-up">
             <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-3xl font-bold text-himatep-green mb-2">Agenda Mendatang</h2>
-                    <p class="text-gray-600">3 jadwal kegiatan terdekat HIMATEP</p>
+                    <h2 class="text-3xl font-bold text-white mb-2">Agenda Mendatang</h2>
+                    <p class="text-gray-300">3 jadwal kegiatan terdekat HIMATEP</p>
                 </div>
                 <a href="index.php#kalender"
-                    class="hidden md:inline-flex text-himatep-green font-semibold hover:underline">Lihat Kalender Penuh
+                    class="hidden md:inline-flex text-white font-semibold hover:underline">Lihat Kalender Penuh
                     &rarr;</a>
             </div>
 
@@ -198,7 +198,7 @@ $proker_json = json_encode(array_map(function($p) {
                 x-data="{ agendas: dataProgram.filter(p => p.agenda).sort((a,b) => new Date(a.agenda.date) - new Date(b.agenda.date)).slice(0, 3) }">
                 <template x-for="item in agendas" :key="item.id">
                     <a :href="'detail-program.php?slug=' + item.slug"
-                        class="flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-400 hover:shadow-xl transition-all duration-300 group cursor-pointer">
+                        class="flex flex-col bg-[#1E2F4D] rounded-3xl overflow-hidden shadow-sm border border-white/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
                         <div class="relative h-48 w-full overflow-hidden">
                             <img :src="item.gambar" :alt="item.judul"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
@@ -210,10 +210,10 @@ $proker_json = json_encode(array_map(function($p) {
                             </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4 transition-colors"
+                            <h3 class="text-xl font-bold text-white mb-4 transition-colors"
                                 :class="'group-hover:text-' + item.divisiColor + '-600'" x-text="item.judul"></h3>
                             <div class="space-y-3 mt-auto">
-                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                <div class="flex items-center text-sm font-medium text-gray-400">
                                     <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -221,7 +221,7 @@ $proker_json = json_encode(array_map(function($p) {
                                     </svg>
                                     <span x-text="item.agenda.waktu"></span>
                                 </div>
-                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                <div class="flex items-center text-sm font-medium text-gray-400">
                                     <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -239,7 +239,7 @@ $proker_json = json_encode(array_map(function($p) {
             </div>
 
             <div class="mt-8 text-center md:hidden">
-                <a href="index.php#kalender" class="inline-flex text-himatep-green font-semibold hover:underline">Lihat
+                <a href="index.php#kalender" class="inline-flex text-white font-semibold hover:underline">Lihat
                     Kalender Penuh &rarr;</a>
             </div>
         </div>

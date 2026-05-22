@@ -258,7 +258,7 @@ try {
     </style>
 </head>
 
-<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden" 
+<body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-x-hidden" 
       x-data="{ 
           mobileMenuOpen: false,
           isModalOpen: false,
@@ -292,14 +292,14 @@ try {
     </section>
 
     <!-- Struktur Organisasi -->
-    <section id="pengurus" class="py-24 bg-white relative z-10 scroll-mt-24">
+    <section id="pengurus" class="py-24 bg-batik-blue relative z-10 scroll-mt-24">
         <div class="max-w-7xl mx-auto px-4">
             <!-- BPH INTI -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-himatep-green mb-4 uppercase tracking-tighter">BPH Inti <span class="text-amber-500">HIMATEP</span></h2>
+                <h2 class="text-4xl font-black text-white mb-4 uppercase tracking-tighter">BPH Inti <span class="text-amber-500">HIMATEP</span></h2>
                 <div class="flex items-center justify-center gap-4">
                     <span class="h-px w-12 bg-gray-300"></span>
-                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">KSB</p>
+                    <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">KSB</p>
                     <span class="h-px w-12 bg-gray-300"></span>
                 </div>
             </div>
@@ -330,10 +330,10 @@ try {
             <?php if (!empty($ketua_divisi_list)): ?>
             <!-- BIDANG Section -->
             <div id="divisi" class="text-center mt-24 mb-16 scroll-mt-24">
-                <h2 class="text-4xl font-black text-himatep-green mb-4 uppercase tracking-tighter">Divisi <span class="text-amber-500">Himatep</span></h2>
+                <h2 class="text-4xl font-black text-white mb-4 uppercase tracking-tighter">Divisi <span class="text-amber-500">Himatep</span></h2>
                 <div class="flex items-center justify-center gap-4">
                     <span class="h-px w-12 bg-gray-300"></span>
-                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Ketua Divisi</p>
+                    <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">Ketua Divisi</p>
                     <span class="h-px w-12 bg-gray-300"></span>
                 </div>
             </div>
@@ -364,10 +364,10 @@ try {
             <?php if (!empty($anggota_list)): ?>
             <!-- ANGGOTA Section -->
             <div class="text-center mt-24 mb-16">
-                <h2 class="text-4xl font-black text-himatep-green mb-4 uppercase tracking-tighter">Anggota <span class="text-amber-500">Himatep</span></h2>
+                <h2 class="text-4xl font-black text-white mb-4 uppercase tracking-tighter">Anggota <span class="text-amber-500">Himatep</span></h2>
                 <div class="flex items-center justify-center gap-4">
                     <span class="h-px w-12 bg-gray-300"></span>
-                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Seluruh Anggota</p>
+                    <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">Seluruh Anggota</p>
                     <span class="h-px w-12 bg-gray-300"></span>
                 </div>
             </div>
@@ -397,15 +397,15 @@ try {
     </section>
 
     <!-- Agenda Section -->
-    <section class="py-20 bg-gray-50 gsap-fade-up border-gray-100">
-        <div class="max-w-7xl mx-auto px-4">
+    <section class="py-20 bg-batik-blue border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 gsap-fade-up">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 text-center md:text-left">
                 <div>
-                    <h2 class="text-3xl font-bold text-himatep-green mb-2">Agenda Mendatang</h2>
-                    <p class="text-gray-600">Jadwal kegiatan terdekat yang tidak boleh Anda lewatkan</p>
+                    <h2 class="text-3xl font-bold text-white mb-2">Agenda Mendatang</h2>
+                    <p class="text-gray-300">Jadwal kegiatan terdekat yang tidak boleh Anda lewatkan</p>
                 </div>
                 <a href="index.php#kalender"
-                    class="mt-4 md:mt-0 inline-flex items-center text-himatep-green font-semibold hover:underline">
+                    class="mt-4 md:mt-0 inline-flex items-center text-white font-semibold hover:underline">
                     Lihat Kalender Penuh <span class="ml-2">&rarr;</span>
                 </a>
             </div>
@@ -415,7 +415,7 @@ try {
                  x-data="{ agendas: dataProgram.filter(p => p.agenda).sort((a,b) => new Date(a.agenda.date) - new Date(b.agenda.date)).slice(0, 3) }">
                 <template x-for="item in agendas" :key="item.id">
                     <a :href="'detail-program.php?slug=' + item.slug" 
-                       class="flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-400 hover:shadow-xl transition-all duration-300 group cursor-pointer w-full md:w-[calc(33.333%-2rem)] min-w-[300px]">
+                       class="flex flex-col bg-[#1E2F4D] rounded-3xl overflow-hidden shadow-sm border border-white/20 hover:shadow-xl transition-all duration-300 group cursor-pointer w-full md:w-[calc(33.333%-2rem)] min-w-[300px]">
                         <div class="relative h-48 w-full overflow-hidden">
                             <img :src="item.gambar" :alt="item.judul" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px]"
@@ -425,17 +425,17 @@ try {
                             </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col text-left">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4 transition-colors"
+                            <h3 class="text-xl font-bold text-white mb-4 transition-colors"
                                 :style="item.divisiColor === 'blue' ? '--hover-color: #1B2945' : item.divisiColor === 'green' ? '--hover-color: #16A34A' : '--hover-color: #9333EA'"
                                 :class="'group-hover:text-[var(--hover-color)]'" x-text="item.judul"></h3>
                             <div class="space-y-3 mt-auto">
-                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                <div class="flex items-center text-sm font-medium text-gray-400">
                                     <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     <span x-text="item.agenda.waktu"></span>
                                 </div>
-                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                <div class="flex items-center text-sm font-medium text-gray-400">
                                     <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -462,31 +462,31 @@ try {
              @click="closeModal()"></div>
         
         <!-- Card Content with 3D Flip Animation -->
-        <div class="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden z-10"
+        <div class="relative w-full max-w-3xl bg-[#1E2F4D] rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden z-10"
              x-show="isModalOpen"
              x-transition:enter="flip-enter"
              x-transition:leave="flip-leave"
              @click.stop>
              
             <!-- Close Button -->
-            <button @click="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black z-20 bg-white/80 p-2 rounded-full shadow-sm backdrop-blur">
+            <button @click="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black z-20 bg-[#1E2F4D]/80 p-2 rounded-full shadow-sm backdrop-blur">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
             <!-- Photo Side (Kiri) -->
-            <div class="md:w-2/5 bg-white flex flex-col items-center justify-end relative overflow-hidden min-h-[300px]">
+            <div class="md:w-2/5 bg-[#1E2F4D] flex flex-col items-center justify-end relative overflow-hidden min-h-[300px]">
                 <img :src="modalData.foto" :alt="modalData.nama" onerror="this.src='images/logo-himatep.png'" class="w-full h-full object-cover relative z-10 drop-shadow-lg object-center">
             </div>
             
             <!-- Info Side (Kanan) -->
-            <div class="md:w-3/5 p-8 md:p-10 flex flex-col justify-center bg-white relative z-10">
+            <div class="md:w-3/5 p-8 md:p-10 flex flex-col justify-center bg-[#1E2F4D] relative z-10">
                 <span class="text-xs font-bold text-yellow-600 bg-yellow-50 px-4 py-1.5 rounded-full w-max mb-4 uppercase tracking-wider border border-yellow-200" x-text="modalData.jabatan"></span>
                 
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight" x-text="modalData.nama"></h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight" x-text="modalData.nama"></h2>
                 
                 <div class="mt-2">
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-gray-100 pb-2">Deskripsi</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed" x-text="modalData.deskripsi || 'Tidak ada deskripsi yang ditambahkan untuk pengurus ini.'"></p>
+                    <p class="text-gray-300 text-sm leading-relaxed" x-text="modalData.deskripsi || 'Tidak ada deskripsi yang ditambahkan untuk pengurus ini.'"></p>
                 </div>
 
                 <div class="mt-8 flex items-center opacity-30 grayscale">

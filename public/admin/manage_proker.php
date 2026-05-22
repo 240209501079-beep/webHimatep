@@ -191,20 +191,20 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
          x-transition:leave-end="opacity-0"
          style="display: none;">
         <div @click.away="showImageModal = false" 
-             class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all"
+             class="bg-[#1E2F4D] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 scale-95 translate-y-4"
              x-transition:enter-end="opacity-100 scale-100 translate-y-0">
-            <div class="p-6 border-gray-100 flex justify-between items-center bg-gray-50">
-                <h3 class="text-xl font-bold text-gray-800">Sisipkan Gambar</h3>
-                <button @click="showImageModal = false" class="text-gray-400 hover:text-gray-600 transition">
+            <div class="p-6 border-gray-100 flex justify-between items-center bg-[#1E2F4D]">
+                <h3 class="text-xl font-bold text-white">Sisipkan Gambar</h3>
+                <button @click="showImageModal = false" class="text-gray-400 hover:text-gray-300 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
             <div class="p-8 space-y-6">
                 <!-- Option 1: Upload -->
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Opsi 1: Unggah dari Perangkat</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-3 uppercase tracking-wider">Opsi 1: Unggah dari Perangkat</label>
                     <button type="button" @click="document.getElementById('content-image-upload').click()" class="w-full py-4 px-6 bg-blue-50 border-2 border-dashed border-blue-300 rounded-2xl text-blue-600 font-bold hover:bg-blue-100 hover:border-blue-400 transition flex flex-col items-center gap-2">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                         <span>Pilih & Upload Gambar</span>
@@ -212,13 +212,13 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                 </div>
                 
                 <div class="relative py-2 flex items-center justify-center">
-                    <span class="absolute bg-white px-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Atau</span>
+                    <span class="absolute bg-[#1E2F4D] px-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Atau</span>
                     <hr class="w-full border-gray-100">
                 </div>
 
                 <!-- Option 2: URL -->
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Opsi 2: Masukkan Link URL</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-3 uppercase tracking-wider">Opsi 2: Masukkan Link URL</label>
                     <div class="flex gap-2">
                         <input type="text" x-model="imageUrlInput" placeholder="https://contoh.com/gambar.jpg" class="flex-1 p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                     </div>
@@ -226,12 +226,12 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
 
                 <!-- Caption Field -->
                 <div class="pt-2">
-                    <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Keterangan Gambar (Opsional)</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-2 uppercase tracking-wider">Keterangan Gambar (Opsional)</label>
                     <input type="text" x-model="imageCaptionInput" placeholder="Tulis keterangan gambar di sini..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                 </div>
             </div>
-            <div class="p-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
-                <button @click="showImageModal = false" class="px-6 py-2 text-gray-500 font-bold hover:text-gray-700 transition">Batal</button>
+            <div class="p-4 bg-[#1E2F4D] border-t border-gray-100 flex justify-between items-center">
+                <button @click="showImageModal = false" class="px-6 py-2 text-gray-400 font-bold hover:text-gray-200 transition">Batal</button>
                 <button type="button" @click="insertImageFromUrl(imageUrlInput, imageCaptionInput)" class="bg-himatep-green text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-200">Simpan Gambar</button>
             </div>
         </div>
@@ -240,20 +240,20 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
     <?php include "includes/sidebar.php"; ?>
 
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
+        <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                <h2 class="text-xl lg:text-2xl font-bold text-gray-800"><?= $edit_data ? 'Edit Proker' : 'Tambah Proker Baru' ?></h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-white"><?= $edit_data ? 'Edit Proker' : 'Tambah Proker Baru' ?></h2>
             </div>
             <div class="flex items-center gap-3 lg:gap-4">
                 <?php if($edit_data): ?>
-                    <a href="manage_proker.php" class="bg-gray-100 hover:bg-gray-200 px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[10px] lg:text-sm font-bold text-gray-600 transition border border-gray-200">Batal</a>
+                    <a href="manage_proker.php" class="bg-gray-100 hover:bg-gray-200 px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[10px] lg:text-sm font-bold text-gray-300 transition border border-white/10">Batal</a>
                 <?php endif; ?>
-                <a href="../index.php" class="text-xs lg:text-sm text-himatep-green hover:underline font-medium">Lihat Website</a>
-                <div class="flex items-center gap-2 lg:gap-4 border-l border-gray-200 pl-3 lg:pl-4">
-                    <span class="font-medium text-xs lg:text-base text-gray-600 truncate max-w-[100px] lg:max-w-none">
+                <a href="../index.php" class="text-xs lg:text-sm text-white hover:underline font-medium">Lihat Website</a>
+                <div class="flex items-center gap-2 lg:gap-4 border-l border-white/10 pl-3 lg:pl-4">
+                    <span class="font-medium text-xs lg:text-base text-gray-300 truncate max-w-[100px] lg:max-w-none">
                         Halo, <?= htmlspecialchars($_SESSION['admin_username'] ?? 'Admin') ?>
                     </span>
                 </div>
@@ -262,7 +262,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
 
         <div class="flex-1 p-8 overflow-y-auto grid grid-cols-1 xl:grid-cols-3 gap-8">
             <!-- Form -->
-            <div class="xl:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-400 h-fit">
+            <div class="xl:col-span-1 bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 h-fit">
                 <?php if($message): ?> <div class="bg-blue-100 text-green-700 p-4 rounded-xl mb-4"><?= $message ?></div> <?php endif; ?>
                 <?php if($error): ?> <div class="bg-red-100 text-red-700 p-4 rounded-xl mb-4"><?= $error ?></div> <?php endif; ?>
 
@@ -289,15 +289,15 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                     </div>
                     <div>
                         <label class="block text-sm font-bold mb-1">Icon Program</label>
-                        <div class="grid grid-cols-4 gap-2 border p-3 rounded-lg bg-gray-50">
+                        <div class="grid grid-cols-4 gap-2 border p-3 rounded-lg bg-[#1E2F4D]">
                             <?php foreach($icons as $name => $path): ?>
                                 <label class="cursor-pointer group relative">
                                     <input type="radio" name="icon" value="<?= $path ?>" class="hidden peer" <?= ($edit_data['icon'] ?? '') == $path ? 'checked' : '' ?> required>
-                                    <div class="p-2 border-2 rounded-lg bg-white peer-checked:border-himatep-green peer-checked:bg-blue-50 hover:border-gray-300 transition-all flex flex-col items-center gap-1">
-                                        <svg class="w-6 h-6 text-gray-600 peer-checked:text-himatep-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="p-2 border-2 rounded-lg bg-[#1E2F4D] peer-checked:border-himatep-green peer-checked:bg-blue-50 hover:border-gray-300 transition-all flex flex-col items-center gap-1">
+                                        <svg class="w-6 h-6 text-gray-300 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $path ?>"></path>
                                         </svg>
-                                        <span class="text-[10px] text-gray-500"><?= $name ?></span>
+                                        <span class="text-[10px] text-gray-400"><?= $name ?></span>
                                     </div>
                                 </label>
                             <?php endforeach; ?>
@@ -317,8 +317,8 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                         <label class="block text-sm font-bold mb-1">Gambar Banner</label>
                         <div class="space-y-3">
                             <input type="text" name="gambar" value="<?= htmlspecialchars($edit_data['gambar'] ?? '') ?>" class="w-full p-2 border rounded-lg" placeholder="Tempel URL gambar di sini">
-                            <div class="text-xs text-gray-500">Atau upload file gambar JPG, PNG, atau WEBP.</div>
-                            <input type="file" name="gambar_file" accept="image/*" class="w-full p-2 border rounded-lg bg-gray-50">
+                            <div class="text-xs text-gray-400">Atau upload file gambar JPG, PNG, atau WEBP.</div>
+                            <input type="file" name="gambar_file" accept="image/*" class="w-full p-2 border rounded-lg bg-[#1E2F4D]">
                         </div>
                     </div>
                     <div class="flex items-center gap-2 py-2">
@@ -332,26 +332,26 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                     <div>
                         <label class="block text-sm font-bold mb-1">Detail Konten (HTML Based)</label>
                         <div class="mb-2 flex flex-wrap gap-2 text-xs font-bold">
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('strong')">Bold</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('em')">Italic</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('u')">Underline</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('h2')">Judul 2</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="wrapSelection('h3')">Judul 3</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="insertList('ul')">Bullet List</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="insertList('ol')">Nomer List</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100" onclick="insertLink()">Link</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100 text-blue-600" onclick="insertImage()">+ Gambar</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('strong')">Bold</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('em')">Italic</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('u')">Underline</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('h2')">Judul 2</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('h3')">Judul 3</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertList('ul')">Bullet List</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertList('ol')">Nomer List</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertLink()">Link</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100 text-blue-600" onclick="insertImage()">+ Gambar</button>
                         </div>
                         <textarea id="isi-editor" name="isi" class="w-full p-2 border rounded-lg font-mono text-sm leading-6" rows="8" required><?= htmlspecialchars($edit_data['isi'] ?? '') ?></textarea>
                         <input type="file" id="content-image-upload" class="hidden" accept="image/*">
-                        <p class="text-xs text-gray-500 mt-2">Gunakan tombol di atas untuk menyisipkan tag HTML.</p>
+                        <p class="text-xs text-gray-400 mt-2">Gunakan tombol di atas untuk menyisipkan tag HTML.</p>
                     </div>
                     <div class="flex gap-3">
                         <button type="submit" class="flex-1 bg-himatep-green text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition">
                             <?= $edit_data ? 'Simpan Perubahan' : 'Tambah Program' ?>
                         </button>
                         <?php if(!$edit_data): ?>
-                            <button type="reset" onclick="setTimeout(updatePreview, 10)" class="px-6 py-3 border border-gray-300 text-gray-500 font-bold rounded-xl active:bg-gray-200 hover:bg-gray-200 transition">
+                            <button type="reset" onclick="setTimeout(updatePreview, 10)" class="px-6 py-3 border border-gray-300 text-gray-400 font-bold rounded-xl active:bg-gray-200 hover:bg-gray-200 transition">
                                 Kosongkan
                             </button>
                         <?php endif; ?>
@@ -362,10 +362,10 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             <!-- Preview & List Container -->
             <div class="xl:col-span-2 space-y-8">
                 <!-- Live Preview -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
-                    <div class="p-4 bg-gray-50 font-bold flex justify-between items-center">
+                <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
+                    <div class="p-4 bg-[#1E2F4D] font-bold flex justify-between items-center">
                         <span>Live Preview (Tampilan Detail Program)</span>
-                        <span class="text-xs font-normal text-gray-500 italic">Pratinjau</span>
+                        <span class="text-xs font-normal text-gray-400 italic">Pratinjau</span>
                     </div>
                     <div class="p-8 max-w-2xl mx-auto">
                         <div class="mb-6 flex justify-center">
@@ -379,31 +379,31 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                         <h1 id="preview-title" class="text-3xl font-bold text-gray-900 mb-6 leading-tight">Nama Program Kerja</h1>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <div class="bg-[#1E2F4D] p-4 rounded-xl border border-white/10">
                                 <div class="text-xs text-gray-400 uppercase font-bold mb-1">Target Waktu</div>
-                                <div id="preview-target" class="font-bold text-gray-700">April 2026</div>
+                                <div id="preview-target" class="font-bold text-gray-200">April 2026</div>
                             </div>
-                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <div class="bg-[#1E2F4D] p-4 rounded-xl border border-white/10">
                                 <div class="text-xs text-gray-400 uppercase font-bold mb-1">Sasaran</div>
-                                <div id="preview-sasaran" class="font-bold text-gray-700">Mahasiswa</div>
+                                <div id="preview-sasaran" class="font-bold text-gray-200">Mahasiswa</div>
                             </div>
                         </div>
 
                         <img id="preview-image" src="https://via.placeholder.com/800x400" class="w-full h-64 object-cover rounded-2xl mb-8 shadow-lg">
                         
-                        <div class="prose prose-green max-w-none text-gray-600 leading-relaxed">
-                            <div id="preview-ringkasan" class="font-bold text-gray-800 mb-4 text-lg">Ringkasan singkat program akan tampil di sini.</div>
+                        <div class="prose prose-green max-w-none text-gray-300 leading-relaxed">
+                            <div id="preview-ringkasan" class="font-bold text-white mb-4 text-lg">Ringkasan singkat program akan tampil di sini.</div>
                             <div id="preview-content">Detail konten lengkap program...</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- List -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
-                <div class="p-4 bg-gray-50 font-bold">Daftar Proker</div>
+                <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
+                <div class="p-4 bg-[#1E2F4D] font-bold">Daftar Proker</div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+                        <thead class="bg-gray-100 text-gray-300 uppercase text-xs">
                             <tr>
                                 <th class="p-4">Banner</th>
                                 <th class="p-4">Nama Program</th>
@@ -522,7 +522,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                         const caption = alpineData.imageCaptionInput;
                         let replacement = `\n<figure class="my-6">\n    <img src="${result.path}" alt="${caption || 'Gambar Program'}" class="w-full rounded-2xl shadow-md">\n`;
                         if (caption) {
-                            replacement += `    <figcaption class="text-center text-sm text-gray-500 mt-2 italic">${caption}</figcaption>\n`;
+                            replacement += `    <figcaption class="text-center text-sm text-gray-400 mt-2 italic">${caption}</figcaption>\n`;
                         }
                         replacement += `</figure>\n`;
                         
@@ -550,7 +550,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
 
             let replacement = `\n<figure class="my-6">\n    <img src="${url}" alt="${caption || 'Gambar Program'}" class="w-full rounded-2xl shadow-md">\n`;
             if (caption) {
-                replacement += `    <figcaption class="text-center text-sm text-gray-500 mt-2 italic">${caption}</figcaption>\n`;
+                replacement += `    <figcaption class="text-center text-sm text-gray-400 mt-2 italic">${caption}</figcaption>\n`;
             }
             replacement += `</figure>\n`;
 

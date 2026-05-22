@@ -28,15 +28,15 @@
     <link rel="stylesheet" href="css/style.css?v=2.6">
     <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-hidden min-h-screen flex items-center justify-center relative">
+<body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-hidden min-h-screen flex items-center justify-center relative">
 
     <div class="relative z-10 max-w-2xl mx-auto px-4 text-center">
         <!-- Ilustrasi Error -->
         <div class="mb-8 relative inline-block">
-            <span class="text-9xl font-black text-himatep-green/10">404</span>
+            <span class="text-9xl font-black text-white/10">404</span>
 
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Waduh! Halamannya <span class="text-himatep-green italic font-cursive text-5xl">Menghilang...</span></h1>
-        <p class="text-gray-600 text-lg mb-10 max-w-md mx-auto">Sepertinya link yang Anda tuju sudah tidak ada atau berpindah tempat ke divisi lain.</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Waduh! Halamannya <span class="text-white italic font-cursive text-5xl">Menghilang...</span></h1>
+        <p class="text-gray-300 text-lg mb-10 max-w-md mx-auto">Sepertinya link yang Anda tuju sudah tidak ada atau berpindah tempat ke divisi lain.</p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a href="/webHimatep/public/index.php" class="btn-error-primary px-8 py-4 font-bold rounded-full shadow-lg transition transform hover:-translate-y-1 flex items-center gap-2">

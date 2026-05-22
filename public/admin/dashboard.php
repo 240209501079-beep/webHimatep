@@ -61,20 +61,20 @@ try {
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <!-- Header -->
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
+        <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
                 <!-- Hamburger Button -->
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <h2 class="text-xl lg:text-2xl font-bold text-gray-800">Dashboard</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-white">Dashboard</h2>
             </div>
             <div class="flex items-center gap-3 lg:gap-4">
-                <a href="../index.php" class="text-xs lg:text-sm text-himatep-green hover:underline font-medium">Lihat Website</a>
-                <div class="flex items-center gap-2 lg:gap-4 border-l border-gray-200 pl-3 lg:pl-4">
-                    <span class="font-medium text-xs lg:text-base text-gray-600 truncate max-w-[100px] lg:max-w-none">
+                <a href="../index.php" class="text-xs lg:text-sm text-white hover:underline font-medium">Lihat Website</a>
+                <div class="flex items-center gap-2 lg:gap-4 border-l border-white/10 pl-3 lg:pl-4">
+                    <span class="font-medium text-xs lg:text-base text-gray-300 truncate max-w-[100px] lg:max-w-none">
                         Halo, <?= htmlspecialchars($_SESSION['admin_username'] ?? 'Admin') ?>
                     </span>
                 </div>
@@ -85,39 +85,39 @@ try {
         <div class="flex-1 p-8 overflow-y-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Stat Card 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-400 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-himatep-light text-himatep-green rounded-2xl flex items-center justify-center text-2xl">📰</div>
+                <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
+                    <div class="w-16 h-16 bg-himatep-light text-white rounded-2xl flex items-center justify-center text-2xl">📰</div>
                     <div>
-                        <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider">Total Berita</h3>
-                        <p class="text-3xl font-bold text-gray-800"><?= $count_berita ?></p>
+                        <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Total Berita</h3>
+                        <p class="text-3xl font-bold text-white"><?= $count_berita ?></p>
                     </div>
                 </div>
                 <!-- Stat Card 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-400 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-himatep-light text-himatep-green rounded-2xl flex items-center justify-center text-2xl">📋</div>
+                <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
+                    <div class="w-16 h-16 bg-himatep-light text-white rounded-2xl flex items-center justify-center text-2xl">📋</div>
                     <div>
-                        <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider">Program Kerja</h3>
-                        <p class="text-3xl font-bold text-gray-800"><?= $count_proker ?></p>
+                        <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Program Kerja</h3>
+                        <p class="text-3xl font-bold text-white"><?= $count_proker ?></p>
                     </div>
                 </div>
                 <!-- Stat Card 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-400 flex items-center gap-4">
+                <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
                     <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl">🗣️</div>
                     <div>
-                        <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider">Aspirasi Baru</h3>
-                        <p class="text-3xl font-bold text-gray-800"><?= $count_aspirasi ?></p>
+                        <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Aspirasi Baru</h3>
+                        <p class="text-3xl font-bold text-white"><?= $count_aspirasi ?></p>
                     </div>
                 </div>
             </div>
 
             <!-- Recent Aspirasi -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
+            <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
                 <div class="p-6 border-b">
                     <h3 class="text-xl font-bold">Aspirasi Terbaru</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
-                        <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                        <thead class="bg-[#1E2F4D] text-gray-400 text-xs uppercase tracking-wider">
                             <tr>
                                 <th class="px-6 py-4">Nama & Email</th>
                                 <th class="px-6 py-4">Kategori</th>
@@ -127,10 +127,10 @@ try {
                         </thead>
                         <tbody class="divide-y divide-gray-100">
                             <?php foreach ($recent_aspirasi as $item): ?>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-[#1E2F4D]">
                                 <td class="px-6 py-4">
                                     <div class="font-medium"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
-                                    <div class="text-[10px] text-gray-500 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
+                                    <div class="text-[10px] text-gray-400 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-blue-600"><?= htmlspecialchars($item['jenis']) ?></td>
                                 <td class="px-6 py-4 text-sm truncate max-w-[150px]"><?= htmlspecialchars($item['pesan']) ?></td>
@@ -139,14 +139,14 @@ try {
                             <?php endforeach; ?>
                             <?php if (empty($recent_aspirasi)): ?>
                             <tr>
-                                <td colspan="4" class="px-6 py-8 text-center text-gray-500 italic">Belum ada aspirasi masuk.</td>
+                                <td colspan="4" class="px-6 py-8 text-center text-gray-400 italic">Belum ada aspirasi masuk.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 bg-gray-50 text-center border-t">
-                    <a href="view_aspirasi.php" class="text-sm text-himatep-green font-bold hover:underline">Lihat Semua Aspirasi</a>
+                <div class="p-4 bg-[#1E2F4D] text-center border-t">
+                    <a href="view_aspirasi.php" class="text-sm text-white font-bold hover:underline">Lihat Semua Aspirasi</a>
                 </div>
             </div>
         </div>

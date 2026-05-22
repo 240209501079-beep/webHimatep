@@ -80,17 +80,17 @@ try {
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <!-- Header -->
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
+        <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                <h2 class="text-xl lg:text-2xl font-bold text-gray-800">Kelola Aspirasi</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-white">Kelola Aspirasi</h2>
             </div>
             <div class="flex items-center gap-3 lg:gap-4">
-                <a href="../index.php" class="text-xs lg:text-sm text-himatep-green hover:underline font-medium">Lihat Website</a>
-                <div class="flex items-center gap-2 lg:gap-4 border-l border-gray-200 pl-3 lg:pl-4">
-                    <span class="font-medium text-xs lg:text-base text-gray-600 truncate max-w-[100px] lg:max-w-none">
+                <a href="../index.php" class="text-xs lg:text-sm text-white hover:underline font-medium">Lihat Website</a>
+                <div class="flex items-center gap-2 lg:gap-4 border-l border-white/10 pl-3 lg:pl-4">
+                    <span class="font-medium text-xs lg:text-base text-gray-300 truncate max-w-[100px] lg:max-w-none">
                         Halo, <?= htmlspecialchars($_SESSION['admin_username'] ?? 'Admin') ?>
                     </span>
                 </div>
@@ -105,10 +105,10 @@ try {
                 <div class="bg-yellow-100 text-yellow-700 p-4 rounded-xl mb-6">Aspirasi berhasil dihapus.</div>
             <?php endif; ?>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-400 overflow-hidden">
+            <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
-                        <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                        <thead class="bg-[#1E2F4D] text-gray-400 text-xs uppercase tracking-wider">
                             <tr>
                                 <th class="px-6 py-4">Nama & Email</th>
                                 <th class="px-6 py-4">Kategori</th>
@@ -120,15 +120,15 @@ try {
                         </thead>
                         <tbody class="divide-y divide-gray-100">
                             <?php foreach ($aspirasi_list as $item): ?>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-[#1E2F4D]">
                                 <td class="px-6 py-4">
                                     <div class="font-medium text-gray-900"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
-                                    <div class="text-xs text-gray-500 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
+                                    <div class="text-xs text-gray-400 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-bold uppercase"><?= htmlspecialchars($item['jenis']) ?></span>
                                 </td>
-                                <td class="px-6 py-4 text-sm whitespace-pre-wrap max-w-xs text-gray-600"><?= htmlspecialchars($item['pesan']) ?></td>
+                                <td class="px-6 py-4 text-sm whitespace-pre-wrap max-w-xs text-gray-300"><?= htmlspecialchars($item['pesan']) ?></td>
                                 <td class="px-6 py-4">
                                     <span class="px-3 py-1 rounded-full text-xs font-bold 
                                         <?= $item['status'] == 'Baru' ? 'bg-red-100 text-red-600' : ($item['status'] == 'Dibaca' ? 'bg-blue-100 text-blue-600' : 'bg-blue-100 text-green-600') ?>">
@@ -147,7 +147,7 @@ try {
                             <?php endforeach; ?>
                             <?php if (empty($aspirasi_list)): ?>
                             <tr>
-                                <td colspan="5" class="px-6 py-8 text-center text-gray-500 italic">Belum ada aspirasi masuk.</td>
+                                <td colspan="5" class="px-6 py-8 text-center text-gray-400 italic">Belum ada aspirasi masuk.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>

@@ -66,7 +66,7 @@
                 </address>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-gray-800 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-gray-800 text-center text-gray-400 text-sm">
             &copy; 2026 HIMATEP FIP UNM. All rights reserved. Designed with ❤️
         </div>
     </footer>

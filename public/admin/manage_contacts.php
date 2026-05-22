@@ -119,14 +119,14 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-8 z-10">
+        <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <h2 class="text-2xl font-bold text-gray-800">Kelola Narahubung</h2>
+                <h2 class="text-2xl font-bold text-white">Kelola Narahubung</h2>
             </div>
             <button @click="modalMode = 'add'; form = { id: '', platform: 'WhatsApp', label: '', value: '', icon: 'whatsapp', is_active: 1, sort_order: 0 }; modalOpen = true" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-bold transition flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
@@ -141,9 +141,9 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
                 </div>
             <?php endif; ?>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/10 overflow-hidden">
                 <table class="w-full text-left">
-                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                    <thead class="bg-[#1E2F4D] text-gray-400 text-xs uppercase tracking-wider">
                         <tr>
                             <th class="px-6 py-4">Platform</th>
                             <th class="px-6 py-4">Label</th>
@@ -154,17 +154,17 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
                     </thead>
                     <tbody class="divide-y divide-gray-100">
                         <?php foreach ($contacts as $contact): ?>
-                            <tr class="hover:bg-gray-50 transition">
+                            <tr class="hover:bg-[#1E2F4D] transition">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
                                             <?= get_contact_svg($contact['icon'], "w-5 h-5") ?>
                                         </div>
-                                        <span class="font-bold text-gray-800"><?= $contact['platform'] ?></span>
+                                        <span class="font-bold text-white"><?= $contact['platform'] ?></span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 font-medium"><?= htmlspecialchars($contact['label']) ?></td>
-                                <td class="px-6 py-4 text-sm text-gray-500 truncate max-w-xs"><?= htmlspecialchars($contact['value']) ?></td>
+                                <td class="px-6 py-4 text-sm text-gray-400 truncate max-w-xs"><?= htmlspecialchars($contact['value']) ?></td>
                                 <td class="px-6 py-4">
                                     <?php if ($contact['is_active']): ?>
                                         <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold">Aktif</span>
@@ -197,10 +197,10 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
 
     <!-- Modal Form -->
     <div x-show="modalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" style="display: none;">
-        <div @click.away="modalOpen = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all">
-            <div class="p-6 border-gray-100 flex justify-between items-center bg-gray-50">
-                <h3 class="text-xl font-bold text-gray-800" x-text="modalMode === 'add' ? 'Tambah Kontak Baru' : 'Edit Kontak'"></h3>
-                <button @click="modalOpen = false" class="text-gray-400 hover:text-gray-600 transition">
+        <div @click.away="modalOpen = false" class="bg-[#1E2F4D] rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all">
+            <div class="p-6 border-gray-100 flex justify-between items-center bg-[#1E2F4D]">
+                <h3 class="text-xl font-bold text-white" x-text="modalMode === 'add' ? 'Tambah Kontak Baru' : 'Edit Kontak'"></h3>
+                <button @click="modalOpen = false" class="text-gray-400 hover:text-gray-300 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
@@ -209,7 +209,7 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
                 <input type="hidden" name="id" :value="form.id">
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Platform</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-1">Platform</label>
                     <select name="platform" x-model="form.platform" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition">
                         <option value="WhatsApp">WhatsApp</option>
                         <option value="Email">Email</option>
@@ -218,23 +218,23 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Label / Nama</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-1">Label / Nama</label>
                     <input type="text" name="label" x-model="form.label" :placeholder="form.platform === 'WhatsApp' ? 'Contoh: Humas 1' : (form.platform === 'Email' ? 'Contoh: Email Resmi' : 'Contoh: Instagram @himatep')" required class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Nilai / Link</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-1">Nilai / Link</label>
                     <input type="text" name="value" x-model="form.value" :placeholder="form.platform === 'WhatsApp' ? '628...' : (form.platform === 'Email' ? 'himatep@...' : 'https://...')" required class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition">
                     <p class="text-[10px] text-gray-400 mt-1" x-show="form.platform === 'WhatsApp'">*Bisa masukkan 08..., 8..., atau 62..., sistem akan otomatis menyesuaikan.</p>
                 </div>
 
                 <div x-show="form.platform === 'Social Media'">
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Pilih Icon</label>
+                    <label class="block text-sm font-bold text-gray-200 mb-1">Pilih Icon</label>
                     <div class="grid grid-cols-6 gap-2 mt-2">
                         <?php foreach ($available_icons as $icon): ?>
                             <label class="cursor-pointer">
                                 <input type="radio" name="icon" value="<?= $icon ?>" x-model="form.icon" class="hidden peer">
-                                <div class="w-10 h-10 flex items-center justify-center border-2 border-transparent peer-checked:border-blue-500 peer-checked:bg-blue-50 rounded-lg bg-gray-50 text-gray-400 peer-checked:text-blue-600 transition">
+                                <div class="w-10 h-10 flex items-center justify-center border-2 border-transparent peer-checked:border-blue-500 peer-checked:bg-blue-50 rounded-lg bg-[#1E2F4D] text-gray-400 peer-checked:text-blue-600 transition">
                                     <?= get_contact_svg($icon, "w-6 h-6") ?>
                                 </div>
                             </label>
@@ -245,16 +245,16 @@ $available_icons = ['instagram', 'facebook', 'twitter', 'youtube', 'tiktok', 'li
                 <div class="flex items-center gap-4 py-2">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" name="is_active" :checked="form.is_active == 1" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
-                        <span class="text-sm font-bold text-gray-700">Aktifkan Kontak</span>
+                        <span class="text-sm font-bold text-gray-200">Aktifkan Kontak</span>
                     </label>
                     <div class="flex-1">
-                        <label class="block text-xs font-bold text-gray-500">Urutan Tampil</label>
+                        <label class="block text-xs font-bold text-gray-400">Urutan Tampil</label>
                         <input type="number" name="sort_order" x-model="form.sort_order" class="w-20 px-2 py-1 rounded border border-gray-300 outline-none">
                     </div>
                 </div>
 
                 <div class="pt-6 flex gap-4">
-                    <button type="button" @click="modalOpen = false" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition">Batal</button>
+                    <button type="button" @click="modalOpen = false" class="flex-1 px-6 py-3 border border-gray-300 text-gray-200 font-bold rounded-xl hover:bg-[#1E2F4D] transition">Batal</button>
                     <button type="submit" class="flex-1 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition">Simpan</button>
                 </div>
             </form>

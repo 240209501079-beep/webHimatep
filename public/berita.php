@@ -99,7 +99,7 @@ $berita_json = json_encode(array_map(function($b) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden"
+<body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-x-hidden"
     x-data="{ mobileMenuOpen: false, daftarBerita: dataBerita }">
 
     <!-- Navbar -->
@@ -119,13 +119,13 @@ $berita_json = json_encode(array_map(function($b) {
     </section>
 
     <!-- Daftar Berita -->
-    <section class="py-20 bg-gray-50 min-h-screen">
+    <section class="py-20 bg-batik-blue min-h-screen">
         <div class="max-w-7xl mx-auto px-4">
 
             <!-- Headline Berita Terbaru (Ambil berita pertama) -->
             <template x-if="daftarBerita.length > 0">
                 <div class="mb-16">
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-400 flex flex-col md:flex-row hover:shadow-xl transition-shadow group cursor-pointer"
+                    <div class="bg-[#1E2F4D] rounded-3xl overflow-hidden shadow-lg border border-white/20 flex flex-col md:flex-row hover:shadow-xl transition-shadow group cursor-pointer"
                         @click="window.location.href='detail-berita.php?slug=' + daftarBerita[0].slug">
                         <div class="md:w-1/2 relative overflow-hidden">
                             <img :src="daftarBerita[0].gambar" :alt="daftarBerita[0].judul"
@@ -138,10 +138,10 @@ $berita_json = json_encode(array_map(function($b) {
                         </div>
                         <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative">
                             <div
-                                class="absolute top-8 right-8 text-sm font-semibold text-himatep-green bg-himatep-light px-3 py-1 rounded-full border border-gray-200">
+                                class="absolute top-8 right-8 text-sm font-semibold text-white bg-himatep-light px-3 py-1 rounded-full border border-white/10">
                                 BERITA UTAMA
                             </div>
-                            <div class="flex items-center text-sm text-gray-500 mb-4 mt-8 md:mt-0">
+                            <div class="flex items-center text-sm text-gray-400 mb-4 mt-8 md:mt-0">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
@@ -151,11 +151,11 @@ $berita_json = json_encode(array_map(function($b) {
                                 <span class="mx-2">•</span>
                                 <span x-text="daftarBerita[0].penulis"></span>
                             </div>
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4 group-hover:text-himatep-green transition-colors"
+                            <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-white transition-colors"
                                 x-text="daftarBerita[0].judul"></h2>
-                            <p class="text-gray-600 mb-6 text-lg" x-text="daftarBerita[0].ringkasan"></p>
+                            <p class="text-gray-300 mb-6 text-lg" x-text="daftarBerita[0].ringkasan"></p>
                             <a :href="'detail-berita.php?slug=' + daftarBerita[0].slug"
-                                class="inline-flex items-center font-bold text-himatep-green hover:gap-2 transition-all">
+                                class="inline-flex items-center font-bold text-white hover:gap-2 transition-all">
                                 Baca Artikel Lengkap <span class="ml-1">&rarr;</span>
                             </a>
                         </div>
@@ -164,12 +164,12 @@ $berita_json = json_encode(array_map(function($b) {
             </template>
 
             <!-- Grid Berita Lainnya -->
-            <h3 class="text-2xl font-bold text-gray-800 mb-8 border-b-2 border-gray-200 pb-4">Berita Lainnya</h3>
+            <h3 class="text-2xl font-bold text-white mb-8 border-b-2 border-white/10 pb-4">Berita Lainnya</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Loop dari berita index ke-1 sampai habis -->
                 <template x-for="(berita, index) in daftarBerita" :key="berita.id">
                     <div x-show="index > 0"
-                        class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400 flex flex-col cursor-pointer card-hover"
+                        class="bg-[#1E2F4D] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-white/20 flex flex-col cursor-pointer card-hover"
                         @click="window.location.href='detail-berita.php?slug=' + berita.slug">
                         <div class="relative h-48 overflow-hidden">
                             <img :src="berita.gambar" :alt="berita.judul" class="w-full h-full object-cover">
@@ -180,14 +180,14 @@ $berita_json = json_encode(array_map(function($b) {
                                     :class="'text-' + berita.kategoriColor + '-600 bg-' + berita.kategoriColor + '-100'"
                                     x-text="berita.kategori"></span>
                             </div>
-                            <h3 class="text-xl font-bold mb-3 text-gray-800 line-clamp-2 hover:text-himatep-green transition-colors"
+                            <h3 class="text-xl font-bold mb-3 text-white line-clamp-2 hover:text-white transition-colors"
                                 x-text="berita.judul"></h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1" x-text="berita.ringkasan"></p>
+                            <p class="text-gray-300 text-sm mb-4 line-clamp-3 flex-1" x-text="berita.ringkasan"></p>
 
                             <div class="flex items-center justify-between mt-auto pt-4 border-gray-100">
-                                <div class="text-xs text-gray-500 font-medium" x-text="berita.tanggal"></div>
+                                <div class="text-xs text-gray-400 font-medium" x-text="berita.tanggal"></div>
                                 <a :href="'detail-berita.php?slug=' + berita.slug"
-                                    class="text-sm text-himatep-green font-bold hover:underline">Baca &rarr;</a>
+                                    class="text-sm text-white font-bold hover:underline">Baca &rarr;</a>
                             </div>
                         </div>
                     </div>

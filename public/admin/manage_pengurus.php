@@ -264,19 +264,19 @@ foreach ($pengurus_list as $p) {
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <!-- Header (Format Dashboard) -->
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
+        <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <h2 class="text-xl lg:text-2xl font-bold text-gray-800">Struktur Pengurus</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-white">Struktur Pengurus</h2>
             </div>
             <div class="flex items-center gap-3 lg:gap-4">
                 <a href="../index.php" class="text-xs lg:text-sm text-[#1B2945] hover:underline font-medium">Lihat Website</a>
-                <div class="flex items-center gap-2 lg:gap-4 border-l border-gray-200 pl-3 lg:pl-4">
-                    <span class="font-medium text-xs lg:text-base text-gray-600 truncate max-w-[100px] lg:max-w-none">
+                <div class="flex items-center gap-2 lg:gap-4 border-l border-white/10 pl-3 lg:pl-4">
+                    <span class="font-medium text-xs lg:text-base text-gray-300 truncate max-w-[100px] lg:max-w-none">
                         Halo, <?= htmlspecialchars($_SESSION['admin_username'] ?? 'Admin') ?>
                     </span>
                 </div>
@@ -291,9 +291,9 @@ foreach ($pengurus_list as $p) {
             </div>
             <?php endif; ?>
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <div class="p-6 border-gray-200 flex justify-between items-center bg-gray-50">
-                    <h3 class="text-lg font-semibold text-gray-800">Daftar Pengurus</h3>
+            <div class="bg-[#1E2F4D] rounded-xl shadow-sm border border-white/10 overflow-hidden">
+                <div class="p-6 border-white/10 flex justify-between items-center bg-[#1E2F4D]">
+                    <h3 class="text-lg font-semibold text-white">Daftar Pengurus</h3>
                     <button @click="openModal('add')" class="bg-himatep-green hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm">
                         + Tambah Pengurus
                     </button>
@@ -301,29 +301,29 @@ foreach ($pengurus_list as $p) {
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-gray-100/50 text-gray-500 text-sm uppercase tracking-wider">
+                            <tr class="bg-gray-100/50 text-gray-400 text-sm uppercase tracking-wider">
                                 <th class="py-4 px-4 w-16 text-center">No</th>
                                 <th class="py-4 px-2 border-b">Pengurus</th>
                                 <th class="py-4 px-2 border-b">Bidang</th>
                                 <th class="py-4 px-4 text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-700 text-sm">
+                        <tbody class="text-gray-200 text-sm">
                             <?php foreach ($pengurus_list as $p): ?>
-                            <tr class="hover:bg-gray-50 transition border-gray-100/50">
+                            <tr class="hover:bg-[#1E2F4D] transition border-gray-100/50">
                                 <td class="py-4 px-4 font-bold text-gray-900 text-center"><?= $p['urutan'] ?></td>
                                 <td class="py-4 px-2 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 border border-gray-200">
+                                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 border border-white/10">
                                         <img src="../images/pengurus/<?= htmlspecialchars($p['foto']) ?>" onerror="this.src='../images/logo-himatep.png'" class="w-full h-full object-cover">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-gray-800 leading-tight"><?= htmlspecialchars($p['nama']) ?></p>
+                                        <p class="font-bold text-white leading-tight"><?= htmlspecialchars($p['nama']) ?></p>
                                         <?php 
                                             $is_bph = strtoupper(trim($p['divisi'])) === 'BPH';
                                             $jab_clean = str_replace('Ketua Divisi', 'Ketua', $p['jabatan']);
                                             $jab_display = $is_bph ? $p['jabatan'] : ($jab_clean . ' ' . $p['divisi']);
                                         ?>
-                                        <p class="text-[11px] text-gray-500 mt-0.5"><?= htmlspecialchars($jab_display) ?></p>
+                                        <p class="text-[11px] text-gray-400 mt-0.5"><?= htmlspecialchars($jab_display) ?></p>
                                     </div>
                                 </td>
                                 <td class="py-4 px-2">
@@ -343,7 +343,7 @@ foreach ($pengurus_list as $p) {
                             <?php endforeach; ?>
                             <?php if(empty($pengurus_list)): ?>
                             <tr>
-                                <td colspan="4" class="p-8 text-center text-gray-500">Belum ada data pengurus.</td>
+                                <td colspan="4" class="p-8 text-center text-gray-400">Belum ada data pengurus.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
@@ -351,21 +351,21 @@ foreach ($pengurus_list as $p) {
                 </div>
             </div>
             <div class="flex mt-8">
-                <span class="text-[11px] text-gray-400 italic font-medium px-4 py-1.5 bg-white rounded-full border border-gray-200 shadow-sm">
+                <span class="text-[11px] text-gray-400 italic font-medium px-4 py-1.5 bg-[#1E2F4D] rounded-full border border-white/10 shadow-sm">
                     <span>Catatan: Pengurus dengan divisi <strong>BPH</strong> dan pengurus dengan jabatan <strong>Ketua Divisi</strong> akan ditampilkan pada kartu trapesium di halaman Profil.
                 </span>
             </div>
 
             <!-- Preview Struktur Organisasi (KSB Highlight) -->
-            <div class="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-12">
-                <div class="p-6 border-gray-200 bg-gray-50 flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-gray-800">Preview Tampilan KSB (Live)</h3>
-                    <span class="text-xs bg-himatep-light text-himatep-green px-2 py-1 rounded font-medium">Visual Card Only</span>
+            <div class="mt-8 bg-[#1E2F4D] rounded-xl shadow-sm border border-white/10 overflow-hidden mb-12">
+                <div class="p-6 border-white/10 bg-[#1E2F4D] flex justify-between items-center">
+                    <h3 class="text-lg font-semibold text-white">Preview Tampilan KSB (Live)</h3>
+                    <span class="text-xs bg-himatep-light text-white px-2 py-1 rounded font-medium">Visual Card Only</span>
                 </div>
                 <div class="p-8 border-gray-100">
                     <div class="flex items-center gap-2 mb-6">
                         <div class="w-1 h-4 bg-himatep-green rounded-full"></div>
-                        <h4 class="font-bold text-gray-700 uppercase text-[10px] tracking-widest">BPH Inti</h4>
+                        <h4 class="font-bold text-gray-200 uppercase text-[10px] tracking-widest">BPH Inti</h4>
                     </div>
                     <div class="ksb-wrapper">
                         <?php if (!empty($bph_list)): ?>
@@ -394,7 +394,7 @@ foreach ($pengurus_list as $p) {
                     <?php if (!empty($ketua_divisi_list)): ?>
                     <div class="flex items-center gap-2 mt-12 mb-6 border-gray-100 pt-8">
                         <div class="w-1 h-4 bg-himatep-green rounded-full"></div>
-                        <h4 class="font-bold text-gray-700 uppercase text-[10px] tracking-widest">Ketua</h4>
+                        <h4 class="font-bold text-gray-200 uppercase text-[10px] tracking-widest">Ketua</h4>
                     </div>
                     <div class="ksb-wrapper">
                         <?php foreach ($ketua_divisi_list as $p): 
@@ -423,7 +423,7 @@ foreach ($pengurus_list as $p) {
                     <?php if (!empty($anggota_list)): ?>
                     <div class="flex items-center gap-2 mt-12 mb-6 border-gray-100 pt-8">
                         <div class="w-1 h-4 bg-himatep-green rounded-full"></div>
-                        <h4 class="font-bold text-gray-700 uppercase text-[10px] tracking-widest">Anggota</h4>
+                        <h4 class="font-bold text-gray-200 uppercase text-[10px] tracking-widest">Anggota</h4>
                     </div>
                     <div class="ksb-wrapper">
                         <?php foreach ($anggota_list as $p): 
@@ -453,7 +453,7 @@ foreach ($pengurus_list as $p) {
                 <div class="bg-gray-100 p-8">
                     <div class="flex items-center gap-2 mb-8">
                         <div class="w-1.5 h-6 bg-yellow-500 rounded-full"></div>
-                        <h4 class="font-bold text-gray-800 uppercase text-sm tracking-widest">Live Preview Detail Profil</h4>
+                        <h4 class="font-bold text-white uppercase text-sm tracking-widest">Live Preview Detail Profil</h4>
                     </div>
                     <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
                         <?php 
@@ -465,9 +465,9 @@ foreach ($pengurus_list as $p) {
                                 $jab_clean = str_replace('Ketua Divisi', 'Ketua', $p['jabatan']);
                                 $jabatan_display = $is_bph ? $p['jabatan'] : ($jab_clean . ' ' . $p['divisi']);
                         ?>
-                                <div class="bg-white rounded-3xl shadow-md border border-gray-100 flex flex-col md:flex-row overflow-hidden group min-h-[300px]">
+                                <div class="bg-[#1E2F4D] rounded-3xl shadow-md border border-gray-100 flex flex-col md:flex-row overflow-hidden group min-h-[300px]">
                                     <!-- Photo Side (Kiri) -->
-                                    <div class="md:w-2/5 bg-gray-50 relative overflow-hidden border-r border-gray-100">
+                                    <div class="md:w-2/5 bg-[#1E2F4D] relative overflow-hidden border-r border-gray-100">
                                         <div class="absolute w-32 h-32 bg-blue-50 rounded-full -top-10 -left-10 z-0 opacity-50"></div>
                                         <img src="<?= htmlspecialchars($foto_path) ?>" 
                                              onerror="this.src='../images/logo-himatep.png'" 
@@ -476,21 +476,21 @@ foreach ($pengurus_list as $p) {
                                     </div>
 
                                     <!-- Info Side (Kanan) -->
-                                    <div class="md:w-3/5 p-8 flex flex-col justify-center bg-white relative z-10">
+                                    <div class="md:w-3/5 p-8 flex flex-col justify-center bg-[#1E2F4D] relative z-10">
                                         <!-- Jabatan Badge -->
                                         <span class="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-3 py-1.5 rounded-full w-max mb-4 uppercase tracking-wider border border-yellow-200">
                                             <?= htmlspecialchars($jabatan_display) ?>
                                         </span>
                                         
                                         <!-- Nama -->
-                                        <h5 class="text-xl font-bold text-gray-800 mb-6 leading-tight">
+                                        <h5 class="text-xl font-bold text-white mb-6 leading-tight">
                                             <?= htmlspecialchars($p['nama']) ?>
                                         </h5>
                                         
                                         <!-- Deskripsi Section -->
                                         <div class="mt-2">
                                             <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 border-gray-100 pb-1">Deskripsi</h3>
-                                            <p class="text-gray-600 text-xs leading-relaxed line-clamp-4">
+                                            <p class="text-gray-300 text-xs leading-relaxed line-clamp-4">
                                                 <?= htmlspecialchars($p['deskripsi'] ?: 'Tidak ada deskripsi yang ditambahkan untuk pengurus ini.') ?>
                                             </p>
                                         </div>
@@ -517,7 +517,7 @@ foreach ($pengurus_list as $p) {
         
         <!-- Modal Content -->
         <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-xl shadow-xl w-full max-w-lg z-50 transform transition-all"
+            <div class="bg-[#1E2F4D] rounded-xl shadow-xl w-full max-w-lg z-50 transform transition-all"
                  x-show="modalOpen"
                  x-transition:enter="ease-out duration-300"
                  x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -526,8 +526,8 @@ foreach ($pengurus_list as $p) {
                  x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                  x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                  
-                <div class="px-6 py-4 border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-xl">
-                    <h3 class="text-lg font-bold text-gray-800" x-text="modalMode === 'add' ? 'Tambah Pengurus' : 'Edit Pengurus'"></h3>
+                <div class="px-6 py-4 border-white/10 flex justify-between items-center bg-[#1E2F4D] rounded-t-xl">
+                    <h3 class="text-lg font-bold text-white" x-text="modalMode === 'add' ? 'Tambah Pengurus' : 'Edit Pengurus'"></h3>
                     <button @click="modalOpen = false" class="text-gray-400 hover:text-red-500 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
@@ -539,15 +539,15 @@ foreach ($pengurus_list as $p) {
                         <input type="hidden" name="id" x-model="form.id">
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                            <label class="block text-sm font-medium text-gray-200 mb-1">Nama Lengkap</label>
                             <input type="text" name="nama" x-model="form.nama" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none">
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Jabatan</label>
+                            <label class="block text-sm font-medium text-gray-200 mb-1">Jabatan</label>
                             <select name="jabatan" x-model="form.jabatan" 
                                     @change="if(isBphRole(form.jabatan)) { form.divisi = 'BPH'; } else if(form.divisi === 'BPH') { form.divisi = ''; }" 
-                                    required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none bg-white">
+                                    required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none bg-[#1E2F4D]">
                                 <option value="" disabled>-- Pilih Jabatan --</option>
                                 <optgroup label="Pengurus Inti (BPH) - Pengurus Harian">
                                     <option value="Ketua Umum" x-bind:disabled="isRoleTaken('Ketua Umum')">Ketua Umum</option>
@@ -567,10 +567,10 @@ foreach ($pengurus_list as $p) {
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Pilih Bidang</label>
+                            <label class="block text-sm font-medium text-gray-200 mb-1">Pilih Bidang</label>
                             <select name="divisi" x-model="form.divisi" required 
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none transition-colors"
-                                    :class="isBphRole(form.jabatan) ? 'bg-gray-100 text-gray-500' : 'bg-white'">
+                                    :class="isBphRole(form.jabatan) ? 'bg-gray-100 text-gray-400' : 'bg-[#1E2F4D]'">
                                 <option value="" disabled>-- Pilih Bidang --</option>
                                 <option value="BPH" :disabled="!isBphRole(form.jabatan)">BPH (Badan Pengurus Harian)</option>
                                 <option value="Bidang I Pendidikan dan Pelatihan" :disabled="isBphRole(form.jabatan)">Bidang I Pendidikan dan Pelatihan</option>
@@ -582,32 +582,32 @@ foreach ($pengurus_list as $p) {
                         
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Urutan</label>
+                                <label class="block text-sm font-medium text-gray-200 mb-1">Nomor Urutan</label>
                                 <input type="number" name="urutan" x-model="form.urutan" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none">
-                                <span class="text-xs text-gray-500 mt-1 block">Logika Tree berdasar urutan</span>
+                                <span class="text-xs text-gray-400 mt-1 block">Logika Tree berdasar urutan</span>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Periode</label>
+                                <label class="block text-sm font-medium text-gray-200 mb-1">Periode</label>
                                 <input type="text" name="periode" x-model="form.periode" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                            <label class="block text-sm font-medium text-gray-200 mb-1">Deskripsi</label>
                             <textarea name="deskripsi" x-model="form.deskripsi" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none" placeholder="Tulis deskripsi singkat pengurus..."></textarea>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Foto Pengurus</label>
+                            <label class="block text-sm font-medium text-gray-200 mb-1">Foto Pengurus</label>
                             <input type="file" name="foto" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-himatep-green focus:border-himatep-green outline-none text-sm">
-                            <div x-show="modalMode === 'edit'" class="mt-2 text-xs text-gray-500 bg-blue-50 p-2 rounded inline-block">
+                            <div x-show="modalMode === 'edit'" class="mt-2 text-xs text-gray-400 bg-blue-50 p-2 rounded inline-block">
                                 *Biarkan kosong jika tidak ingin mengubah foto.
                             </div>
                         </div>
                     </div>
                     
-                    <div class="px-6 py-4 bg-gray-50 border-gray-200 rounded-b-xl flex justify-end gap-3">
-                        <button type="button" @click="modalOpen = false" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg font-medium transition">Batal</button>
+                    <div class="px-6 py-4 bg-[#1E2F4D] border-white/10 rounded-b-xl flex justify-end gap-3">
+                        <button type="button" @click="modalOpen = false" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white rounded-lg font-medium transition">Batal</button>
                         <button type="submit" class="px-4 py-2 bg-himatep-green hover:bg-blue-700 text-white rounded-lg font-medium transition" x-text="modalMode === 'add' ? 'Simpan Data' : 'Update Data'"></button>
                     </div>
                 </form>
