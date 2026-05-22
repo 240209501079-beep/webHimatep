@@ -157,7 +157,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
     </style>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=1.4">
+    <link rel="stylesheet" href="css/style.css?v=2.7">
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -170,7 +170,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
 
 </head>
 
-<body class="font-sans bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
 
     <!-- Navbar -->
     <?php 
@@ -252,8 +252,8 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
                 </a>
 
                 <div class="mb-6 flex justify-center">
-                    <div class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg transform rotate-3"
-                        :class="'bg-' + program?.divisiColor + '-100 text-' + program?.divisiColor + '-600'">
+                    <div class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg transform rotate-3
+                        bg-[#FDF6E3] text-[#B8860B]">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x-bind:d="program?.icon"></path>
                         </svg>
@@ -270,25 +270,23 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
                 </h1>
 
                 <div class="flex justify-center gap-4 md:gap-8 flex-wrap">
-                    <div
-                        class="flex items-center text-sm font-medium text-gray-600 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-400">
-                        <svg class="w-5 h-5 mr-2" :class="'text-' + program?.divisiColor + '-500'" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Tag: Target -->
+                    <div class="flex items-center text-sm font-semibold text-[#1B2945] bg-[#FDF6E3] px-4 py-2 rounded-xl shadow-sm border border-[#D4AF37]/40">
+                        <svg class="w-5 h-5 mr-2 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                             </path>
                         </svg>
-                        <span>Target: <span x-text="program?.target"></span></span>
+                        <span>Target: <span x-text="program?.target" class="font-medium"></span></span>
                     </div>
-                    <div
-                        class="flex items-center text-sm font-medium text-gray-600 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-400">
-                        <svg class="w-5 h-5 mr-2" :class="'text-' + program?.divisiColor + '-500'" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Tag: Sasaran -->
+                    <div class="flex items-center text-sm font-semibold text-[#1B2945] bg-[#FDF6E3] px-4 py-2 rounded-xl shadow-sm border border-[#D4AF37]/40">
+                        <svg class="w-5 h-5 mr-2 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                             </path>
                         </svg>
-                        <span>Sasaran: <span x-text="program?.sasaran"></span></span>
+                        <span>Sasaran: <span x-text="program?.sasaran" class="font-medium"></span></span>
                     </div>
                 </div>
             </header>

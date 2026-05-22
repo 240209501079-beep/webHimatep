@@ -135,7 +135,7 @@ $data_program_json = json_encode(array_map(function($p) {
         rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=1.4">
+    <link rel="stylesheet" href="css/style.css?v=2.7">
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -145,7 +145,7 @@ $data_program_json = json_encode(array_map(function($p) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="font-sans bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
@@ -154,28 +154,26 @@ $data_program_json = json_encode(array_map(function($p) {
     <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <!-- Background Diagonal Sesuai Gambar -->
         <div class="absolute inset-0 z-0 bg-white">
-            <div class="absolute inset-0 bg-himatep-green hero-diagonal overflow-hidden">
-                <!-- Central Glow behind Logo (Slightly Brighter) - Clipped to diagonal -->
-                <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] bg-blue-500/20 rounded-full blur-[120px] md:blur-[200px] pointer-events-none"></div>
-                <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-blue-400/25 rounded-full blur-[80px] md:blur-[150px] pointer-events-none"></div>
+            <div class="absolute inset-0 bg-himatep-light hero-diagonal overflow-hidden">
             </div>
         </div>
 
         <div class="relative z-10 text-center px-4 max-w-10xl mx-auto flex flex-col items-center">
             <img src="images/logo-himatep.png" alt="HIMATEP Logo"
-                class="w-[200px] h-[200px] md:w-80 md:h-80 mb-16 rounded-full bg-white p-4 mt-3"
+                class="w-[200px] h-[200px] md:w-80 md:h-80 mb-16 rounded-full p-4 mt-3 hero-logo"
                 onerror="this.src='https://via.placeholder.com/150x150.png?text=Logo'">
             <h1 class="text-5xl md:text-7xl font-bold text-himatep-dark mb-2 tracking-tight hero-text">HIMATEP FIP UNM
             </h1>
-            <h2 class="text-6xl md:text-8xl font-cursive text-himatep-dark mb-8 hero-text transform -rotate-2">Kisahmu
+            <h2 class="text-6xl md:text-8xl font-cursive text-himatep-light mb-8 hero-text transform -rotate-2">Kisahmu
                 Tak Pernah Usai</h2>
 
             <p class="text-lg md:text-xl text-gray-700 mb-16 mt-4 hero-text max-w-12xl mx-auto font-medium">Wadah
                 kreasi,
                 inovasi, dan pengabdian mahasiswa Teknologi Pendidikan menuju generasi unggul.</p>
             <a href="#profile"
-                class="bg-himatep-green hover:bg-himatep-green/80 text-white px-8 py-3 rounded-full font-bold  shadow-xl hero-text inline-block">Profile
-                Kami</a>
+                class="btn-profile-kami mt-4 inline-block bg-[#D4AF37] hover:bg-[#B8860B] text-white px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 text-lg tracking-wide">
+                Profile Kami
+            </a>
         </div>
     </section>
 
@@ -210,22 +208,22 @@ $data_program_json = json_encode(array_map(function($p) {
                     </ul>
 
                     <a href="profile.php"
-                        class="mt-12 justify-center text-center items-center bg-himatep-green hover:bg-himatep-green/80 text-white  px-8 py-3 rounded-full font-bold  shadow-xl hero-text inline-block">Profile
+                        class="mt-12 justify-center text-center items-center bg-himatep-green hover:bg-himatep-green/80 text-white  px-8 py-3 rounded-full font-bold  shadow-xl inline-block">Profile
                         Lengkap</a>
 
                 </div>
                 <div class="grid grid-cols-2 gap-6">
-                    <a href="profile.php#divisi" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:border-himatep-green transition-colors duration-300">
-                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_divisi ?></div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Divisi</div>
+                    <a href="profile.php#divisi" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 group-hover:text-white transition-all duration-300"><?= $count_divisi ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-white transition-colors duration-300">Divisi</div>
                     </a>
-                    <a href="profile.php#pengurus" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:border-himatep-green transition-colors duration-300">
-                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_pengurus ?></div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Pengurus</div>
+                    <a href="profile.php#pengurus" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center card-hover block group hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 group-hover:text-white transition-all duration-300"><?= $count_pengurus ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-white transition-colors duration-300">Pengurus</div>
                     </a>
-                    <a href="proker.php" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center col-span-2 card-hover block group hover:border-himatep-green transition-colors duration-300">
-                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 transition-transform duration-300"><?= $count_proker ?></div>
-                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-himatep-green transition-colors duration-300">Program Kerja Aktif</div>
+                    <a href="proker.php" class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-400 text-center col-span-2 card-hover block group hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300">
+                        <div class="text-5xl font-bold text-himatep-green mb-2 group-hover:scale-110 group-hover:text-white transition-all duration-300"><?= $count_proker ?></div>
+                        <div class="text-sm text-gray-500 font-medium uppercase tracking-wider group-hover:text-white transition-colors duration-300">Program Kerja Aktif</div>
                     </a>
                 </div>
             </div>
@@ -400,23 +398,23 @@ $data_program_json = json_encode(array_map(function($p) {
                     x-data="{ agendas: (typeof dataProgram !== 'undefined' ? dataProgram : []).filter(p => p.agenda).sort((a,b) => new Date(a.agenda.date) - new Date(b.agenda.date)).slice(0, 3) }">
                     <template x-for="item in agendas" :key="item.id">
                         <a :href="'detail-program.php?slug=' + item.slug"
-                            class="card-hover flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-400 hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                            <div class=" relative h-48 w-full overflow-hidden">
+                            class="card-hover flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-400 hover:shadow-xl hover:border-[#D4AF37] transition-all duration-300 group cursor-pointer">
+                            <div class="relative h-48 w-full overflow-hidden">
                                 <img :src="item.gambar" :alt="item.judul"
-                                    class="w-full h-full object-cover transition-transform duration-700">
-                                <div
-                                    :class="'absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px] bg-' + item.divisiColor + '-600'">
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <!-- Date Badge (Gold theme) -->
+                                <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px] bg-[#D4AF37]">
                                     <span class="text-xs font-bold uppercase tracking-wider opacity-90"
                                         x-text="item.agenda.bulan"></span>
                                     <span class="text-2xl font-black leading-none" x-text="item.agenda.tanggal"></span>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-gray-800 mb-4 transition-colors"
-                                    :class="'group-hover:text-' + item.divisiColor + '-600'" x-text="item.judul"></h3>
+                                <h3 class="text-xl font-bold text-gray-800 mb-4 group-hover:text-[#D4AF37] transition-colors"
+                                    x-text="item.judul"></h3>
                                 <div class="space-y-3 mt-auto">
                                     <div class="flex items-center text-sm font-medium text-gray-500">
-                                        <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'"
+                                        <svg class="w-5 h-5 mr-3 text-[#D4AF37]"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -424,7 +422,7 @@ $data_program_json = json_encode(array_map(function($p) {
                                         <span x-text="item.agenda.waktu"></span>
                                     </div>
                                     <div class="flex items-center text-sm font-medium text-gray-500">
-                                        <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'"
+                                        <svg class="w-5 h-5 mr-3 text-[#D4AF37]"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
@@ -598,7 +596,7 @@ $data_program_json = json_encode(array_map(function($p) {
                                 </p>
                             </div>
                             <!-- Back -->
-                            <div class="flip-card-back p-6 rounded-2xl bg-himatep-green flex flex-col items-center text-center justify-center">
+                            <div class="flip-card-back p-6 rounded-2xl bg-himatep-dark flex flex-col items-center text-center justify-center">
                                 <div class="space-y-4 mb-8 text-green-50 w-full">
                                     <div>
                                         <p class="text-[10px] uppercase tracking-wider text-green-300"><?= $contact['platform'] ?></p>

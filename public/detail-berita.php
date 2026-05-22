@@ -89,7 +89,7 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
         rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=1.4">
+    <link rel="stylesheet" href="css/style.css?v=2.7">
 
     <style>
         .news-content a {
@@ -164,7 +164,7 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
 
 </head>
 
-<body class="font-sans bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
 
     <!-- Navbar -->
     <?php 

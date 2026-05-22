@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Bulan Mei 2026 pada 07.01
+-- Waktu pembuatan: 21 Bulan Mei 2026 pada 14.35
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -114,7 +114,8 @@ INSERT INTO `contacts` (`id`, `platform`, `label`, `value`, `icon`, `is_active`,
 (1, 'WhatsApp', 'Humas 1', '6281234567890', 'whatsapp', 1, 0),
 (2, 'Email', 'Official Email', 'mailto:himatepfipunm01@gmail.com', 'email', 1, 0),
 (3, 'Social Media', 'Instagram', 'https://instagram.com/himatepfipunm', 'instagram', 1, 0),
-(4, 'Social Media', 'X / Twitter', 'https://twitter.com/himatepfipunm', 'twitter', 1, 0);
+(4, 'Social Media', 'Facebook', 'https://www.facebook.com/himatepfipunm', 'facebook', 1, 0),
+(5, 'Social Media', 'YouTube', 'https://www.youtube.com/channel/UCoZvEPkgBbIAlQ3T1AwIb7g', 'youtube', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -313,7 +314,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT untuk tabel `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `halaman_banner`

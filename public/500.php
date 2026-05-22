@@ -24,10 +24,11 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=2.6">
     <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="font-sans bg-gray-50 text-himatep-dark overflow-hidden min-h-screen flex items-center justify-center relative">
-    <?php include "includes/navbar.php"; ?>
+<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-hidden min-h-screen flex items-center justify-center relative">
     
     <div class="relative z-10 max-w-2xl mx-auto px-4 text-center">
         <!-- Ikon Server Error -->
@@ -41,10 +42,10 @@
         <p class="text-gray-600 text-lg mb-10 max-w-md mx-auto">Terjadi kesalahan pada sistem internal kami. Tim IT HIMATEP sedang berusaha memperbaikinya secepat mungkin.</p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="/webHimatep/public/index.php" class="px-8 py-4 bg-himatep-green text-white font-bold rounded-full shadow-lg hover:opacity-90 transition transform hover:-translate-y-1">
+            <a href="/webHimatep/public/index.php" class="btn-error-primary px-8 py-4 font-bold rounded-full shadow-lg transition transform hover:-translate-y-1 flex items-center justify-center">
                 Coba Segarkan Halaman
             </a>
-            <a href="https://wa.me/628123456789" class="px-8 py-4 border-2 border-gray-300 text-gray-600 font-bold rounded-full hover:bg-gray-100 transition">
+            <a href="https://wa.me/628123456789" class="btn-error-secondary px-8 py-4 border-2 font-bold rounded-full transition transform hover:-translate-y-1 flex items-center justify-center">
                 Laporkan Masalah
             </a>
         </div>

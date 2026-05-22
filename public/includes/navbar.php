@@ -104,10 +104,14 @@ if (!function_exists('is_nav_active')) {
             </div>
             <!-- Mobile menu button -->
             <div class="md:hidden flex items-center">
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-himatep-green focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display:none;" />
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-himatep-green focus:outline-none active:bg-transparent active:outline-none select-none p-2 rounded-xl transition-all hover:scale-105 duration-200" aria-label="Toggle Menu">
+                    <!-- Hamburger Icon -->
+                    <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Close Icon -->
+                    <svg x-show="mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-cloak>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -115,40 +119,67 @@ if (!function_exists('is_nav_active')) {
     </div>
     <!-- Mobile Menu -->
     <div x-show="mobileMenuOpen" 
-         x-transition:enter="transition ease-out duration-200" 
+         x-transition:enter="transition ease-out duration-300" 
          x-transition:enter-start="opacity-0 -translate-y-4 scale-95" 
          x-transition:enter-end="opacity-100 translate-y-0 scale-100" 
-         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 translate-y-0 scale-100"
          x-transition:leave-end="opacity-0 -translate-y-4 scale-95"
-         class="md:hidden absolute top-24 left-4 right-4 bg-white rounded-3xl shadow-2xl border border-gray-100 py-6 px-6 z-[90]"
-         style="display: none;">
-        <div class="flex flex-col space-y-4">
-            <a href="<?= $prefix ?>#hero" @click="mobileMenuOpen = false" class="nav-link text-lg <?= $is_home ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Beranda <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+         class="md:hidden absolute top-28 left-3 right-3 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-[90]"
+         style="display: none;"
+         @click.outside="mobileMenuOpen = false">
+
+        <!-- Menu Header Label -->
+        <div class="px-6 pt-5 pb-2">
+            <p class="text-xs font-semibold uppercase tracking-widest text-white">Navigasi</p>
+        </div>
+
+        <!-- Nav Links -->
+        <div class="px-3 pb-3">
+            <a href="<?= $prefix ?>#hero" @click="mobileMenuOpen = false"
+               class="nav-link <?= $is_home ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Beranda</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#profile" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active('profile.php') ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Profile <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <a href="<?= $prefix ?>#profile" @click="mobileMenuOpen = false"
+               class="nav-link <?= is_nav_active('profile.php') ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Profile</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#proker" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Program Kerja <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <a href="<?= $prefix ?>#proker" @click="mobileMenuOpen = false"
+               class="nav-link <?= is_nav_active(['proker.php', 'detail-program.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Program Kerja</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#kalender" @click="mobileMenuOpen = false" class="nav-link text-lg text-gray-600 font-medium hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Agenda <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <a href="<?= $prefix ?>#kalender" @click="mobileMenuOpen = false"
+               class="nav-link text-gray-600 font-medium flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Agenda</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#berita" @click="mobileMenuOpen = false" class="nav-link text-lg <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Berita <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <a href="<?= $prefix ?>#berita" @click="mobileMenuOpen = false"
+               class="nav-link <?= is_nav_active(['berita.php', 'detail-berita.php']) ? 'text-himatep-green font-bold' : 'text-gray-600 font-medium' ?> flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Berita</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <a href="<?= $prefix ?>#aspirasi" @click="mobileMenuOpen = false" class="nav-link text-lg text-gray-600 font-medium hover:text-himatep-green flex items-center justify-between transition-colors duration-200">
-                Suara Mahasiswa <svg class="w-5 h-5 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <a href="<?= $prefix ?>#aspirasi" @click="mobileMenuOpen = false"
+               class="nav-link text-gray-600 font-medium flex items-center justify-between px-3 py-3.5 rounded-2xl hover:text-himatep-green transition-all duration-200 group">
+                <span class="text-base">Suara Mahasiswa</span>
+                <svg class="w-4 h-4 opacity-30 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <hr class="border-gray-100">
-            <div class="grid grid-cols-2 gap-3">
-                <a href="<?= $base_path ?>admin/login.php" class="bg-gray-100 text-gray-600 py-3 rounded-2xl font-bold text-center text-sm flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    Admin
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="px-4 pb-5 pt-1 border-t border-gray-100">
+            <div class="grid grid-cols-2 gap-3 mt-3">
+                <a href="<?= $base_path ?>admin/login.php"
+                   class="mobile-admin-btn flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold text-center transition-all duration-200">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                    <span>Admin</span>
                 </a>
-                <a href="<?= $prefix ?>#kontak" @click="mobileMenuOpen = false" class="bg-himatep-green text-white py-3 rounded-2xl font-bold text-center text-sm">
+                <a href="<?= $prefix ?>#kontak" @click="mobileMenuOpen = false"
+                   class="mobile-narahubung-btn bg-himatep-green text-white py-3 rounded-2xl font-bold text-center text-sm flex items-center justify-center transition-all duration-200">
                     Narahubung
                 </a>
             </div>

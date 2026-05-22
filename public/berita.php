@@ -87,7 +87,7 @@ $berita_json = json_encode(array_map(function($b) {
         rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=1.4">
+    <link rel="stylesheet" href="css/style.css?v=2.7">
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -99,7 +99,7 @@ $berita_json = json_encode(array_map(function($b) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="font-sans bg-gray-50 text-himatep-dark overflow-x-hidden"
+<body class="font-sans theme-custom bg-gray-50 text-himatep-dark overflow-x-hidden"
     x-data="{ mobileMenuOpen: false, daftarBerita: dataBerita }">
 
     <!-- Navbar -->

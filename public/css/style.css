@@ -22,10 +22,17 @@ body::-webkit-scrollbar {
     display: none !important;
 }
 
+/* Hapus efek gray saat tombol ditekan di mobile */
+button,
+a,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
 /* Membentuk diagonal background pada Hero sesuai gambar */
 .hero-diagonal {
     clip-path: polygon(0 0, 100% 0, 100% 35%, 0 15%);
-    background-color: #1B2945;
     background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.03' stroke-width='1.2'%3E%3Ccircle cx='40' cy='40' r='38'/%3E%3Ccircle cx='0' cy='0' r='38'/%3E%3Ccircle cx='80' cy='0' r='38'/%3E%3Ccircle cx='0' cy='80' r='38'/%3E%3Ccircle cx='80' cy='80' r='38'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: repeat;
@@ -37,7 +44,7 @@ body::-webkit-scrollbar {
 
 @media (min-width: 768px) {
     .hero-diagonal {
-        clip-path: polygon(0 0, 100% 0, 100% 65%, 0 40%);
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 40%);
         /* Kembali normal di desktop */
         background-size: 80px;
         /* Ukuran normal untuk desktop */
@@ -138,3 +145,875 @@ body::-webkit-scrollbar {
 .text-black {
     color: #1B2945 !important;
 }
+
+/* ==========================================
+   BLUE & GOLD THEME OVERRIDES (theme-custom)
+   ========================================== */
+
+/* Main Body Background and Pattern */
+body.theme-custom {
+    background-color: #1B2945 !important;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.02' stroke-width='1.2'%3E%3Ccircle cx='40' cy='40' r='38'/%3E%3Ccircle cx='0' cy='0' r='38'/%3E%3Ccircle cx='80' cy='0' r='38'/%3E%3Ccircle cx='0' cy='80' r='38'/%3E%3Ccircle cx='80' cy='80' r='38'/%3E%3C/g%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    background-size: 40px !important;
+    color: #FFFFFF !important;
+}
+
+@media (min-width: 768px) {
+    body.theme-custom {
+        background-size: 80px !important;
+    }
+}
+
+/* Sections - transparent to show body pattern */
+body.theme-custom section,
+body.theme-custom main {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Cards, Content Blocks, Modals (Lighter Navy Blue) */
+body.theme-custom div.bg-white,
+body.theme-custom div.bg-gray-50,
+body.theme-custom div.bg-gray-100,
+body.theme-custom a.bg-white,
+body.theme-custom a.bg-gray-50,
+body.theme-custom a.bg-gray-100,
+body.theme-custom form.bg-white,
+body.theme-custom form.bg-gray-50,
+body.theme-custom article.bg-white,
+body.theme-custom main.bg-white,
+body.theme-custom .event-modal-container,
+body.theme-custom .event-modal-content-side {
+    background-color: #223354 !important;
+}
+
+/* Hero bg-white wrapper reset */
+body.theme-custom #hero .bg-white {
+    background-color: #1B2945 !important;
+}
+
+/* Global Text Colors */
+body.theme-custom p,
+body.theme-custom li,
+body.theme-custom label,
+body.theme-custom td,
+body.theme-custom th,
+body.theme-custom div {
+    color: #FFFFFF;
+}
+
+body.theme-custom .text-gray-900,
+body.theme-custom .text-gray-800,
+body.theme-custom .text-gray-700,
+body.theme-custom .text-gray-600,
+body.theme-custom .text-gray-500,
+body.theme-custom .text-gray-400,
+body.theme-custom .text-gray-300,
+body.theme-custom .text-himatep-dark {
+    color: #E2E8F0 !important;
+}
+
+/* Headings & Gold Highlights */
+body.theme-custom h1,
+body.theme-custom h2,
+body.theme-custom h3,
+body.theme-custom h4,
+body.theme-custom h5,
+body.theme-custom h6,
+body.theme-custom .text-himatep-green,
+body.theme-custom .text-blue-900,
+body.theme-custom a.text-himatep-green {
+    color: #D4AF37 !important;
+}
+
+/* Maintain white for text specifically styled as white */
+body.theme-custom .text-white,
+body.theme-custom .text-white * {
+    color: #FFFFFF !important;
+}
+
+/* Gold border replacements */
+body.theme-custom .border,
+body.theme-custom .border-gray-400,
+body.theme-custom .border-gray-200,
+body.theme-custom .border-gray-300 {
+    border-color: rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Inputs & Form Fields styling */
+body.theme-custom input,
+body.theme-custom textarea,
+body.theme-custom select {
+    background-color: #1B2945 !important;
+    border-color: rgba(212, 175, 55, 0.5) !important;
+    color: #FFFFFF !important;
+}
+
+body.theme-custom input:focus,
+body.theme-custom textarea:focus,
+body.theme-custom select:focus {
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3) !important;
+}
+
+body.theme-custom input::placeholder,
+body.theme-custom textarea::placeholder {
+    color: #9CA3AF !important;
+}
+
+/* Button & Call-To-Action (Gold & White combination) */
+body.theme-custom .btn,
+body.theme-custom a.bg-himatep-green,
+body.theme-custom button[type="submit"] {
+    background-color: #D4AF37 !important;
+    background-image: linear-gradient(135deg, #E5A93B 0%, #D4AF37 50%, #B8860B 100%) !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
+}
+
+body.theme-custom .btn:hover,
+body.theme-custom a.bg-himatep-green:hover,
+body.theme-custom button[type="submit"]:hover {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Custom Utility Buttons (Modal Close & Calendar Navigation) */
+body.theme-custom .event-modal-container button,
+body.theme-custom [x-teleport] button,
+body.theme-custom [x-data="calendarApp"] button,
+body.theme-custom .perspective-1000 button {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    border-radius: 9999px !important;
+}
+
+body.theme-custom .event-modal-container button:hover,
+body.theme-custom [x-teleport] button:hover,
+body.theme-custom [x-data="calendarApp"] button:hover,
+body.theme-custom .perspective-1000 button:hover {
+    background-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+    border-color: #D4AF37 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Link Micro-interactions inside Cards */
+body.theme-custom .card-hover h3,
+body.theme-custom a.card-hover h3,
+body.theme-custom .card-hover h2 {
+    color: #D4AF37 !important;
+    transition: color 0.3s ease;
+}
+
+body.theme-custom .card-hover:hover h3,
+body.theme-custom a.card-hover:hover h3 {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .card-hover .text-gray-500,
+body.theme-custom .card-hover svg {
+    color: #D4AF37 !important;
+}
+
+body.theme-custom .card-hover .text-gray-500 span {
+    color: #FFFFFF !important;
+}
+
+/* -----------------------------------------------
+   Profile Stat Cards (Divisi / Pengurus / Proker)
+   ----------------------------------------------- */
+body.theme-custom #profile a.card-hover {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+body.theme-custom #profile a.card-hover:hover {
+    background-color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Angka statistik saat hover */
+body.theme-custom #profile a.card-hover:hover>div {
+    color: #FFFFFF !important;
+}
+
+
+body.theme-custom .card-hover div.inline-flex,
+body.theme-custom .card-hover div.mt-auto,
+body.theme-custom .card-hover div.inline-flex * {
+    color: #D4AF37 !important;
+    transition: color 0.3s ease;
+}
+
+body.theme-custom .card-hover:hover div.inline-flex,
+body.theme-custom .card-hover:hover div.mt-auto,
+body.theme-custom .card-hover:hover div.inline-flex * {
+    color: #FFFFFF !important;
+}
+
+/* Division Badge inside Cards */
+body.theme-custom .card-hover .absolute.top-3.right-3 {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: none !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-blue-600 {
+    color: #2563EB !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-green-600 {
+    color: #16A34A !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-purple-600 {
+    color: #9333EA !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-yellow-600 {
+    color: #CA8A04 !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-red-600 {
+    color: #DC2626 !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-pink-600 {
+    color: #DB2777 !important;
+}
+
+body.theme-custom .card-hover .absolute.top-3.right-3.text-indigo-600 {
+    color: #4F46E5 !important;
+}
+
+/* Navbar Integration */
+body.theme-custom nav#navbar>div>div {
+    background-color: #1B2945 !important;
+    backdrop-filter: none !important;
+    border-color: #D4AF37 !important;
+}
+
+/* All links in navbar: white by default */
+body.theme-custom nav#navbar a {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Active/bold nav links: gold */
+body.theme-custom nav#navbar a.text-himatep-green,
+body.theme-custom nav#navbar a:hover,
+body.theme-custom nav#navbar a.font-bold {
+    color: #D4AF37 !important;
+}
+
+/* Logo text */
+body.theme-custom nav#navbar span.text-himatep-green {
+    color: #FFFFFF !important;
+}
+
+/* -----------------------------------------------
+   Narahubung CTA Button (desktop & mobile)
+   ----------------------------------------------- */
+body.theme-custom nav#navbar a.bg-himatep-green {
+    background-color: #D4AF37 !important;
+    background-image: linear-gradient(135deg, #E5A93B 0%, #D4AF37 50%, #B8860B 100%) !important;
+    color: #FFFFFF !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35) !important;
+}
+
+body.theme-custom nav#navbar a.bg-himatep-green:hover {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* -----------------------------------------------
+   Navbar Dropdown (desktop Narahubung dropdown)
+   ----------------------------------------------- */
+body.theme-custom nav#navbar .absolute.right-0 {
+    background-color: #223354 !important;
+    border-color: rgba(212, 175, 55, 0.5) !important;
+}
+
+body.theme-custom nav#navbar .absolute.right-0 a {
+    color: #FFFFFF !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.theme-custom nav#navbar .absolute.right-0 a:hover {
+    background-color: #1B2945 !important;
+    color: #D4AF37 !important;
+}
+
+/* -----------------------------------------------
+   Mobile Menu Panel
+   ----------------------------------------------- */
+body.theme-custom nav#navbar .md\:hidden.absolute {
+    background-color: #1E3158 !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Mobile menu nav links */
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link {
+    color: #E2E8F0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link.text-himatep-green,
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link.font-bold {
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+}
+
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link:hover {
+    color: #D4AF37 !important;
+    background: transparent !important;
+    border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Mobile menu SVG chevrons */
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link svg {
+    color: rgba(212, 175, 55, 0.4) !important;
+    opacity: 1 !important;
+}
+
+body.theme-custom nav#navbar .md\:hidden.absolute a.nav-link:hover svg {
+    color: #D4AF37 !important;
+}
+
+/* Mobile menu divider */
+body.theme-custom nav#navbar .md\:hidden.absolute hr {
+    border-color: rgba(212, 175, 55, 0.25) !important;
+    margin: 0.5rem 0 !important;
+}
+
+/* Mobile Admin button - outlined gold */
+body.theme-custom nav#navbar .md\:hidden.absolute a.mobile-admin-btn {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 2px solid rgba(212, 175, 55, 0.6) !important;
+    color: #D4AF37 !important;
+    box-shadow: none !important;
+}
+
+body.theme-custom nav#navbar .md\:hidden.absolute a.mobile-admin-btn:hover {
+    background-color: rgba(212, 175, 55, 0.15) !important;
+    border-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+/* Mobile Narahubung button - gold CTA */
+body.theme-custom nav#navbar .md\:hidden.absolute a.bg-himatep-green,
+body.theme-custom nav#navbar .md\:hidden.absolute a.mobile-narahubung-btn {
+    background-color: #D4AF37 !important;
+    background-image: linear-gradient(135deg, #E5A93B 0%, #D4AF37 50%, #B8860B 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+body.theme-custom nav#navbar .md\:hidden.absolute a.bg-himatep-green:hover,
+body.theme-custom nav#navbar .md\:hidden.absolute a.mobile-narahubung-btn:hover {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #D4AF37 !important;
+}
+
+/* Mobile menu header label */
+body.theme-custom nav#navbar .md\:hidden.absolute p {
+    color: rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Mobile menu footer border */
+body.theme-custom nav#navbar .md\:hidden.absolute .border-t {
+    border-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+/* -----------------------------------------------
+   Navbar Toggle Button (hamburger / close icon)
+   ----------------------------------------------- */
+body.theme-custom nav#navbar button {
+    background: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #D4AF37 !important;
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+}
+
+body.theme-custom nav#navbar button:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Hapus efek gray saat tombol hamburger ditekan/aktif */
+body.theme-custom nav#navbar button:active,
+body.theme-custom nav#navbar button:focus,
+body.theme-custom nav#navbar button:focus-visible {
+    background: transparent !important;
+    background-image: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+body.theme-custom nav#navbar button svg {
+    color: inherit !important;
+}
+
+/* KSB Profile Cards skew override */
+body.theme-custom .ksb-card {
+    background-color: #223354 !important;
+    border-color: #D4AF37 !important;
+}
+
+body.theme-custom .ksb-nama {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .ksb-jabatan {
+    color: #D4AF37 !important;
+}
+
+/* KSB Modal popup overrides */
+body.theme-custom .perspective-1000>div {
+    background-color: #223354 !important;
+}
+
+body.theme-custom .perspective-1000>div>div {
+    background-color: #223354 !important;
+}
+
+body.theme-custom .perspective-1000 h2 {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .perspective-1000 h3 {
+    color: #D4AF37 !important;
+}
+
+body.theme-custom .perspective-1000 p {
+    color: #E2E8F0 !important;
+}
+
+body.theme-custom .perspective-1000 span.text-yellow-600 {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+    color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+}
+
+/* Calendar Day Styles */
+body.theme-custom .bg-white.border-gray-200 {
+    background-color: #1B2945 !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.theme-custom .bg-blue-50 {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+    border-color: #D4AF37 !important;
+}
+
+body.theme-custom .bg-gray-50\/50 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Feedback Notifications */
+body.theme-custom #notif-aspirasi>div {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+    border-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+}
+
+body.theme-custom #notif-aspirasi strong {
+    color: #D4AF37 !important;
+}
+
+/* Share box detailing */
+body.theme-custom .bg-himatep-light.border-green-100 {
+    background-color: #223354 !important;
+    border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+body.theme-custom .bg-himatep-light.border-green-100 h4 {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .bg-himatep-light.border-green-100 button {
+    background-color: #1B2945 !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+body.theme-custom .bg-himatep-light.border-green-100 button:hover {
+    background-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+}
+
+/* Prose/Rich text detail content styles */
+body.theme-custom .program-content,
+body.theme-custom .news-content {
+    color: #E2E8F0 !important;
+    background-color: #223354 !important;
+}
+
+body.theme-custom .program-content *,
+body.theme-custom .news-content * {
+    color: #E2E8F0;
+}
+
+body.theme-custom .program-content h2,
+body.theme-custom .program-content h3,
+body.theme-custom .news-content h2,
+body.theme-custom .news-content h3 {
+    color: #D4AF37 !important;
+}
+
+body.theme-custom .program-content strong,
+body.theme-custom .news-content strong {
+    color: #FFFFFF !important;
+}
+
+/* Flip Cards Front/Back */
+body.theme-custom .flip-card-front {
+    background: linear-gradient(to bottom right, #223354, #1B2945) !important;
+    border-color: #D4AF37 !important;
+}
+
+body.theme-custom .flip-card-front h3 {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .flip-card-back {
+    background: #D4AF37 !important;
+    border: 2px solid #D4AF37 !important;
+}
+
+body.theme-custom .flip-card-back p,
+body.theme-custom .flip-card-back span,
+body.theme-custom .flip-card-back div {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .flip-card-back a.w-full {
+    background-color: #FFFFFF !important;
+    color: #D4AF37 !important;
+    border: 2px solid #FFFFFF !important;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-custom .flip-card-back a.w-full:hover {
+    background-color: #1B2945 !important;
+    color: #FFFFFF !important;
+    border-color: #1B2945 !important;
+}
+
+/* Footer Section Gold Theme */
+body.theme-custom footer {
+    background-color: #D4AF37 !important;
+    color: #1B2945 !important;
+    background-image: none !important;
+    border-top: 1px solid rgba(27, 41, 69, 0.2) !important;
+}
+
+body.theme-custom footer,
+body.theme-custom footer p,
+body.theme-custom footer span,
+body.theme-custom footer div,
+body.theme-custom footer address,
+body.theme-custom footer li,
+body.theme-custom footer a,
+body.theme-custom footer .text-white,
+body.theme-custom footer .text-gray-300,
+body.theme-custom footer .text-gray-400,
+body.theme-custom footer .text-gray-500,
+body.theme-custom footer .hover\:text-himatep-light {
+    color: #1B2945 !important;
+}
+
+body.theme-custom footer h3,
+body.theme-custom footer.text-white h3,
+body.theme-custom footer .text-white h3,
+body.theme-custom footer .text-white * h3 {
+    color: #1B2945 !important;
+    border-bottom: 2px solid #1B2945 !important;
+}
+
+body.theme-custom footer a:hover,
+body.theme-custom footer .hover\:text-himatep-light:hover {
+    color: #FFFFFF !important;
+}
+
+/* Footer social media links */
+body.theme-custom footer .flex.space-x-4 a {
+    background-color: #1B2945 !important;
+    color: #FFFFFF !important;
+}
+
+body.theme-custom footer .flex.space-x-4 a:hover {
+    background-color: #FFFFFF !important;
+    color: #1B2945 !important;
+}
+
+body.theme-custom footer .max-w-7xl.mx-auto.px-4.mt-12.pt-8 {
+    border-top: 1px solid rgba(27, 41, 69, 0.2) !important;
+    color: rgba(27, 41, 69, 0.75) !important;
+}
+
+/* Division Badges & Tags Original Color Preservation */
+body.theme-custom .absolute.top-3.right-3,
+body.theme-custom .absolute.top-3.right-3.bg-white\/90 {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.theme-custom .text-blue-500 {
+    color: #3B82F6 !important;
+}
+
+body.theme-custom .text-blue-600 {
+    color: #2563EB !important;
+}
+
+body.theme-custom .text-green-500 {
+    color: #10B981 !important;
+}
+
+body.theme-custom .text-green-600 {
+    color: #059669 !important;
+}
+
+body.theme-custom .text-purple-500 {
+    color: #8B5CF6 !important;
+}
+
+body.theme-custom .text-purple-600 {
+    color: #7C3AED !important;
+}
+
+body.theme-custom .text-yellow-500 {
+    color: #F59E0B !important;
+}
+
+body.theme-custom .text-yellow-600 {
+    color: #D97706 !important;
+}
+
+body.theme-custom .text-red-500 {
+    color: #EF4444 !important;
+}
+
+body.theme-custom .text-red-600 {
+    color: #DC2626 !important;
+}
+
+body.theme-custom .text-pink-500 {
+    color: #EC4899 !important;
+}
+
+body.theme-custom .text-pink-600 {
+    color: #DB2777 !important;
+}
+
+body.theme-custom .text-indigo-500 {
+    color: #6366F1 !important;
+}
+
+body.theme-custom .text-indigo-600 {
+    color: #4F46E5 !important;
+}
+
+body.theme-custom .bg-blue-500 {
+    background-color: #3B82F6 !important;
+}
+
+body.theme-custom .bg-blue-600 {
+    background-color: #2563EB !important;
+}
+
+body.theme-custom .bg-green-500 {
+    background-color: #10B981 !important;
+}
+
+body.theme-custom .bg-green-600 {
+    background-color: #059669 !important;
+}
+
+body.theme-custom .bg-purple-500 {
+    background-color: #8B5CF6 !important;
+}
+
+body.theme-custom .bg-purple-600 {
+    background-color: #7C3AED !important;
+}
+
+body.theme-custom .bg-yellow-500 {
+    background-color: #F59E0B !important;
+}
+
+body.theme-custom .bg-yellow-600 {
+    background-color: #D97706 !important;
+}
+
+body.theme-custom .bg-red-500 {
+    background-color: #EF4444 !important;
+}
+
+body.theme-custom .bg-red-600 {
+    background-color: #DC2626 !important;
+}
+
+body.theme-custom .bg-pink-500 {
+    background-color: #EC4899 !important;
+}
+
+body.theme-custom .bg-pink-600 {
+    background-color: #DB2777 !important;
+}
+
+body.theme-custom .bg-indigo-500 {
+    background-color: #6366F1 !important;
+}
+
+body.theme-custom .bg-indigo-600 {
+    background-color: #4F46E5 !important;
+}
+
+/* Custom Hero Diagonal and Logo Shadow/Glow */
+body.theme-custom .hero-diagonal {
+    background-color: #D4AF37 !important;
+    /* Motif Batik Kawung (berlian + titik) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.12' stroke-width='1.2'%3E%3Cpolygon points='40,6 74,40 40,74 6,40'/%3E%3Cpolygon points='40,18 62,40 40,62 18,40'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='80' cy='0' r='4'/%3E%3Ccircle cx='0' cy='80' r='4'/%3E%3Ccircle cx='80' cy='80' r='4'/%3E%3Ccircle cx='40' cy='0' r='2.5'/%3E%3Ccircle cx='40' cy='80' r='2.5'/%3E%3Ccircle cx='0' cy='40' r='2.5'/%3E%3Ccircle cx='80' cy='40' r='2.5'/%3E%3C/g%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    background-size: 60px !important;
+}
+
+body.theme-custom .hero-logo {
+    filter: none !important;
+}
+
+/* Specific Error Pages Button Styles under Theme Custom */
+body.theme-custom .btn-error-primary {
+    background-color: #D4AF37 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border: 2px solid #D4AF37 !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+}
+
+body.theme-custom .btn-error-primary * {
+    color: #FFFFFF !important;
+}
+
+body.theme-custom .btn-error-primary:hover {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #D4AF37 !important;
+    border-color: #D4AF37 !important;
+}
+
+body.theme-custom .btn-error-primary:hover * {
+    color: #D4AF37 !important;
+}
+
+body.theme-custom .btn-error-secondary {
+    background-color: transparent !important;
+    background-image: none !important;
+    color: #D4AF37 !important;
+    border: 2px solid #D4AF37 !important;
+    box-shadow: none !important;
+}
+
+body.theme-custom .btn-error-secondary * {
+    color: #D4AF37 !important;
+}
+
+body.theme-custom .btn-error-secondary:hover {
+    background-color: #D4AF37 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border-color: #D4AF37 !important;
+}
+
+body.theme-custom .btn-error-secondary:hover * {
+    color: #FFFFFF !important;
+}
+
+/* -----------------------------------------------
+   Hero CTA Button - Profile Kami
+   Dipisah dari hero-text agar tidak kena GSAP opacity-0
+   ----------------------------------------------- */
+.btn-profile-kami {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5) !important;
+    position: relative;
+    z-index: 20;
+    text-decoration: none !important;
+}
+
+.btn-profile-kami:hover {
+    background-color: #B8860B !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.7) !important;
+    transform: translateY(-2px);
+}
+
+body.theme-custom .btn-profile-kami {
+    background-color: #D4AF37 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.theme-custom .btn-profile-kami:hover {
+    background-color: #B8860B !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.7) !important;
+}
+
+/* -----------------------------------------------
+   Agenda Cards - Gold Theme Overrides
+   ----------------------------------------------- */
+body.theme-custom .card-hover:hover h3 {
+    color: #D4AF37 !important;
+}
