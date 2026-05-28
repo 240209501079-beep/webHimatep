@@ -54,7 +54,7 @@ try {
     </script>
     <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="bg-gray-100 flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+<body class="bg-[#111A2C] text-white flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
     
     <?php include "includes/sidebar.php"; ?>
 
@@ -64,7 +64,7 @@ try {
         <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
                 <!-- Hamburger Button -->
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-[#1B2945] hover:bg-white/10 text-white border border-white/10 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -86,7 +86,7 @@ try {
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Stat Card 1 -->
                 <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-himatep-light text-white rounded-2xl flex items-center justify-center text-2xl">📰</div>
+                    <div class="w-16 h-16 bg-white/5 text-white rounded-2xl flex items-center justify-center text-2xl border border-white/10">📰</div>
                     <div>
                         <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Total Berita</h3>
                         <p class="text-3xl font-bold text-white"><?= $count_berita ?></p>
@@ -94,7 +94,7 @@ try {
                 </div>
                 <!-- Stat Card 2 -->
                 <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-himatep-light text-white rounded-2xl flex items-center justify-center text-2xl">📋</div>
+                    <div class="w-16 h-16 bg-white/5 text-white rounded-2xl flex items-center justify-center text-2xl border border-white/10">📋</div>
                     <div>
                         <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Program Kerja</h3>
                         <p class="text-3xl font-bold text-white"><?= $count_proker ?></p>
@@ -102,7 +102,7 @@ try {
                 </div>
                 <!-- Stat Card 3 -->
                 <div class="bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl">🗣️</div>
+                    <div class="w-16 h-16 bg-yellow-500/10 text-yellow-500 rounded-2xl flex items-center justify-center text-2xl border border-yellow-500/20">🗣️</div>
                     <div>
                         <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Aspirasi Baru</h3>
                         <p class="text-3xl font-bold text-white"><?= $count_aspirasi ?></p>
@@ -112,7 +112,7 @@ try {
 
             <!-- Recent Aspirasi -->
             <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
-                <div class="p-6 border-b">
+                <div class="p-6 border-b border-white/10">
                     <h3 class="text-xl font-bold">Aspirasi Terbaru</h3>
                 </div>
                 <div class="overflow-x-auto">
@@ -125,15 +125,17 @@ try {
                                 <th class="px-6 py-4">Tanggal</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody class="divide-y divide-white/10">
                             <?php foreach ($recent_aspirasi as $item): ?>
-                            <tr class="hover:bg-[#1E2F4D]">
+                            <tr class="hover:bg-white/5 transition-colors">
                                 <td class="px-6 py-4">
-                                    <div class="font-medium"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
+                                    <div class="font-medium text-white"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
                                     <div class="text-[10px] text-gray-400 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-blue-600"><?= htmlspecialchars($item['jenis']) ?></td>
-                                <td class="px-6 py-4 text-sm truncate max-w-[150px]"><?= htmlspecialchars($item['pesan']) ?></td>
+                                <td class="px-6 py-4 text-sm">
+                                    <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-[10px] font-bold uppercase"><?= htmlspecialchars($item['jenis']) ?></span>
+                                </td>
+                                <td class="px-6 py-4 text-sm truncate max-w-[150px] text-gray-300"><?= htmlspecialchars($item['pesan']) ?></td>
                                 <td class="px-6 py-4 text-xs text-gray-400"><?= date('d/m/Y', strtotime($item['created_at'])) ?></td>
                             </tr>
                             <?php endforeach; ?>
@@ -145,7 +147,7 @@ try {
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 bg-[#1E2F4D] text-center border-t">
+                <div class="p-4 bg-[#1E2F4D] text-center border-t border-white/10">
                     <a href="view_aspirasi.php" class="text-sm text-white font-bold hover:underline">Lihat Semua Aspirasi</a>
                 </div>
             </div>

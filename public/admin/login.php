@@ -63,15 +63,15 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     </script>
     <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="bg-[#1E2F4D] flex h-screen items-center justify-center font-sans relative overflow-hidden">
+<body class="bg-[#111A2C] text-white flex h-screen items-center justify-center font-sans relative overflow-hidden">
     <!-- Background Decor -->
-    <div class="absolute top-[-100px] left-[-100px] w-96 h-96 bg-himatep-light rounded-full blur-3xl opacity-30"></div>
-    <div class="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-himatep-green rounded-full blur-3xl opacity-20"></div>
+    <div class="absolute top-[-100px] left-[-100px] w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-blue-900/10 rounded-full blur-3xl opacity-20"></div>
 
     <div class="bg-[#1E2F4D] p-10 rounded-3xl shadow-2xl max-w-md w-full m-4 relative z-10 border border-white/10">
         <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-50 rounded-full mb-4 shadow-inner border border-green-100">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-500/10 rounded-full mb-4 shadow-inner border border-blue-500/20">
+                <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                     </path>
@@ -82,7 +82,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
         </div>
 
         <?php if (!empty($error)): ?>
-            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg text-sm" role="alert">
+            <div class="bg-red-900/50 border border-red-500/20 text-red-200 p-4 mb-6 rounded-lg text-sm" role="alert">
                 <p><?= htmlspecialchars($error) ?></p>
             </div>
         <?php endif; ?>
@@ -91,18 +91,18 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
             <div class="mb-5">
                 <label class="block text-gray-200 text-sm font-bold mb-2">Username</label>
                 <input type="text" name="username"
-                    class="w-full px-5 py-4 bg-[#1E2F4D] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-himatep-green focus:border-transparent transition-all"
+                    class="w-full px-5 py-4 bg-[#1B2945] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white transition-all"
                     required placeholder="Masukkan username">
             </div>
             <div class="mb-8">
                 <label class="block text-gray-200 text-sm font-bold mb-2">Password</label>
                 <input type="password" name="password"
-                    class="w-full px-5 py-4 bg-[#1E2F4D] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-himatep-green focus:border-transparent transition-all"
+                    class="w-full px-5 py-4 bg-[#1B2945] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white transition-all"
                     required placeholder="••••••••">
             </div>
             <div class="flex flex-col gap-4">
                 <button type="submit"
-                    class="w-full bg-himatep-green hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg transform hover:-translate-y-1">Login</button>
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-blue-500/20 transform hover:-translate-y-1">Login</button>
                 <a href="../index.php" class="text-center text-sm text-gray-400 hover:text-white font-medium mt-2 transition-colors">&larr; Kembali ke Beranda</a>
             </div>
         </form>

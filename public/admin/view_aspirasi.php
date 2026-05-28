@@ -73,7 +73,7 @@ try {
     <link rel="stylesheet" href="../css/style.css">
     <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="bg-gray-100 flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+<body class="bg-[#111A2C] text-white flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
     
     <?php include "includes/sidebar.php"; ?>
 
@@ -82,7 +82,7 @@ try {
         <!-- Header -->
         <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-[#1B2945] hover:bg-white/10 text-white border border-white/10 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <h2 class="text-xl lg:text-2xl font-bold text-white">Kelola Aspirasi</h2>
@@ -99,10 +99,10 @@ try {
 
         <div class="flex-1 p-8 overflow-y-auto">
             <?php if(isset($_GET['success'])): ?>
-                <div class="bg-blue-100 text-green-700 p-4 rounded-xl mb-6">Status berhasil diperbarui!</div>
+                <div class="bg-blue-900/50 border border-blue-500/20 text-blue-200 p-4 rounded-xl mb-6">Status berhasil diperbarui!</div>
             <?php endif; ?>
             <?php if(isset($_GET['deleted'])): ?>
-                <div class="bg-yellow-100 text-yellow-700 p-4 rounded-xl mb-6">Aspirasi berhasil dihapus.</div>
+                <div class="bg-yellow-900/50 border border-yellow-500/20 text-yellow-200 p-4 rounded-xl mb-6">Aspirasi berhasil dihapus.</div>
             <?php endif; ?>
 
             <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
@@ -118,30 +118,30 @@ try {
                                 <th class="px-6 py-4">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody class="divide-y divide-white/10">
                             <?php foreach ($aspirasi_list as $item): ?>
-                            <tr class="hover:bg-[#1E2F4D]">
+                            <tr class="hover:bg-white/5 transition-colors">
                                 <td class="px-6 py-4">
-                                    <div class="font-medium text-gray-900"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
+                                    <div class="font-medium text-white"><?= htmlspecialchars($item['nama'] ?: 'Anonim') ?></div>
                                     <div class="text-xs text-gray-400 italic"><?= htmlspecialchars($item['email'] == '-' ? 'Tanpa Email' : $item['email']) ?></div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-bold uppercase"><?= htmlspecialchars($item['jenis']) ?></span>
+                                    <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-[10px] font-bold uppercase"><?= htmlspecialchars($item['jenis']) ?></span>
                                 </td>
                                 <td class="px-6 py-4 text-sm whitespace-pre-wrap max-w-xs text-gray-300"><?= htmlspecialchars($item['pesan']) ?></td>
                                 <td class="px-6 py-4">
                                     <span class="px-3 py-1 rounded-full text-xs font-bold 
-                                        <?= $item['status'] == 'Baru' ? 'bg-red-100 text-red-600' : ($item['status'] == 'Dibaca' ? 'bg-blue-100 text-blue-600' : 'bg-blue-100 text-green-600') ?>">
+                                        <?= $item['status'] == 'Baru' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : ($item['status'] == 'Dibaca' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-green-500/10 text-green-400 border border-green-500/20') ?>">
                                         <?= $item['status'] ?>
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-xs text-gray-400"><?= date('d M Y H:i', strtotime($item['created_at'])) ?></td>
                                 <td class="px-6 py-4 text-sm space-y-2">
                                     <div class="flex gap-2">
-                                        <a href="?update_status=Dibaca&id=<?= $item['id'] ?>" class="text-blue-600 hover:underline">Tandai Dibaca</a>
-                                        <a href="?update_status=Selesai&id=<?= $item['id'] ?>" class="text-green-600 hover:underline">Selesai</a>
+                                        <a href="?update_status=Dibaca&id=<?= $item['id'] ?>" class="text-blue-400 hover:text-blue-300 hover:underline">Tandai Dibaca</a>
+                                        <a href="?update_status=Selesai&id=<?= $item['id'] ?>" class="text-green-400 hover:text-green-300 hover:underline">Selesai</a>
                                     </div>
-                                    <a href="?delete=1&id=<?= $item['id'] ?>" class="text-red-600 hover:underline block" onclick="return confirm('Hapus aspirasi ini?')">Hapus</a>
+                                    <a href="?delete=1&id=<?= $item['id'] ?>" class="text-red-400 hover:text-red-300 hover:underline block" onclick="return confirm('Hapus aspirasi ini?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

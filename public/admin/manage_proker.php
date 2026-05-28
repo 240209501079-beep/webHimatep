@@ -132,13 +132,13 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
     <style> body { font-family: 'Poppins', sans-serif; } </style>
     <style>
         #preview-content a {
-            color: #1B2945;
+            color: #60a5fa;
             text-decoration: underline;
             font-weight: 600;
         }
 
         #preview-content a:hover {
-            color: #1d4ed8;
+            color: #93c5fd;
         }
 
         #preview-content ul {
@@ -162,7 +162,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             font-weight: 700;
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
-            color: #111;
+            color: #ffffff;
             line-height: 1.25;
         }
 
@@ -171,14 +171,14 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             font-weight: 600;
             margin-top: 1.25rem;
             margin-bottom: 0.5rem;
-            color: #111;
+            color: #ffffff;
             line-height: 1.25;
         }
     </style>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="bg-gray-100 flex h-screen overflow-hidden" x-data="{ sidebarOpen: false, showImageModal: false, imageUrlInput: '', imageCaptionInput: '' }">
+<body class="bg-[#111A2C] text-white flex h-screen overflow-hidden" x-data="{ sidebarOpen: false, showImageModal: false, imageUrlInput: '', imageCaptionInput: '' }">
     
     <!-- Image Insertion Modal -->
     <div x-show="showImageModal" 
@@ -205,7 +205,7 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                 <!-- Option 1: Upload -->
                 <div>
                     <label class="block text-sm font-bold text-gray-200 mb-3 uppercase tracking-wider">Opsi 1: Unggah dari Perangkat</label>
-                    <button type="button" @click="document.getElementById('content-image-upload').click()" class="w-full py-4 px-6 bg-blue-50 border-2 border-dashed border-blue-300 rounded-2xl text-blue-600 font-bold hover:bg-blue-100 hover:border-blue-400 transition flex flex-col items-center gap-2">
+                    <button type="button" @click="document.getElementById('content-image-upload').click()" class="w-full py-4 px-6 bg-blue-500/10 border-2 border-dashed border-blue-500/20 rounded-2xl text-blue-400 font-bold hover:bg-blue-500/20 hover:border-blue-500/30 transition flex flex-col items-center gap-2">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                         <span>Pilih & Upload Gambar</span>
                     </button>
@@ -213,26 +213,26 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                 
                 <div class="relative py-2 flex items-center justify-center">
                     <span class="absolute bg-[#1E2F4D] px-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Atau</span>
-                    <hr class="w-full border-gray-100">
+                    <hr class="w-full border-white/10">
                 </div>
 
                 <!-- Option 2: URL -->
                 <div>
                     <label class="block text-sm font-bold text-gray-200 mb-3 uppercase tracking-wider">Opsi 2: Masukkan Link URL</label>
                     <div class="flex gap-2">
-                        <input type="text" x-model="imageUrlInput" placeholder="https://contoh.com/gambar.jpg" class="flex-1 p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <input type="text" x-model="imageUrlInput" placeholder="https://contoh.com/gambar.jpg" class="flex-1 p-3 bg-[#1B2945] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                     </div>
                 </div>
 
                 <!-- Caption Field -->
                 <div class="pt-2">
                     <label class="block text-sm font-bold text-gray-200 mb-2 uppercase tracking-wider">Keterangan Gambar (Opsional)</label>
-                    <input type="text" x-model="imageCaptionInput" placeholder="Tulis keterangan gambar di sini..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                    <input type="text" x-model="imageCaptionInput" placeholder="Tulis keterangan gambar di sini..." class="w-full p-3 bg-[#1B2945] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                 </div>
             </div>
-            <div class="p-4 bg-[#1E2F4D] border-t border-gray-100 flex justify-between items-center">
+            <div class="p-4 bg-[#1E2F4D] border-t border-white/10 flex justify-between items-center">
                 <button @click="showImageModal = false" class="px-6 py-2 text-gray-400 font-bold hover:text-gray-200 transition">Batal</button>
-                <button type="button" @click="insertImageFromUrl(imageUrlInput, imageCaptionInput)" class="bg-himatep-green text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-200">Simpan Gambar</button>
+                <button type="button" @click="insertImageFromUrl(imageUrlInput, imageCaptionInput)" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Simpan Gambar</button>
             </div>
         </div>
     </div>
@@ -242,14 +242,14 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
     <main class="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <header class="h-20 bg-[#1E2F4D] shadow-sm flex items-center justify-between px-4 lg:px-8 z-10">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-300">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg bg-[#1B2945] hover:bg-white/10 text-white border border-white/10 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <h2 class="text-xl lg:text-2xl font-bold text-white"><?= $edit_data ? 'Edit Proker' : 'Tambah Proker Baru' ?></h2>
             </div>
             <div class="flex items-center gap-3 lg:gap-4">
                 <?php if($edit_data): ?>
-                    <a href="manage_proker.php" class="bg-gray-100 hover:bg-gray-200 px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[10px] lg:text-sm font-bold text-gray-300 transition border border-white/10">Batal</a>
+                    <a href="manage_proker.php" class="bg-white/5 hover:bg-white/10 px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[10px] lg:text-sm font-bold text-gray-200 transition border border-white/10">Batal</a>
                 <?php endif; ?>
                 <a href="../index.php" class="text-xs lg:text-sm text-white hover:underline font-medium">Lihat Website</a>
                 <div class="flex items-center gap-2 lg:gap-4 border-l border-white/10 pl-3 lg:pl-4">
@@ -263,38 +263,38 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
         <div class="flex-1 p-8 overflow-y-auto grid grid-cols-1 xl:grid-cols-3 gap-8">
             <!-- Form -->
             <div class="xl:col-span-1 bg-[#1E2F4D] p-6 rounded-2xl shadow-sm border border-white/20 h-fit">
-                <?php if($message): ?> <div class="bg-blue-100 text-green-700 p-4 rounded-xl mb-4"><?= $message ?></div> <?php endif; ?>
-                <?php if($error): ?> <div class="bg-red-100 text-red-700 p-4 rounded-xl mb-4"><?= $error ?></div> <?php endif; ?>
+                <?php if($message): ?> <div class="bg-blue-900/50 border border-blue-500/20 text-blue-200 p-4 rounded-xl mb-4"><?= $message ?></div> <?php endif; ?>
+                <?php if($error): ?> <div class="bg-red-900/50 border border-red-500/20 text-red-200 p-4 rounded-xl mb-4"><?= $error ?></div> <?php endif; ?>
 
                 <form action="manage_proker.php" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <input type="hidden" name="id" value="<?= $edit_data['id'] ?? '' ?>">
                     <div>
-                        <label class="block text-sm font-bold mb-1">Judul Program Kerja</label>
-                        <input type="text" name="judul" value="<?= htmlspecialchars($edit_data['judul'] ?? '') ?>" class="w-full p-2 border rounded-lg" required>
+                        <label class="block text-sm font-bold mb-1 text-gray-200">Judul Program Kerja</label>
+                        <input type="text" name="judul" value="<?= htmlspecialchars($edit_data['judul'] ?? '') ?>" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-bold mb-1">Divisi Pelaksana</label>
-                            <select name="divisi" class="w-full p-2 border rounded-lg" required onchange="updateDivisiColor(this.value)">
-                                <option value="">Pilih Divisi</option>
+                            <label class="block text-sm font-bold mb-1 text-gray-200">Divisi Pelaksana</label>
+                            <select name="divisi" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required onchange="updateDivisiColor(this.value)">
+                                <option value="" class="bg-[#1E2F4D]">Pilih Divisi</option>
                                 <?php foreach($division_colors as $div => $col): ?>
-                                    <option value="<?= $div ?>" <?= ($edit_data['divisi'] ?? '') == $div ? 'selected' : '' ?> data-color="<?= $col ?>"><?= $div ?></option>
+                                    <option value="<?= $div ?>" <?= ($edit_data['divisi'] ?? '') == $div ? 'selected' : '' ?> data-color="<?= $col ?>" class="bg-[#1E2F4D]"><?= $div ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-1">Warna Divisi</label>
-                            <input type="text" name="divisi_color" value="<?= htmlspecialchars($edit_data['divisi_color'] ?? 'green') ?>" class="w-full p-2 border rounded-lg bg-gray-100" readonly>
+                            <label class="block text-sm font-bold mb-1 text-gray-200">Warna Divisi</label>
+                            <input type="text" name="divisi_color" value="<?= htmlspecialchars($edit_data['divisi_color'] ?? 'green') ?>" class="w-full p-2.5 rounded-lg bg-[#1B2945]/50 border border-white/10 text-white/50 cursor-not-allowed" readonly>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-1">Icon Program</label>
-                        <div class="grid grid-cols-4 gap-2 border p-3 rounded-lg bg-[#1E2F4D]">
+                        <label class="block text-sm font-bold mb-1 text-gray-200">Icon Program</label>
+                        <div class="grid grid-cols-4 gap-2 border border-white/10 p-3 rounded-lg bg-[#1B2945]">
                             <?php foreach($icons as $name => $path): ?>
                                 <label class="cursor-pointer group relative">
                                     <input type="radio" name="icon" value="<?= $path ?>" class="hidden peer" <?= ($edit_data['icon'] ?? '') == $path ? 'checked' : '' ?> required>
-                                    <div class="p-2 border-2 rounded-lg bg-[#1E2F4D] peer-checked:border-himatep-green peer-checked:bg-blue-50 hover:border-gray-300 transition-all flex flex-col items-center gap-1">
-                                        <svg class="w-6 h-6 text-gray-300 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="p-2 border border-white/10 rounded-lg bg-[#1E2F4D] peer-checked:border-blue-500 peer-checked:bg-blue-500/10 hover:border-white/20 transition-all flex flex-col items-center gap-1">
+                                        <svg class="w-6 h-6 text-gray-400 peer-checked:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $path ?>"></path>
                                         </svg>
                                         <span class="text-[10px] text-gray-400"><?= $name ?></span>
@@ -305,53 +305,53 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-bold mb-1">Target Waktu</label>
-                            <input type="text" name="target" value="<?= htmlspecialchars($edit_data['target'] ?? '') ?>" class="w-full p-2 border rounded-lg" placeholder="Contoh: April 2026" required>
+                            <label class="block text-sm font-bold mb-1 text-gray-200">Target Waktu</label>
+                            <input type="text" name="target" value="<?= htmlspecialchars($edit_data['target'] ?? '') ?>" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contoh: April 2026" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-1">Sasaran</label>
-                            <input type="text" name="sasaran" value="<?= htmlspecialchars($edit_data['sasaran'] ?? '') ?>" class="w-full p-2 border rounded-lg" placeholder="Contoh: Mahasiswa Aktif" required>
+                            <label class="block text-sm font-bold mb-1 text-gray-200">Sasaran</label>
+                            <input type="text" name="sasaran" value="<?= htmlspecialchars($edit_data['sasaran'] ?? '') ?>" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Mahasiswa Aktif" required>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-1">Gambar Banner</label>
+                        <label class="block text-sm font-bold mb-1 text-gray-200">Gambar Banner</label>
                         <div class="space-y-3">
-                            <input type="text" name="gambar" value="<?= htmlspecialchars($edit_data['gambar'] ?? '') ?>" class="w-full p-2 border rounded-lg" placeholder="Tempel URL gambar di sini">
+                            <input type="text" name="gambar" value="<?= htmlspecialchars($edit_data['gambar'] ?? '') ?>" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tempel URL gambar di sini">
                             <div class="text-xs text-gray-400">Atau upload file gambar JPG, PNG, atau WEBP.</div>
-                            <input type="file" name="gambar_file" accept="image/*" class="w-full p-2 border rounded-lg bg-[#1E2F4D]">
+                            <input type="file" name="gambar_file" accept="image/*" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none text-sm">
                         </div>
                     </div>
                     <div class="flex items-center gap-2 py-2">
-                        <input type="checkbox" name="is_unggulan" id="is_unggulan" <?= ($edit_data['is_unggulan'] ?? 0) ? 'checked' : '' ?>>
-                        <label for="is_unggulan" class="text-sm font-bold">Tampilkan sebagai Program Unggulan</label>
+                        <input type="checkbox" name="is_unggulan" id="is_unggulan" <?= ($edit_data['is_unggulan'] ?? 0) ? 'checked' : '' ?> class="rounded bg-[#1B2945] border-white/10 text-blue-600 focus:ring-0 focus:ring-offset-0">
+                        <label for="is_unggulan" class="text-sm font-bold text-gray-200">Tampilkan sebagai Program Unggulan</label>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-1">Ringkasan</label>
-                        <textarea name="ringkasan" class="w-full p-2 border rounded-lg" rows="2" required><?= htmlspecialchars($edit_data['ringkasan'] ?? '') ?></textarea>
+                        <label class="block text-sm font-bold mb-1 text-gray-200">Ringkasan</label>
+                        <textarea name="ringkasan" class="w-full p-2.5 rounded-lg bg-[#1B2945] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" rows="2" required><?= htmlspecialchars($edit_data['ringkasan'] ?? '') ?></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold mb-1">Detail Konten (HTML Based)</label>
+                        <label class="block text-sm font-bold mb-1 text-gray-200">Detail Konten (HTML Based)</label>
                         <div class="mb-2 flex flex-wrap gap-2 text-xs font-bold">
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('strong')">Bold</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('em')">Italic</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('u')">Underline</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('h2')">Judul 2</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="wrapSelection('h3')">Judul 3</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertList('ul')">Bullet List</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertList('ol')">Nomer List</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100" onclick="insertLink()">Link</button>
-                            <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-[#1E2F4D] hover:bg-gray-100 text-blue-600" onclick="insertImage()">+ Gambar</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="wrapSelection('strong')">Bold</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="wrapSelection('em')">Italic</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="wrapSelection('u')">Underline</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="wrapSelection('h2')">Judul 2</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="wrapSelection('h3')">Judul 3</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="insertList('ul')">Bullet List</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="insertList('ol')">Nomer List</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-gray-200 transition-colors" onclick="insertLink()">Link</button>
+                            <button type="button" class="px-3 py-1.5 rounded-lg border border-white/10 bg-[#1B2945] hover:bg-white/5 text-blue-400 hover:text-blue-300 transition-colors" onclick="insertImage()">+ Gambar</button>
                         </div>
-                        <textarea id="isi-editor" name="isi" class="w-full p-2 border rounded-lg font-mono text-sm leading-6" rows="8" required><?= htmlspecialchars($edit_data['isi'] ?? '') ?></textarea>
+                        <textarea id="isi-editor" name="isi" class="w-full p-3 rounded-lg bg-[#1B2945] border border-white/10 text-white font-mono text-sm leading-6 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="8" required><?= htmlspecialchars($edit_data['isi'] ?? '') ?></textarea>
                         <input type="file" id="content-image-upload" class="hidden" accept="image/*">
                         <p class="text-xs text-gray-400 mt-2">Gunakan tombol di atas untuk menyisipkan tag HTML.</p>
                     </div>
                     <div class="flex gap-3">
-                        <button type="submit" class="flex-1 bg-himatep-green text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition">
+                        <button type="submit" class="flex-1 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition">
                             <?= $edit_data ? 'Simpan Perubahan' : 'Tambah Program' ?>
                         </button>
                         <?php if(!$edit_data): ?>
-                            <button type="reset" onclick="setTimeout(updatePreview, 10)" class="px-6 py-3 border border-gray-300 text-gray-400 font-bold rounded-xl active:bg-gray-200 hover:bg-gray-200 transition">
+                            <button type="reset" onclick="setTimeout(updatePreview, 10)" class="px-6 py-3 border border-white/10 text-gray-300 font-bold rounded-xl hover:bg-white/5 transition">
                                 Kosongkan
                             </button>
                         <?php endif; ?>
@@ -363,20 +363,20 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
             <div class="xl:col-span-2 space-y-8">
                 <!-- Live Preview -->
                 <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
-                    <div class="p-4 bg-[#1E2F4D] font-bold flex justify-between items-center">
+                    <div class="p-4 bg-[#1E2F4D] border-b border-white/10 font-bold flex justify-between items-center">
                         <span>Live Preview (Tampilan Detail Program)</span>
                         <span class="text-xs font-normal text-gray-400 italic">Pratinjau</span>
                     </div>
                     <div class="p-8 max-w-2xl mx-auto">
                         <div class="mb-6 flex justify-center">
-                            <div id="preview-icon-container" class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg bg-blue-100">
-                                <svg id="preview-icon" class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div id="preview-icon-container" class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg bg-blue-500/10 border border-blue-500/20">
+                                <svg id="preview-icon" class="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
                         </div>
                         <div id="preview-divisi" class="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-600 mb-4 uppercase tracking-wider">BIDANG</div>
-                        <h1 id="preview-title" class="text-3xl font-bold text-gray-900 mb-6 leading-tight">Nama Program Kerja</h1>
+                        <h1 id="preview-title" class="text-3xl font-bold text-white mb-6 leading-tight">Nama Program Kerja</h1>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8">
                             <div class="bg-[#1E2F4D] p-4 rounded-xl border border-white/10">
@@ -400,10 +400,10 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
 
                 <!-- List -->
                 <div class="bg-[#1E2F4D] rounded-2xl shadow-sm border border-white/20 overflow-hidden">
-                <div class="p-4 bg-[#1E2F4D] font-bold">Daftar Proker</div>
+                <div class="p-4 bg-[#1E2F4D] border-b border-white/10 font-bold">Daftar Proker</div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-100 text-gray-300 uppercase text-xs">
+                        <thead class="bg-[#1B2945] text-gray-400 uppercase text-xs border-b border-white/10">
                             <tr>
                                 <th class="p-4">Banner</th>
                                 <th class="p-4">Nama Program</th>
@@ -411,18 +411,18 @@ if (isset($_GET['edit']) && isset($_GET['id'])) {
                                 <th class="p-4">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y">
+                        <tbody class="divide-y divide-white/10">
                             <?php foreach($proker_list as $p): ?>
-                            <tr>
+                            <tr class="hover:bg-white/5 transition-colors">
                                 <td class="p-4">
                                     <img src="<?= htmlspecialchars($p['gambar']) ?>" class="w-16 h-10 object-cover rounded shadow-sm" onerror="this.src='https://via.placeholder.com/100x60'">
                                 </td>
-                                <td class="p-4 font-medium"><?= htmlspecialchars($p['judul']) ?></td>
-                                <td class="p-4 text-xs"><?= htmlspecialchars($p['divisi']) ?></td>
+                                <td class="p-4 font-medium text-white"><?= htmlspecialchars($p['judul']) ?></td>
+                                <td class="p-4 text-xs text-gray-300"><?= htmlspecialchars($p['divisi']) ?></td>
                                 <td class="p-4 space-x-2">
-                                    <a href="../detail-program.php?slug=<?= $p['slug'] ?>" target="_blank" class="text-green-600 font-bold hover:underline">Lihat</a>
-                                    <a href="?edit=1&id=<?= $p['id'] ?>" class="text-blue-600 font-bold">Edit</a>
-                                    <a href="?delete=1&id=<?= $p['id'] ?>" class="text-red-600 font-bold" onclick="return confirm('Hapus proker ini?')">Hapus</a>
+                                    <a href="../detail-program.php?slug=<?= $p['slug'] ?>" target="_blank" class="text-green-400 font-bold hover:text-green-300 hover:underline">Lihat</a>
+                                    <a href="?edit=1&id=<?= $p['id'] ?>" class="text-blue-400 font-bold hover:text-blue-300 hover:underline">Edit</a>
+                                    <a href="?delete=1&id=<?= $p['id'] ?>" class="text-red-400 font-bold hover:text-red-300 hover:underline" onclick="return confirm('Hapus proker ini?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
