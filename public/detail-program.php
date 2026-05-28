@@ -91,6 +91,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
                 'text-emerald-700', 'text-blue-700', 'text-green-700', 'text-orange-700', 'text-purple-700', 'text-red-700', 'text-yellow-700', 'text-pink-700', 'text-indigo-700',
                 'border-emerald-200', 'border-blue-200', 'border-green-200', 'border-orange-200', 'border-purple-200', 'border-red-200', 'border-yellow-200', 'border-pink-200', 'border-indigo-200',
                 'text-emerald-500', 'text-blue-500', 'text-green-500', 'text-orange-500', 'text-purple-500', 'text-red-500', 'text-yellow-500', 'text-pink-500', 'text-indigo-500',
+                'text-emerald-600', 'text-blue-600', 'text-green-600', 'text-orange-600', 'text-purple-600', 'text-red-600', 'text-yellow-600', 'text-pink-600', 'text-indigo-600',
                 'text-emerald-400', 'text-blue-400', 'text-green-400', 'text-orange-400', 'text-purple-400', 'text-red-400', 'text-yellow-400', 'text-pink-400', 'text-indigo-400'
             ]
         }

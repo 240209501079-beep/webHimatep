@@ -16,11 +16,10 @@ if (!is_dir($upload_dir)) {
 }
 
 $division_colors = [
-    'BPH' => 'emerald',
-    'Bidang I Pendidikan dan Pelatihan' => 'blue',
-    'Bidang II Sosial dan Politik' => 'green',
-    'Bidang III Bakat dan Minat' => 'orange',
-    'Bidang IV Media dan Propaganda' => 'purple',
+    'Hubungan Masyarakat'       => 'emerald',
+    'Penelitian & Pengembangan' => 'blue',
+    'Pengabdian Masyarakat'     => 'purple',
+    'PSDM'                      => 'orange',
 ];
 
 $icons = [

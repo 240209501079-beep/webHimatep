@@ -144,7 +144,7 @@ $proker_json = json_encode(array_map(function($p) {
             <template x-for="(group, division) in groupBy(prokers, 'divisi')" :key="division">
                 <div class="mb-20">
                     <div class="flex items-center gap-4 mb-8">
-                        <span class="w-12 h-1 rounded-full" :class="group[0].divisiColor === 'blue' ? 'bg-himatep-green' : 'bg-' + group[0].divisiColor + '-500'"></span>
+                        <span class="w-12 h-1 rounded-full" :class="'bg-' + (group[0].divisiColor || 'blue') + '-600'"></span>
                         <h2 class="text-3xl font-bold text-white" x-text="division"></h2>
                     </div>
 

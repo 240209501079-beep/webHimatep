@@ -424,24 +424,28 @@ try {
                         <div class="relative h-48 w-full overflow-hidden">
                             <img :src="item.gambar" :alt="item.judul" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px]"
-                                 :style="'background-color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : item.divisiColor === 'purple' ? '#9333EA' : '#059669')">
+                                 :style="'background-color: ' + ({emerald:'#10B981', blue:'#3B82F6', green:'#16A34A', orange:'#F97316', purple:'#9333EA'}[item.divisiColor] || '#1B2945')">
                                 <span class="text-xs font-bold uppercase tracking-wider opacity-90" x-text="item.agenda.bulan"></span>
                                 <span class="text-2xl font-black leading-none" x-text="item.agenda.tanggal"></span>
                             </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col text-left">
                             <h3 class="text-xl font-bold text-white mb-4 transition-colors"
-                                :style="item.divisiColor === 'blue' ? '--hover-color: #1B2945' : item.divisiColor === 'green' ? '--hover-color: #16A34A' : '--hover-color: #9333EA'"
+                                :style="'--hover-color: ' + ({emerald:'#10B981', blue:'#3B82F6', green:'#16A34A', orange:'#F97316', purple:'#9333EA'}[item.divisiColor] || '#1B2945')"
                                 :class="'group-hover:text-[var(--hover-color)]'" x-text="item.judul"></h3>
                             <div class="space-y-3 mt-auto">
                                 <div class="flex items-center text-sm font-medium text-gray-400">
-                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-3"
+                                        :style="'color: ' + ({emerald:'#10B981', blue:'#3B82F6', green:'#16A34A', orange:'#F97316', purple:'#9333EA'}[item.divisiColor] || '#1B2945')"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     <span x-text="item.agenda.waktu"></span>
                                 </div>
                                 <div class="flex items-center text-sm font-medium text-gray-400">
-                                    <svg class="w-5 h-5 mr-3" :style="'color: ' + (item.divisiColor === 'blue' ? '#1B2945' : item.divisiColor === 'green' ? '#16A34A' : '#9333EA')" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-3"
+                                        :style="'color: ' + ({emerald:'#10B981', blue:'#3B82F6', green:'#16A34A', orange:'#F97316', purple:'#9333EA'}[item.divisiColor] || '#1B2945')"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>

@@ -80,7 +80,12 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
                         'cursive': ['"Great Vibes"', 'cursive'],
                     }
                 }
-            }
+            },
+            safelist: [
+                'bg-green-100',  'bg-blue-100',  'bg-purple-100',  'bg-yellow-100',  'bg-red-100',
+                'text-green-700','text-blue-700','text-purple-700','text-yellow-700','text-red-700',
+                'border-green-200','border-blue-200','border-purple-200','border-yellow-200','border-red-200',
+            ]
         }
     </script>
 

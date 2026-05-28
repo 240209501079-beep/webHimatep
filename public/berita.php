@@ -76,7 +76,14 @@ $berita_json = json_encode(array_map(function($b) {
                         'cursive': ['"Great Vibes"', 'cursive'],
                     }
                 }
-            }
+            },
+            safelist: [
+                'bg-green-600',  'bg-blue-600',  'bg-purple-600',  'bg-yellow-600',  'bg-red-600',
+                'bg-green-100',  'bg-blue-100',  'bg-purple-100',  'bg-yellow-100',  'bg-red-100',
+                'text-green-600','text-blue-600','text-purple-600','text-yellow-600','text-red-600',
+                'text-green-700','text-blue-700','text-purple-700','text-yellow-700','text-red-700',
+                'border-green-200','border-blue-200','border-purple-200','border-yellow-200','border-red-200',
+            ]
         }
     </script>
 
@@ -132,7 +139,7 @@ $berita_json = json_encode(array_map(function($b) {
                                 class="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
                                 <span class="text-xs font-bold text-white px-3 py-1 rounded-full shadow-md"
-                                    :class="daftarBerita[0].kategoriColor === 'blue' ? 'bg-himatep-green' : 'bg-' + daftarBerita[0].kategoriColor + '-600'"
+                                    :class="'bg-' + (daftarBerita[0].kategoriColor || 'blue') + '-600'"
                                     x-text="daftarBerita[0].kategori"></span>
                             </div>
                         </div>

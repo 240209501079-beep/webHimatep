@@ -177,7 +177,7 @@ $data_program_json = json_encode(array_map(function($p) {
                 kreasi,
                 inovasi, dan pengabdian mahasiswa Teknologi Pendidikan menuju generasi unggul.</p>
             <a href="#profile"
-                class="btn-profile-kami mt-4 inline-block bg-[#D4AF37] hover:bg-[#B8860B] text-white px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 text-lg tracking-wide">
+                class="mt-4 inline-block bg-himatep-green hover:bg-himatep-green/80 text-white px-8 py-3 rounded-full font-bold shadow-xl transition-all duration-300">
                 Profile Kami
             </a>
         </div>
@@ -412,19 +412,22 @@ $data_program_json = json_encode(array_map(function($p) {
                             <div class="relative h-48 w-full overflow-hidden">
                                 <img :src="item.gambar" :alt="item.judul"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                <!-- Date Badge (Gold theme) -->
-                                <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px] bg-[#D4AF37]">
+                                <!-- Date Badge (Dynamic Division Color) -->
+                                <div class="absolute top-4 right-4 text-white rounded-2xl p-2 flex flex-col justify-center items-center shadow-lg min-w-[70px]"
+                                     :class="item.divisiColor ? 'bg-' + item.divisiColor + '-600' : 'bg-[#D4AF37]'">
                                     <span class="text-xs font-bold uppercase tracking-wider opacity-90"
                                         x-text="item.agenda.bulan"></span>
                                     <span class="text-2xl font-black leading-none" x-text="item.agenda.tanggal"></span>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors"
+                                <h3 class="text-xl font-bold text-white mb-4 transition-colors"
+                                    :class="'group-hover:text-' + (item.divisiColor || 'blue') + '-400'"
                                     x-text="item.judul"></h3>
                                 <div class="space-y-3 mt-auto">
                                     <div class="flex items-center text-sm font-medium text-gray-400">
-                                        <svg class="w-5 h-5 mr-3 text-[#D4AF37]"
+                                        <svg class="w-5 h-5 mr-3"
+                                            :class="'text-' + (item.divisiColor || 'blue') + '-500'"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -432,7 +435,8 @@ $data_program_json = json_encode(array_map(function($p) {
                                         <span x-text="item.agenda.waktu"></span>
                                     </div>
                                     <div class="flex items-center text-sm font-medium text-gray-400">
-                                        <svg class="w-5 h-5 mr-3 text-[#D4AF37]"
+                                        <svg class="w-5 h-5 mr-3"
+                                            :class="'text-' + (item.divisiColor || 'blue') + '-500'"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
