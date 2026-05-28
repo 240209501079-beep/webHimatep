@@ -67,6 +67,7 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            important: true,
             theme: {
                 extend: {
                     colors: {
@@ -123,18 +124,18 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
             font-weight: 700;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #111;
+            color: #ffffff;
             line-height: 1.2;
-        }
-
-        .news-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #111;
-            line-height: 1.2;
-        }
+         }
+ 
+         .news-content h3 {
+             font-size: 1.5rem;
+             font-weight: 600;
+             margin-top: 1.5rem;
+             margin-bottom: 0.75rem;
+             color: #ffffff;
+             line-height: 1.2;
+         }
 
         .news-content img {
             width: 100%;
@@ -250,7 +251,7 @@ $page_img = $berita ? $berita['gambar'] : "http://localhost/webHimatep/public/im
                         x-text="berita?.kategori"></span>
                 </div>
 
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight" x-text="berita?.judul"></h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" x-text="berita?.judul"></h1>
 
                 <div class="flex items-center justify-center text-sm text-gray-400 gap-4 md:gap-8 flex-wrap">
                     <span class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"

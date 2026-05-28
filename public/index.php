@@ -113,6 +113,7 @@ $data_program_json = json_encode(array_map(function($p) {
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            important: true,
             theme: {
                 extend: {
                     colors: {
@@ -125,7 +126,18 @@ $data_program_json = json_encode(array_map(function($p) {
                         'cursive': ['"Great Vibes"', 'cursive'],
                     }
                 }
-            }
+            },
+            safelist: [
+                'bg-emerald-100', 'bg-blue-100', 'bg-green-100', 'bg-orange-100', 'bg-purple-100', 'bg-red-100', 'bg-yellow-100', 'bg-pink-100', 'bg-indigo-100',
+                'text-emerald-700', 'text-blue-700', 'text-green-700', 'text-orange-700', 'text-purple-700', 'text-red-700', 'text-yellow-700', 'text-pink-700', 'text-indigo-700',
+                'border-emerald-200', 'border-blue-200', 'border-green-200', 'border-orange-200', 'border-purple-200', 'border-red-200', 'border-yellow-200', 'border-pink-200', 'border-indigo-200',
+                'text-emerald-500', 'text-blue-500', 'text-green-500', 'text-orange-500', 'text-purple-500', 'text-red-500', 'text-yellow-500', 'text-pink-500', 'text-indigo-500',
+                'text-emerald-400', 'text-blue-400', 'text-green-400', 'text-orange-400', 'text-purple-400', 'text-red-400', 'text-yellow-400', 'text-pink-400', 'text-indigo-400',
+                'bg-emerald-600', 'bg-blue-600', 'bg-green-600', 'bg-orange-600', 'bg-purple-600', 'bg-red-600', 'bg-yellow-600', 'bg-pink-600', 'bg-indigo-600',
+                'hover:text-emerald-300', 'hover:text-blue-300', 'hover:text-green-300', 'hover:text-orange-300', 'hover:text-purple-300',
+                'hover:text-emerald-400', 'hover:text-blue-400', 'hover:text-green-400', 'hover:text-orange-400', 'hover:text-purple-400',
+                'group-hover:text-emerald-400', 'group-hover:text-blue-400', 'group-hover:text-green-400', 'group-hover:text-orange-400', 'group-hover:text-purple-400'
+            ]
         }
     </script>
 
@@ -240,14 +252,14 @@ $data_program_json = json_encode(array_map(function($p) {
                             class="w-full h-48 mb-6 overflow-hidden relative group-hover:shadow-md transition-shadow">
                             <img :src="item.gambar" :alt="item.judul"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute top-3 right-3 px-3 py-1 bg-[#1E2F4D]/90 backdrop-blur-sm rounded-full text-xs font-bold shadow-sm uppercase tracking-wider"
-                                :class="'text-' + item.divisiColor + '-600'" x-text="item.divisi"></div>
+                            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold shadow-md uppercase tracking-wider border"
+                                :class="'text-' + (item.divisiColor || 'blue') + '-700 bg-' + (item.divisiColor || 'blue') + '-100 border-' + (item.divisiColor || 'blue') + '-200'" x-text="item.divisi"></div>
                         </div>
                         <h3 class="p-6 pt-0 pb-0 text-xl font-bold mb-3 text-white" x-text="item.judul"></h3>
                         <p class="p-6 pt-0 pb-0 text-gray-300 mb-4 line-clamp-3 flex-1" x-text="item.ringkasan"></p>
                         <div
                             class="p-6 inline-flex items-center font-semibold hover:gap-2 transition-all mt-auto"
-                            :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-600'">
+                            :class="'text-' + (item.divisiColor || 'blue') + '-400 hover:text-' + (item.divisiColor || 'blue') + '-300'">
                             Detail Program <span class="ml-1">&rarr;</span>
                         </div>
                     </a>
@@ -319,21 +331,23 @@ $data_program_json = json_encode(array_map(function($p) {
 
             <!-- Modal Detail Event (Premium Card Style) -->
             <template x-teleport="body">
-                <div x-show="modalOpen"
-                    class="fixed inset-0 z-[120] flex items-center justify-center p-4" x-cloak
+                <div x-show="modalOpen" x-cloak
+                    class="fixed inset-0 z-[120]"
                     style="display: none;">
                     <!-- Backdrop -->
                     <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" @click="modalOpen = false"></div>
                     
-                    <!-- Card Modal -->
-                    <div class="event-modal-container bg-[#1E2F4D] rounded-[2rem] shadow-2xl max-w-2xl w-full relative overflow-hidden flex flex-col md:flex-row transform transition-all z-10"
-                        x-show="modalOpen"
-                        x-transition:enter="ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-                        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                        x-transition:leave="ease-in duration-200"
-                        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 scale-95 translate-y-4">
+                    <!-- Modal Centering Wrapper -->
+                    <div class="fixed inset-0 flex items-center justify-center p-4 z-10 pointer-events-none">
+                        <!-- Card Modal -->
+                        <div class="event-modal-container bg-[#1E2F4D] rounded-[2rem] shadow-2xl max-w-2xl w-full relative overflow-hidden flex flex-col md:flex-row transform transition-all pointer-events-auto"
+                            x-show="modalOpen"
+                            x-transition:enter="ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                            x-transition:leave="ease-in duration-200"
+                            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 scale-95 translate-y-4">
                         
                         <!-- Close Button -->
                         <button @click="modalOpen = false" class="absolute top-4 right-4 z-30 bg-[#1E2F4D]/95 backdrop-blur p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
@@ -358,7 +372,8 @@ $data_program_json = json_encode(array_map(function($p) {
                             <div>
                                 <!-- Division Badge -->
                                 <div class="mb-3">
-                                    <span class="text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-gray-100 text-gray-300 border border-white/10"
+                                    <span class="text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border"
+                                          :class="selectedEvent?.divisiColor ? 'text-' + selectedEvent.divisiColor + '-700 bg-' + selectedEvent.divisiColor + '-100 border-' + selectedEvent.divisiColor + '-200' : 'text-blue-700 bg-blue-100 border-blue-200'"
                                           x-text="selectedEvent?.divisi ? 'Divisi ' + selectedEvent.divisi : 'HIMATEP'"></span>
                                 </div>
                                 <h3 class="text-xl md:text-2xl font-bold mb-4 text-white leading-snug" x-text="selectedEvent?.title"></h3>
@@ -378,6 +393,7 @@ $data_program_json = json_encode(array_map(function($p) {
                         </div>
                     </div>
                 </div>
+            </div>
             </template>
 
             <!-- Agenda Mendatang (Bawah Kalender) -->

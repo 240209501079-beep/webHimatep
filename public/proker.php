@@ -60,7 +60,6 @@ $proker_json = json_encode(array_map(function($p) {
     ];
 }, $all_proker));
 ?>
-<section id="proker" style="scroll-margin-top:100px"></section>
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 
@@ -74,6 +73,7 @@ $proker_json = json_encode(array_map(function($p) {
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            important: true,
             theme: {
                 extend: {
                     colors: {
@@ -86,7 +86,18 @@ $proker_json = json_encode(array_map(function($p) {
                         'cursive': ['"Great Vibes"', 'cursive'],
                     }
                 }
-            }
+            },
+            safelist: [
+                'bg-emerald-100', 'bg-blue-100', 'bg-green-100', 'bg-orange-100', 'bg-purple-100', 'bg-red-100', 'bg-yellow-100', 'bg-pink-100', 'bg-indigo-100',
+                'text-emerald-700', 'text-blue-700', 'text-green-700', 'text-orange-700', 'text-purple-700', 'text-red-700', 'text-yellow-700', 'text-pink-700', 'text-indigo-700',
+                'border-emerald-200', 'border-blue-200', 'border-green-200', 'border-orange-200', 'border-purple-200', 'border-red-200', 'border-yellow-200', 'border-pink-200', 'border-indigo-200',
+                'text-emerald-500', 'text-blue-500', 'text-green-500', 'text-orange-500', 'text-purple-500', 'text-red-500', 'text-yellow-500', 'text-pink-500', 'text-indigo-500',
+                'text-emerald-400', 'text-blue-400', 'text-green-400', 'text-orange-400', 'text-purple-400', 'text-red-400', 'text-yellow-400', 'text-pink-400', 'text-indigo-400',
+                'bg-emerald-600', 'bg-blue-600', 'bg-green-600', 'bg-orange-600', 'bg-purple-600', 'bg-red-600', 'bg-yellow-600', 'bg-pink-600', 'bg-indigo-600',
+                'hover:text-emerald-300', 'hover:text-blue-300', 'hover:text-green-300', 'hover:text-orange-300', 'hover:text-purple-300',
+                'hover:text-emerald-400', 'hover:text-blue-400', 'hover:text-green-400', 'hover:text-orange-400', 'hover:text-purple-400',
+                'group-hover:text-emerald-400', 'group-hover:text-blue-400', 'group-hover:text-green-400', 'group-hover:text-orange-400', 'group-hover:text-purple-400'
+            ]
         }
     </script>
 
@@ -107,6 +118,7 @@ $proker_json = json_encode(array_map(function($p) {
 </head>
 
 <body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-x-hidden" x-data="{ mobileMenuOpen: false, prokers: dataProgram, groupBy(list, key) { return list.reduce((rv, x) => { (rv[x[key]] = rv[x[key]] || []).push(x); return rv; }, {}); } }">
+    <section id="proker" style="scroll-margin-top:100px"></section>
 
     <!-- Navbar -->
     <?php 
@@ -145,29 +157,29 @@ $proker_json = json_encode(array_map(function($p) {
                                 <div class="w-full h-48 overflow-hidden relative shadow-sm">
                                     <img :src="item.gambar || 'images/logo-himatep.png'" :alt="item.judul"
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute top-3 right-3 px-3 py-1 bg-[#1E2F4D]/90 backdrop-blur-sm rounded-full text-xs font-bold shadow-sm uppercase tracking-wider"
-                                        :class="'text-' + item.divisiColor + '-600'" x-text="item.divisi"></div>
+                                    <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold shadow-md uppercase tracking-wider border"
+                                        :class="'text-' + (item.divisiColor || 'blue') + '-700 bg-' + (item.divisiColor || 'blue') + '-100 border-' + (item.divisiColor || 'blue') + '-200'" x-text="item.divisi"></div>
                                 </div>
 
                                 <div class="p-8 flex-1 flex flex-col">
-                                    <h3 class="text-2xl font-bold mb-3 transition-colors" :class="item.divisiColor === 'blue' ? 'text-white group-hover:text-blue-900' : 'text-' + item.divisiColor + '-600 group-hover:text-' + item.divisiColor + '-700'" x-text="item.judul"></h3>
+                                    <h3 class="text-2xl font-bold mb-3 transition-colors" :class="'text-white group-hover:text-' + (item.divisiColor || 'blue') + '-400'" x-text="item.judul"></h3>
                                     <p class="text-gray-300 mb-6 leading-relaxed line-clamp-3 flex-1" x-text="item.ringkasan"></p>
                                     
                                     <div class="space-y-2 mb-6 mt-auto pt-4 border-t border-white/10/50">
                                         <div class="flex items-center text-sm font-medium text-gray-400">
-                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5 mr-2" :class="'text-' + (item.divisiColor || 'blue') + '-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                             </svg> Target: <span class="ml-1" x-text="item.target"></span>
                                         </div>
                                         <div class="flex items-center text-sm font-medium text-gray-400">
-                                            <svg class="w-5 h-5 mr-2" :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5 mr-2" :class="'text-' + (item.divisiColor || 'blue') + '-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="item.icon"></path>
                                             </svg> Sasaran: <span class="ml-1" x-text="item.sasaran"></span>
                                         </div>
                                     </div>
                                     
                                     <div class="inline-flex items-center font-semibold hover:gap-2 transition-all mt-auto"
-                                        :class="item.divisiColor === 'blue' ? 'text-white' : 'text-' + item.divisiColor + '-600'">
+                                        :class="'text-' + (item.divisiColor || 'blue') + '-400 hover:text-' + (item.divisiColor || 'blue') + '-300'">
                                         Detail Program <span class="ml-1">&rarr;</span>
                                     </div>
                                 </div>
@@ -211,10 +223,10 @@ $proker_json = json_encode(array_map(function($p) {
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
                             <h3 class="text-xl font-bold text-white mb-4 transition-colors"
-                                :class="'group-hover:text-' + item.divisiColor + '-600'" x-text="item.judul"></h3>
+                                :class="'group-hover:text-' + (item.divisiColor || 'blue') + '-400'" x-text="item.judul"></h3>
                             <div class="space-y-3 mt-auto">
                                 <div class="flex items-center text-sm font-medium text-gray-400">
-                                    <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'" fill="none"
+                                    <svg class="w-5 h-5 mr-3" :class="'text-' + (item.divisiColor || 'blue') + '-400'" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -222,7 +234,7 @@ $proker_json = json_encode(array_map(function($p) {
                                     <span x-text="item.agenda.waktu"></span>
                                 </div>
                                 <div class="flex items-center text-sm font-medium text-gray-400">
-                                    <svg class="w-5 h-5 mr-3" :class="'text-' + item.divisiColor + '-500'" fill="none"
+                                    <svg class="w-5 h-5 mr-3" :class="'text-' + (item.divisiColor || 'blue') + '-400'" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">

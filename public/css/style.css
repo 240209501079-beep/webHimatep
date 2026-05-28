@@ -133,15 +133,15 @@ a,
 body.theme-custom {
     background-color: #1B2945 !important;
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.02' stroke-width='1.2'%3E%3Ccircle cx='40' cy='40' r='38'/%3E%3Ccircle cx='0' cy='0' r='38'/%3E%3Ccircle cx='80' cy='0' r='38'/%3E%3Ccircle cx='0' cy='80' r='38'/%3E%3Ccircle cx='80' cy='80' r='38'/%3E%3C/g%3E%3C/svg%3E") !important;
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.04' stroke-width='1.2'%3E%3Cpolygon points='40,6 74,40 40,74 6,40'/%3E%3Cpolygon points='40,18 62,40 40,62 18,40'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='80' cy='0' r='4'/%3E%3Ccircle cx='0' cy='80' r='4'/%3E%3Ccircle cx='80' cy='80' r='4'/%3E%3Ccircle cx='40' cy='0' r='2.5'/%3E%3Ccircle cx='40' cy='80' r='2.5'/%3E%3Ccircle cx='0' cy='40' r='2.5'/%3E%3Ccircle cx='80' cy='40' r='2.5'/%3E%3C/g%3E%3C/svg%3E") !important;
     background-repeat: repeat !important;
-    background-size: 40px !important;
+    background-size: 60px !important;
     color: #FFFFFF !important;
 }
 
 @media (min-width: 768px) {
     body.theme-custom {
-        background-size: 80px !important;
+        background-size: 60px !important;
     }
 }
 
@@ -345,39 +345,39 @@ body.theme-custom .card-hover:hover div.inline-flex * {
     color: #FFFFFF !important;
 }
 
-/* Division Badge inside Cards */
-body.theme-custom .card-hover .absolute.top-3.right-3 {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    border: none !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-blue-600 {
-    color: #2563EB !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-green-600 {
-    color: #16A34A !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-purple-600 {
-    color: #9333EA !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-yellow-600 {
-    color: #CA8A04 !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-red-600 {
-    color: #DC2626 !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-pink-600 {
-    color: #DB2777 !important;
-}
-
-body.theme-custom .card-hover .absolute.top-3.right-3.text-indigo-600 {
-    color: #4F46E5 !important;
-}
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
 
 /* Navbar Integration */
 body.theme-custom nav#navbar>div>div {
@@ -770,124 +770,124 @@ body.theme-custom footer .max-w-7xl.mx-auto.px-4.mt-12.pt-8 {
     color: rgba(27, 41, 69, 0.75) !important;
 }
 
-/* Division Badges & Tags Original Color Preservation */
-body.theme-custom .absolute.top-3.right-3,
-body.theme-custom .absolute.top-3.right-3.bg-white\/90 {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-}
-
-body.theme-custom .text-blue-500 {
-    color: #3B82F6 !important;
-}
-
-body.theme-custom .text-blue-600 {
-    color: #2563EB !important;
-}
-
-body.theme-custom .text-green-500 {
-    color: #10B981 !important;
-}
-
-body.theme-custom .text-green-600 {
-    color: #059669 !important;
-}
-
-body.theme-custom .text-purple-500 {
-    color: #8B5CF6 !important;
-}
-
-body.theme-custom .text-purple-600 {
-    color: #7C3AED !important;
-}
-
-body.theme-custom .text-yellow-500 {
-    color: #F59E0B !important;
-}
-
-body.theme-custom .text-yellow-600 {
-    color: #D97706 !important;
-}
-
-body.theme-custom .text-red-500 {
-    color: #EF4444 !important;
-}
-
-body.theme-custom .text-red-600 {
-    color: #DC2626 !important;
-}
-
-body.theme-custom .text-pink-500 {
-    color: #EC4899 !important;
-}
-
-body.theme-custom .text-pink-600 {
-    color: #DB2777 !important;
-}
-
-body.theme-custom .text-indigo-500 {
-    color: #6366F1 !important;
-}
-
-body.theme-custom .text-indigo-600 {
-    color: #4F46E5 !important;
-}
-
-body.theme-custom .bg-blue-500 {
-    background-color: #3B82F6 !important;
-}
-
-body.theme-custom .bg-blue-600 {
-    background-color: #2563EB !important;
-}
-
-body.theme-custom .bg-green-500 {
-    background-color: #10B981 !important;
-}
-
-body.theme-custom .bg-green-600 {
-    background-color: #059669 !important;
-}
-
-body.theme-custom .bg-purple-500 {
-    background-color: #8B5CF6 !important;
-}
-
-body.theme-custom .bg-purple-600 {
-    background-color: #7C3AED !important;
-}
-
-body.theme-custom .bg-yellow-500 {
-    background-color: #F59E0B !important;
-}
-
-body.theme-custom .bg-yellow-600 {
-    background-color: #D97706 !important;
-}
-
-body.theme-custom .bg-red-500 {
-    background-color: #EF4444 !important;
-}
-
-body.theme-custom .bg-red-600 {
-    background-color: #DC2626 !important;
-}
-
-body.theme-custom .bg-pink-500 {
-    background-color: #EC4899 !important;
-}
-
-body.theme-custom .bg-pink-600 {
-    background-color: #DB2777 !important;
-}
-
-body.theme-custom .bg-indigo-500 {
-    background-color: #6366F1 !important;
-}
-
-body.theme-custom .bg-indigo-600 {
-    background-color: #4F46E5 !important;
-}
-
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
+/* cleared */
 /* Custom Hero Diagonal and Logo Shadow/Glow */
 
 

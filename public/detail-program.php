@@ -72,6 +72,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            important: true,
             theme: {
                 extend: {
                     colors: {
@@ -84,7 +85,14 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
                         'cursive': ['"Great Vibes"', 'cursive'],
                     }
                 }
-            }
+            },
+            safelist: [
+                'bg-emerald-100', 'bg-blue-100', 'bg-green-100', 'bg-orange-100', 'bg-purple-100', 'bg-red-100', 'bg-yellow-100', 'bg-pink-100', 'bg-indigo-100',
+                'text-emerald-700', 'text-blue-700', 'text-green-700', 'text-orange-700', 'text-purple-700', 'text-red-700', 'text-yellow-700', 'text-pink-700', 'text-indigo-700',
+                'border-emerald-200', 'border-blue-200', 'border-green-200', 'border-orange-200', 'border-purple-200', 'border-red-200', 'border-yellow-200', 'border-pink-200', 'border-indigo-200',
+                'text-emerald-500', 'text-blue-500', 'text-green-500', 'text-orange-500', 'text-purple-500', 'text-red-500', 'text-yellow-500', 'text-pink-500', 'text-indigo-500',
+                'text-emerald-400', 'text-blue-400', 'text-green-400', 'text-orange-400', 'text-purple-400', 'text-red-400', 'text-yellow-400', 'text-pink-400', 'text-indigo-400'
+            ]
         }
     </script>
 
@@ -125,7 +133,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
             font-weight: 700;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #111;
+            color: #ffffff;
             line-height: 1.2;
         }
 
@@ -134,7 +142,7 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
             font-weight: 600;
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
-            color: #111;
+            color: #ffffff;
             line-height: 1.2;
         }
 
@@ -220,8 +228,10 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
         }
     }" class="pt-32 pb-20 min-h-screen relative">
         <!-- Loader -->
-        <div x-show="loading" class="flex justify-center items-center h-64">
-            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-himatep-green"></div>
+        <div x-show="loading" x-cloak style="display: none;">
+            <div class="flex justify-center items-center h-64">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-himatep-green"></div>
+            </div>
         </div>
 
         <!-- Pesan Error -->
@@ -252,9 +262,9 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
                 </a>
 
                 <div class="mb-6 flex justify-center">
-                    <div class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg transform rotate-3
-                        bg-[#FDF6E3] text-[#B8860B]">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg transform rotate-3 border"
+                        :class="'bg-' + (program?.divisiColor || 'blue') + '-100 border-' + (program?.divisiColor || 'blue') + '-200'">
+                        <svg class="w-12 h-12" :class="'text-' + (program?.divisiColor || 'blue') + '-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x-bind:d="program?.icon"></path>
                         </svg>
                     </div>
@@ -262,31 +272,34 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
 
                 <div class="mb-4">
                     <span
-                        class="text-sm font-bold px-4 py-1 rounded-full shadow-sm uppercase tracking-wider bg-gray-100 text-gray-200"
-                        x-text="'Divisi ' + program?.divisi"></span>
+                        class="text-sm font-bold px-4 py-1 rounded-full shadow-sm uppercase tracking-wider border"
+                        :class="'text-' + (program?.divisiColor || 'blue') + '-700 bg-' + (program?.divisiColor || 'blue') + '-100 border-' + (program?.divisiColor || 'blue') + '-200'"
+                        x-text="program?.divisi ? 'Divisi ' + program?.divisi : 'HIMATEP'"></span>
                 </div>
 
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight" x-text="program?.judul">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" x-text="program?.judul">
                 </h1>
 
                 <div class="flex justify-center gap-4 md:gap-8 flex-wrap">
                     <!-- Tag: Target -->
-                    <div class="flex items-center text-sm font-semibold text-[#1B2945] bg-[#FDF6E3] px-4 py-2 rounded-xl shadow-sm border border-[#D4AF37]/40">
-                        <svg class="w-5 h-5 mr-2 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center text-sm font-semibold px-4 py-2 rounded-xl shadow-md border"
+                         :class="'text-' + (program?.divisiColor || 'blue') + '-700 bg-' + (program?.divisiColor || 'blue') + '-100 border-' + (program?.divisiColor || 'blue') + '-200'">
+                        <svg class="w-5 h-5 mr-2" :class="'text-' + (program?.divisiColor || 'blue') + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                             </path>
                         </svg>
-                        <span>Target: <span x-text="program?.target" class="font-medium"></span></span>
+                        <span style="color: inherit !important;">Target: <span x-text="program?.target" class="font-medium" style="color: inherit !important;"></span></span>
                     </div>
                     <!-- Tag: Sasaran -->
-                    <div class="flex items-center text-sm font-semibold text-[#1B2945] bg-[#FDF6E3] px-4 py-2 rounded-xl shadow-sm border border-[#D4AF37]/40">
-                        <svg class="w-5 h-5 mr-2 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center text-sm font-semibold px-4 py-2 rounded-xl shadow-md border"
+                         :class="'text-' + (program?.divisiColor || 'blue') + '-700 bg-' + (program?.divisiColor || 'blue') + '-100 border-' + (program?.divisiColor || 'blue') + '-200'">
+                        <svg class="w-5 h-5 mr-2" :class="'text-' + (program?.divisiColor || 'blue') + '-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                             </path>
                         </svg>
-                        <span>Sasaran: <span x-text="program?.sasaran" class="font-medium"></span></span>
+                        <span style="color: inherit !important;">Sasaran: <span x-text="program?.sasaran" class="font-medium" style="color: inherit !important;"></span></span>
                     </div>
                 </div>
             </header>
@@ -351,20 +364,20 @@ $page_img = $proker ? $proker['gambar'] : "http://localhost/webHimatep/public/im
             </div>
         </article>
         <!-- Floating Toast Notification -->
-        <div x-show="toastOpen" 
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 translate-y-4 scale-95"
-             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-             x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-             class="fixed bottom-8 right-8 z-[150] bg-himatep-green text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-blue-400/20"
-             x-cloak
-             style="display: none;">
-            <svg class="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span class="text-sm font-semibold" x-text="toastMessage"></span>
+        <div x-show="toastOpen" x-cloak style="display: none;" class="fixed bottom-8 right-8 z-[150] pointer-events-none">
+            <div x-show="toastOpen"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+                 x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                 x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+                 class="bg-himatep-green text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-blue-400/20 pointer-events-auto">
+                <svg class="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-sm font-semibold" x-text="toastMessage"></span>
+            </div>
         </div>
     </main>
 

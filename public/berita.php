@@ -45,7 +45,6 @@ $berita_json = json_encode(array_map(function($b) {
     ];
 }, $all_berita));
 ?>
-<section id="berita" style="scroll-margin-top:100px"></section>
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 
@@ -101,6 +100,7 @@ $berita_json = json_encode(array_map(function($b) {
 
 <body class="font-sans theme-custom bg-[#1E2F4D] text-white overflow-x-hidden"
     x-data="{ mobileMenuOpen: false, daftarBerita: dataBerita }">
+    <section id="berita" style="scroll-margin-top:100px"></section>
 
     <!-- Navbar -->
     <?php 
