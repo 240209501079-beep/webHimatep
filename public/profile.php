@@ -221,18 +221,23 @@ try {
             font-size: 1.4rem;
             font-weight: 900;
             color: white;
-            font-style: italic; 
+            font-style: italic;
             line-height: 1;
             margin-bottom: 0.25rem;
+            margin-left: -0.4rem;
         }
 
         .ksb-jabatan {
             font-size: 0.7rem;
             font-weight: 700;
             color: white;
-            font-style: italic; 
+            font-style: italic;
             opacity: 0.95;
             text-transform: capitalize;
+        }
+
+        .ksb-card:hover .ksb-content {
+            transform: skewX(12deg) translate(5px, -4px) scale(1.02);
         }
     </style>
     <style>
@@ -315,7 +320,7 @@ try {
                             <img src="<?= $foto_path ?>" onerror="this.src='images/logo-himatep.png'" alt="<?= htmlspecialchars($p['nama']) ?>">
                         </div>
                         <div class="ksb-overlay">
-                            <div class="ksb-content transition-transform duration-500 group-hover:translate-x-2">
+                            <div class="ksb-content transition-transform duration-500">
                                 <p class="ksb-jabatan"><?= htmlspecialchars($p['jabatan']) ?></p>
                                 <h3 class="ksb-nama"><?= htmlspecialchars($p['nama']) ?></h3>
                             </div>
@@ -351,7 +356,7 @@ try {
                             <img src="<?= $foto_path ?>" onerror="this.src='images/logo-himatep.png'" alt="<?= htmlspecialchars($p['nama']) ?>">
                         </div>
                         <div class="ksb-overlay">
-                            <div class="ksb-content transition-transform duration-500 group-hover:translate-x-2">
+                            <div class="ksb-content transition-transform duration-500">
                                 <p class="ksb-jabatan"><?= htmlspecialchars($jabatan_display) ?></p>
                                 <h3 class="ksb-nama"><?= htmlspecialchars($p['nama']) ?></h3>
                             </div>
@@ -384,7 +389,7 @@ try {
                             <img src="<?= $foto_path ?>" onerror="this.src='images/logo-himatep.png'" alt="<?= htmlspecialchars($p['nama']) ?>">
                         </div>
                         <div class="ksb-overlay">
-                            <div class="ksb-content transition-transform duration-500 group-hover:translate-x-2">
+                            <div class="ksb-content transition-transform duration-500">
                                 <p class="ksb-jabatan"><?= htmlspecialchars($jabatan_display) ?></p>
                                 <h3 class="ksb-nama"><?= htmlspecialchars($p['nama']) ?></h3>
                             </div>
@@ -453,9 +458,10 @@ try {
     <?php include 'includes/footer.php'; ?>
 
     <!-- MODAL POPUP (PREVIEW PENGURUS) -->
-    <div x-show="isModalOpen" style="display: none;" class="fixed inset-0 z-[110] flex items-center justify-center perspective-1000 p-4">
+    <div x-show="isModalOpen" style="display: none;" class="fixed inset-0 z-[110] flex items-center justify-center p-4">
         <!-- Blurred Backdrop -->
-        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" 
+        <div class="fixed inset-0 transition-opacity" 
+             style="background: rgba(0,0,0,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
              x-show="isModalOpen" 
              x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
              x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
